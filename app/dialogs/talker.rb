@@ -25,6 +25,12 @@ class Talker
     bot.api.send_message(chat_id: chat_id, text: I18n.t('errors.something_wrong'))
   end
 
+  def edit_message(chat_id:, message_id:, text:, markup: nil)
+    markup = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true) if markup == 'remove'
+
+    bot.api.edit_message_text(chat_id: chat_id, message_id: message_id, text: text, markup: markup)
+  end
+
   # self methods (copies of usual methods mostly)
 
   def self.show_not_registered(bot:, chat_id:)
@@ -47,5 +53,11 @@ class Talker
 
   def self.send_shorten_help_message(bot:, chat_id:)
     bot.api.send_message(chat_id: chat_id, text: I18n.t('common.shorten_help'))
+  end
+
+  def self.edit_message(bot:, chat_id:, message_id:, text:, markup: nil)
+    markup = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true) if markup == 'remove'
+
+    bot.api.edit_message_text(chat_id: chat_id, message_id: message_id, text: text, markup: markup)
   end
 end
