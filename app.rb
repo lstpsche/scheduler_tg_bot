@@ -34,6 +34,7 @@ require_relative 'app/handlers/messages/text/base'
 require_relative 'app/models/user'
 require_relative 'app/models/schedule'
 require_relative 'app/models/schedule_user'
+require_relative 'app/models/event'
 
 require_relative 'app/context'
 require_relative 'app/bot'
