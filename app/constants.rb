@@ -11,8 +11,7 @@ class Constants
 
   def self.options
     [
-      'example_option_1',
-      'vegetarian'
+      'example_option_1'
     ]
   end
 

@@ -16,23 +16,6 @@ module Actions
         # set something up here
       end
 
-      def vegetarian(user)
-        @user ||= user
-
-        markup = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
-          keyboard: [[I18n.t('common.yes'), I18n.t('common.no')], []],
-          one_time_keyboard: true
-        )
-        response_msg = option_send_message_get_response(option_name: __callee__.to_s, markup: markup)
-
-        case response_msg
-        when 'Yes'
-          user.update(vegetarian: true)
-        when 'No'
-          user.update(vegetarian: false)
-        end
-      end
-
       private
 
       def option_send_message_get_response(option_name:, markup: nil)

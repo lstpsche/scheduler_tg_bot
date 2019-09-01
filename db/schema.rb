@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2019_09_01_210132) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "context"
-    t.boolean "vegetarian", default: false, null: false
   end
 
 end

@@ -6,7 +6,6 @@ en:
     users:
       options:
         example_option_1: 'This is test method. What do you think?'
-        vegetarian: 'Are you a vegetarian?'
         setup_successful: 'Setting is set up successfully!'
       preferences:
         show_options: 'Choose a setting to setup:'
