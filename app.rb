@@ -32,6 +32,8 @@ require_relative 'app/handlers/messages/common/menu'
 require_relative 'app/handlers/messages/text/base'
 # models
 require_relative 'app/models/user'
+require_relative 'app/models/schedule'
+require_relative 'app/models/schedule_user'
 
 require_relative 'app/context'
 require_relative 'app/bot'
