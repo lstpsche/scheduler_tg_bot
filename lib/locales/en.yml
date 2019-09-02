@@ -2,7 +2,10 @@ en:
   actions:
     features:
       menu:
-        text: 'Main menu'
+        header: 'Main menu'
+        schedule: 'Schedule'
+        all_schedules: 'All schedules'
+        preferences: 'Preferences'
     users:
       options:
         example_option_1: 'This is test method. What do you think?'

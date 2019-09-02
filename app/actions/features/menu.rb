@@ -15,14 +15,15 @@ module Actions
 
         menu_options_kb = []
         Constants.menu_options.each do |menu_option_name|
+          name = menu_option_name.split(' ').join('_')
           menu_options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
-            text: menu_option_name.capitalize,
-            callback_data: "menu-#{menu_option_name.split(' ').join('_')}-main_menu"
+            text: I18n.t("actions.features.menu.#{name}"),
+            callback_data: "menu-#{name}-main_menu"
           )
         end
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: menu_options_kb)
 
-        talker.send_message(text: I18n.t('actions.features.menu.text'), chat_id: chat_id, markup: markup)
+        talker.send_message(text: I18n.t('actions.features.menu.header'), chat_id: chat_id, markup: markup)
       end
     end
   end

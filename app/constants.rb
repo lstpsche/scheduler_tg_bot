@@ -17,9 +17,9 @@ class Constants
 
   def self.menu_options
     [
-      'app',
-      'preferences',
-      'some example feature'
+      'schedule',
+      'all schedules',
+      'preferences'
     ]
   end
 end
