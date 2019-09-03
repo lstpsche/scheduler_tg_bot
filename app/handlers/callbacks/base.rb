@@ -3,6 +3,11 @@
 module Handlers
   module Callbacks
     class Base < Handlers::Base
+      CLASS_INDEX = 1           # ex. preferences
+      COMMAND_INDEX = 2         # command
+      DIRTY_CONTEXT_INDEX = 3   # with "-" sign before (ex. '-main_menu')
+      CONTEXT_INDEX = 4         # ex. main_menu
+
       attr_reader :bot, :parsed_command, :user_id
 
       def initialize(bot:)
@@ -13,9 +18,9 @@ module Handlers
         init_vars(callback)
         parse_context_command(callback.data)
 
-        call_handler(parsed_command[2])
+        call_handler(parsed_command[COMMAND_INDEX])
 
-        return_to_context(parsed_command[4])
+        return_to_context(parsed_command[CONTEXT_INDEX])
       end
 
       private
@@ -26,11 +31,10 @@ module Handlers
 
       def parse_context_command(command)
         @parsed_command = command.match(Constants.context_command_regex) # /^(\w+)-(\w+)(-(\w+))?$/
-        # 1: class (ex. preferences)     2: command     3: context with "-" sign before     4: context (ex. main_menu)
       end
 
       def call_handler(command)
-        option_klass = parsed_command[1]
+        option_klass = parsed_command[CLASS_INDEX]
         handler = "Handlers::Messages::Common::#{option_klass.capitalize}".split('::').reduce(Module, :const_get)
 
         handler.new(bot: bot, chat_id: user_id, user: User.find_by(id: user_id)).(command)
