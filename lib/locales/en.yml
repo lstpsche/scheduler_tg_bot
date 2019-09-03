@@ -4,18 +4,19 @@ en:
       menu:
         header: 'Main menu'
         schedule: 'Schedule'
-        all_schedules: 'All schedules'
+        my_schedules: 'My schedules'
         preferences: 'Preferences'
     users:
       options:
         example_option_1: 'This is test method. What do you think?'
+        terms_and_conditions: 'Are you agree with Terms and Conditions?' # show keyboard with Yes and No. and after answer if it Yes or No, edit this message to remove keyboard
         setup_successful: 'Setting is set up successfully!'
       preferences:
         show_options: 'Choose a setting to setup:'
         setup_successful: "Everything is set up.\nYou're ready to go!"
       registration:
-        welcome:
-          "Hello, %{name}!\nWe need to quickly setup your account.\nPlease answer some questions."
+        terms_and_conditions: "We will use some of your Telegram profile data.\n\nHere's a list of what we will use:\n1. First name\n2. Last name\n3. Username\n4. Telegram ID\n5. Info about your language.\n\nNothing of your personal data will be given to third parties. All your data is stored at ours servers and only used by us."
+        welcome: "Hello, %{name}!\nWe need to quickly setup your account.\nPlease answer some questions."
   common:
     help: "/start - register\n/main_menu - show main menu\n/preferences - setup preferences\n/help - show all commands"
     shorten_help: "/main_menu - show main menu\n/preferences - setup preferences\n/help - show all commands"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_210132) do
+ActiveRecord::Schema.define(version: 2019_09_03_190521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_210132) do
     t.bigint "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "additional_info"
     t.index ["schedule_id"], name: "index_events_on_schedule_id"
   end
 
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_210132) do
     t.bigint "schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "notify", default: true, null: false
     t.index ["schedule_id"], name: "index_schedule_users_on_schedule_id"
     t.index ["user_id"], name: "index_schedule_users_on_user_id"
   end
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_210132) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "additional_info"
   end
 
   create_table "users", force: :cascade do |t|
