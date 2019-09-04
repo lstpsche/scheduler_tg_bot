@@ -6,6 +6,8 @@ en:
         schedule: 'Schedule'
         my_schedules: 'My schedules'
         preferences: 'Preferences'
+      my_schedules:
+        header: 'My schedules'
     users:
       options:
         example_option_1: 'This is test method. What do you think?'

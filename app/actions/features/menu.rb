@@ -18,7 +18,7 @@ module Actions
           name = menu_option_name.split(' ').join('_')
           menu_options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
             text: I18n.t("actions.features.menu.#{name}"),
-            callback_data: "menu-#{name}-main_menu"
+            callback_data: "menu-#{name}"
           )
         end
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: menu_options_kb)

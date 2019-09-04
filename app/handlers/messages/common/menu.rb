@@ -15,7 +15,8 @@ module Handlers
           Actions::Users::Preferences.new(bot: bot, chat_id: chat_id).show_options_menu
         end
 
-        def app
+        def my_schedules
+          Actions::Features::MySchedules.new(bot: bot).show(chat_id: chat_id)
           # launch your app here
         end
 
