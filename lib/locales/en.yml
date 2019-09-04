@@ -8,6 +8,10 @@ en:
         preferences: 'Preferences'
       my_schedules:
         header: 'My schedules'
+      schedule:
+        options:
+          show_schedule: 'Show schedule'
+          back: 'Back'
     users:
       options:
         example_option_1: 'This is test method. What do you think?'
