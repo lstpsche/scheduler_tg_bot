@@ -3,17 +3,16 @@
 module Actions
   module Features
     class Schedule < Base
-      attr_reader :bot, :chat_id, :talker, :user
+      attr_reader :bot, :chat_id, :talker
 
-      def initialize(bot:)
+      def initialize(bot:, chat_id:, user:)
         @bot = bot
+        @chat_id = chat_id
         @talker = Talker.new(bot: bot)
       end
 
-      def show(chat_id:, schedule_id:)
-        @chat_id = chat_id
-        @user = User.find_by(id: chat_id)
-        schedule = Schedule.find_by(id: schedule_id)
+      def show(schedule_id:)
+        schedule = ::Schedule.find_by(id: schedule_id)
 
         schedule_options_kb = []
         Constants.schedule_options.each do |option_name|
@@ -26,9 +25,9 @@ module Actions
           )
         end
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: schedule_options_kb)
-        text = "**#{schedule.name}**" + "\n" + schedule_additional_info(schedule)
+        text = "*#{schedule.name}*\n#{schedule_additional_info(schedule)}"
 
-        talker.send_message(text: text, chat_id: chat_id, markup: markup)
+        talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
       end
 
       private

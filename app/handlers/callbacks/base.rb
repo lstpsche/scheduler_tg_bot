@@ -36,7 +36,6 @@ module Handlers
       def call_handler(command)
         option_klass = parsed_command[CLASS_INDEX].split('_').map(&:capitalize).join
         handler = "Handlers::Messages::Common::#{option_klass}".split('::').reduce(Module, :const_get)
-        binding.pry
 
         handler.new(bot: bot, chat_id: user_id, user: User.find_by(id: user_id)).(command)
       end
