@@ -3,7 +3,7 @@ en:
     features:
       menu:
         header: 'Main menu'
-        schedule: 'Schedule'
+        new_schedule: 'New schedule'
         my_schedules: 'My schedules'
         preferences: 'Preferences'
       my_schedules:

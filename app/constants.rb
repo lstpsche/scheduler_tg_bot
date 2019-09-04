@@ -13,7 +13,7 @@ class Constants
     # TODO: rewrite all those like "schedule_options"
     def menu_options
       [
-        'schedule',
+        'new schedule',
         'my schedules',
         'preferences'
       ]

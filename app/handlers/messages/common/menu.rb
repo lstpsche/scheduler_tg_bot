@@ -17,10 +17,9 @@ module Handlers
 
         def my_schedules
           Actions::Features::MySchedules.new(bot: bot).show(chat_id: chat_id)
-          # launch your app here
         end
 
-        def some_example_feature
+        def new_schedule
           # launch your your feature here
         end
       end
