@@ -10,12 +10,7 @@ class Constants
       /^(\w+)-(\w+)(-(\w+))?$/
     end
 
-    def options
-      [
-        'example_option_1'
-      ]
-    end
-
+    # TODO: rewrite all those like "schedule_options"
     def menu_options
       [
         'schedule',
@@ -28,8 +23,22 @@ class Constants
       "my_schedules-%{id}%{return_to}"
     end
 
+    def options
+      [
+        'example_option_1'
+      ]
+    end
+
     def schedule_callback
       "schedule-%{option}%{return_to}"
+    end
+
+    def schedule_options
+      scope = 'actions.features.schedule.options'
+      [
+        I18n.t(:show_schedule, scope: scope),
+        I18n.t(:back, scope: scope)
+      ]
     end
   end
 end
