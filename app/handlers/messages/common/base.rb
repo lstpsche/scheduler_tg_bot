@@ -4,11 +4,12 @@ module Handlers
   module Messages
     module Common
       class Base < Handlers::Base
-        attr_reader :bot, :tg_user
+        attr_reader :bot, :chat_id, :user
 
-        def initialize(bot:, tg_user:)
+        def initialize(bot:, chat_id:, user:)
           @bot = bot
-          @tg_user = tg_user
+          @chat_id = chat_id
+          @user = user
         end
 
         def call(command)
@@ -16,29 +17,29 @@ module Handlers
         end
 
         def start
-          return false if user_registered?(id: tg_user.id)
+          return false if user_registered?(id: chat_id)
 
-          ::Actions::Users::Registration.new(bot: bot, tg_user: tg_user).launch
-          Talker.send_shorten_help_message(bot: bot, chat_id: tg_user.id)
+          ::Actions::Users::Registration.new(bot: bot, tg_user: user).launch
+          Talker.send_shorten_help_message(bot: bot, chat_id: chat_id)
         end
 
         def main_menu
-          unless user_registered?(id: tg_user.id)
-            Talker.show_not_registered(bot: bot, chat_id: tg_user.id)
+          unless user_registered?(id: chat_id)
+            Talker.show_not_registered(bot: bot, chat_id: chat_id)
             return false
           end
 
-          ::Actions::Features::Menu.new(bot: bot).show(chat_id: tg_user.id)
+          ::Actions::Features::Menu.new(bot: bot).show(chat_id: chat_id)
         end
 
         def preferences
-          return false unless user_registered?(id: tg_user.id)
+          return false unless user_registered?(id: chat_id)
 
-          ::Actions::Users::Preferences.new(bot: bot, chat_id: tg_user.id).show_options
+          ::Actions::Users::Preferences.new(bot: bot, chat_id: chat_id).show_options
         end
 
         def help
-          Talker.send_help_message(bot: bot, chat_id: tg_user.id)
+          Talker.send_help_message(bot: bot, chat_id: chat_id)
         end
       end
     end

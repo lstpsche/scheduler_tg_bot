@@ -24,8 +24,9 @@ module Handlers
 
       def parse_common_command(command)
         parsed_command = command.match(Constants.command_regex)
+        user = User.find_by(id: tg_user.id)
 
-        Handlers::Messages::Common::Base.new(bot: bot, tg_user: tg_user).(parsed_command[1])
+        Handlers::Messages::Common::Base.new(bot: bot, chat_id: user.id, user: user).(parsed_command[1])
       end
 
       def parse_message_text(command)

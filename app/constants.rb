@@ -10,6 +10,18 @@ class Constants
       /^(\w+)-(\w+)(-(\w+))?$/
     end
 
+    def event_in_schedule_decoration
+      "*%{time}*: %{info} _(%{additional_info})_"
+    end
+
+    def in_schedule_options
+      scope = 'actions.features.schedule.options'
+
+      IN_SCHEDULE_OPTIONS.map do |option|
+        I18n.t(option, scope: scope)
+      end
+    end
+
     # TODO: rewrite all those like "schedule_options"
     def menu_options
       [
@@ -30,15 +42,39 @@ class Constants
     end
 
     def schedule_callback
-      "schedule-%{option}%{return_to}"
+      "schedule-%{schedule_id}__%{option}%{return_to}"
     end
 
     def schedule_options
       scope = 'actions.features.schedule.options'
+
+      SCHEDULE_OPTIONS.map do |option|
+        I18n.t(option, scope: scope)
+      end
+    end
+
+    # using for inner coding. doesn't needed to translate
+    def weekdays
       [
-        I18n.t(:show_schedule, scope: scope),
-        I18n.t(:back, scope: scope)
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'saturday',
+        'sunday'
       ]
     end
+
+    private
+
+    SCHEDULE_OPTIONS = [
+      :show_schedule,
+      :back
+    ]
+
+    IN_SCHEDULE_OPTIONS = [
+      :hide_schedule,
+      :back
+    ]
   end
 end
