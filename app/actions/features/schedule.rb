@@ -14,46 +14,44 @@ module Actions
       def show(schedule_id:)
         schedule = ::Schedule.find_by(id: schedule_id)
 
-        schedule_options_kb = []
-        Constants.schedule_options.each do |option_name|
-          schedule_options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
-            text: option_name,
-            callback_data: Constants.schedule_callback % {
-              schedule_id: schedule_id,
-              option: option_name.downcase.split(' ').join('_'),
-              return_to: nil
-            }
-          )
-        end
-        markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: schedule_options_kb)
+        markup = create_inline_markup_with(Constants.schedule_options, schedule)
         text = "*#{schedule.name}*\n#{schedule_additional_info(schedule)}"
+
+        talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
+      end
+
+      def expand(schedule_id: schedule_id)
+        schedule = ::Schedule.find_by(id: schedule_id)
+
+        markup = create_inline_markup_with(Constants.in_schedule_options, schedule)
+        text = ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
 
         talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
       end
 
       alias :hide :show
 
-      def expand(schedule_id: schedule_id)
-        schedule = ::Schedule.find_by(id: schedule_id)
+      private
 
-        in_schedule_options_kb = []
-        Constants.in_schedule_options.each do |option_name|
-          in_schedule_options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
-            text: option_name,
-            callback_data: Constants.schedule_callback % {
-              schedule_id: schedule_id,
-              option: option_name.downcase.split(' ').join('_'),
-              return_to: nil
-            }
-          )
-        end
-        markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: in_schedule_options_kb)
-        text = ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
-
-        talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
+      def create_button(schedule, option_name)
+        Telegram::Bot::Types::InlineKeyboardButton.new(
+          text: option_name,
+          callback_data: Constants.schedule_callback % {
+            schedule_id: schedule.id,
+            option: option_name.downcase.split(' ').join('_'),
+            return_to: nil
+          }
+        )
       end
 
-      private
+      def create_inline_markup_with(options, schedule)
+        kb = []
+        options.each do |option_name|
+          kb << create_button(schedule, option_name)
+        end
+
+        Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
+      end
 
       def schedule_additional_info(schedule)
         add_info = schedule.additional_info

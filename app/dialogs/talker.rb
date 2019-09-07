@@ -13,6 +13,10 @@ class Talker
     bot.api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: parse_mode)
   end
 
+  def send_message_markdown(options)
+    send_message(options.merge(parse_mode: 'markdown'))
+  end
+
   def get_message
     bot.listen { |message| return message }
   end
@@ -37,6 +41,10 @@ class Talker
     markup = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true) if markup == 'remove'
 
     bot.api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: parse_mode)
+  end
+
+  def self.send_message_markdown(options)
+    self.send_message(options.merge(parse_mode: 'markdown'))
   end
 
   def self.show_not_registered(bot:, chat_id:)

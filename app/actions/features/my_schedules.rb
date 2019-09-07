@@ -18,15 +18,21 @@ module Actions
         user.schedules.each do |schedule|
           my_schedules_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
             text: schedule.name,
-            callback_data: Constants.my_schedules_callback % {
-              id: schedule.id,
-              return_to: nil
-            }
+            callback_data: schedule_button_callback_data(schedule)
           )
         end
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: my_schedules_kb)
 
-        talker.send_message(text: I18n.t('actions.features.my_schedules.header'), chat_id: chat_id, markup: markup)
+        talker.send_message_markdown(text: I18n.t('actions.features.my_schedules.header'), chat_id: chat_id, markup: markup)
+      end
+
+      private
+
+      def schedule_button_callback_data(schedule)
+        Constants.my_schedules_callback % {
+          id: schedule.id,
+          return_to: nil
+        }
       end
     end
   end
