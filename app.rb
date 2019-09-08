@@ -38,5 +38,8 @@ rake_app['db:connect'].invoke
 I18n.load_path << Dir[File.expand_path("lib/locales") + "/*.yml"]
 I18n.default_locale = :en
 
+## context
+Context.init
+
 # launch bot
 Bot.new(ENV['BOT_TOKEN']).launch
