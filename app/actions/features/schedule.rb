@@ -9,7 +9,7 @@ module Actions
         @bot = bot
         @chat_id = chat_id
         @user = User.find_by(id: chat_id)
-        @talker = Talker.new(bot: bot)
+        @talker = Talker.new(bot: bot, user: user)
       end
 
       def show(schedule_id:)
@@ -18,8 +18,13 @@ module Actions
         markup = create_inline_markup_with(Constants.schedule_options, schedule)
         text = "*#{schedule.name}*\n#{schedule_additional_info(schedule)}"
 
-        msg = talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
-        user.update(last_message: msg)
+        if user.replace_last_message?
+          talker.edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
+                              markup: markup, parse_mode: 'markdown')
+        else
+          talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
+        end
+        user.update(replace_last_message: true)
       end
 
       def expand(schedule_id: schedule_id)
@@ -28,9 +33,9 @@ module Actions
         markup = create_inline_markup_with(Constants.in_schedule_options, schedule)
         text = ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
 
-        msg = talker.edit_message(message_id: user.last_message['result']['message_id'], text: text, chat_id: chat_id,
-                                  markup: markup, parse_mode: 'markdown')
-        user.update(last_message: msg)
+        talker.edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
+                            markup: markup, parse_mode: 'markdown')
+        user.update(replace_last_message: true)
       end
 
       alias :hide :show

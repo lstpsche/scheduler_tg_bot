@@ -5,15 +5,14 @@ module Actions
     class MySchedules < Base
       attr_reader :bot, :chat_id, :talker, :user
 
-      def initialize(bot:)
+      def initialize(bot:, chat_id:)
         @bot = bot
-        @talker = Talker.new(bot: bot)
-      end
-
-      def show(chat_id:)
         @chat_id = chat_id
         @user = User.find_by(id: chat_id)
+        @talker = Talker.new(bot: bot, user: user)
+      end
 
+      def show
         my_schedules_kb = []
         user.schedules.each do |schedule|
           my_schedules_kb << Telegram::Bot::Types::InlineKeyboardButton.new(

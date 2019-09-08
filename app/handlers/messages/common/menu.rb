@@ -16,7 +16,7 @@ module Handlers
         end
 
         def my_schedules
-          Actions::Features::MySchedules.new(bot: bot).show(chat_id: chat_id)
+          Actions::Features::MySchedules.new(bot: bot, chat_id: chat_id).show
         end
 
         def new_schedule
