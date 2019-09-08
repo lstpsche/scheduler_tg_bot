@@ -25,6 +25,8 @@ class Bot
     end
   end
 
+  private
+
   def parse_message_type(message)
     message_class = message.class.to_s.split('::').last
     HANDLERS[message_class].new(bot: bot).(message)

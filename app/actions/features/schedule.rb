@@ -3,11 +3,12 @@
 module Actions
   module Features
     class Schedule < Base
-      attr_reader :bot, :chat_id, :talker
+      attr_reader :bot, :chat_id, :talker, :user
 
       def initialize(bot:, chat_id:, user:)
         @bot = bot
         @chat_id = chat_id
+        @user = User.find_by(id: chat_id)
         @talker = Talker.new(bot: bot)
       end
 
@@ -17,7 +18,8 @@ module Actions
         markup = create_inline_markup_with(Constants.schedule_options, schedule)
         text = "*#{schedule.name}*\n#{schedule_additional_info(schedule)}"
 
-        talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
+        msg = talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
+        user.update(last_message: msg)
       end
 
       def expand(schedule_id: schedule_id)
@@ -26,7 +28,9 @@ module Actions
         markup = create_inline_markup_with(Constants.in_schedule_options, schedule)
         text = ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
 
-        talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
+        msg = talker.edit_message(message_id: user.last_message['result']['message_id'], text: text, chat_id: chat_id,
+                                  markup: markup, parse_mode: 'markdown')
+        user.update(last_message: msg)
       end
 
       alias :hide :show

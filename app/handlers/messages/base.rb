@@ -22,15 +22,28 @@ module Handlers
 
       private
 
-      def parse_common_command(command)
-        parsed_command = command.match(Constants.command_regex)
-        user = User.find_by(id: tg_user.id)
+      def check_validity_of(command)
+        if (command != '/start') && !User.find_by(id: tg_user.id)
+          show_not_registered(tg_user.id)
+          return false
+        end
+      end
 
-        Handlers::Messages::Common::Base.new(bot: bot, chat_id: user.id, user: user).(parsed_command[1])
+      def parse_common_command(command)
+        check_validity_of(command)
+
+        parsed_command = command.match(Constants.command_regex)
+        user = User.find_by(id: tg_user.id) || tg_user
+
+        Handlers::Messages::Common::Base.new(bot: bot, chat_id: tg_user.id, user: user).(parsed_command[1])
       end
 
       def parse_message_text(command)
         Handlers::Messages::Text::Base.new(bot: bot, tg_user: tg_user).(command)
+      end
+
+      def show_not_registered(chat_id)
+        Talker.show_not_registered(bot: bot, chat_id: chat_id)
       end
     end
   end

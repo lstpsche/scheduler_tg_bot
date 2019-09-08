@@ -21,6 +21,8 @@ require_relative 'app/dialogs/talker'
 require_relative 'app/handlers/base'
 require_all 'app/handlers/callbacks'
 require_all 'app/handlers/messages'
+## serializers
+require_all 'app/serializers'
 ## models
 require_all 'app/models'
 
@@ -37,9 +39,6 @@ rake_app['db:connect'].invoke
 ## i18n localizations
 I18n.load_path << Dir[File.expand_path("lib/locales") + "/*.yml"]
 I18n.default_locale = :en
-
-## context
-Context.init
 
 # launch bot
 Bot.new(ENV['BOT_TOKEN']).launch
