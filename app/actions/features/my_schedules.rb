@@ -24,6 +24,7 @@ module Actions
 
         talker.send_message(text: I18n.t('actions.features.my_schedules.header'), chat_id: chat_id, markup: markup,
                             parse_mode: 'markdown')
+        user.update(replace_last_message: false)
       end
 
       private

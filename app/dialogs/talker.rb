@@ -8,7 +8,7 @@ class Talker
     @user = user
   end
 
-  # not-self methods should just call self methods. It's easier to maintain such code
+  # self methods should just call non-self methods. It's easier to maintain such code
   # (except get_message)
 
   def edit_message(message_id:, text: nil, chat_id:, markup: nil, parse_mode: 'HTML')
@@ -29,6 +29,15 @@ class Talker
 
     msg = bot.api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: parse_mode)
     user&.update(last_message: msg)
+  end
+
+  def send_or_edit_message(user: nil, message_id: nil, text: nil, chat_id:, markup: nil, parse_mode: 'HTML')
+    user = @user if user.nil?
+    if user.replace_last_message?
+      edit_message(message_id: message_id, text: text, chat_id: chat_id, markup: markup, parse_mode: parse_mode)
+    else
+      send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: parse_mode)
+    end
   end
 
   def send_shorten_help_message(chat_id:)
@@ -59,6 +68,11 @@ class Talker
 
     def send_message(bot:, text:, chat_id:, markup: nil, parse_mode: 'HTML')
       talker(bot, user(chat_id)).send_message(chat_id: chat_id, text: text, markup: markup)
+    end
+
+    def send_or_edit_message(bot:, user:, message_id: nil, text: nil, chat_id:, markup: nil, parse_mode: 'HTML')
+      talker(bot, user).send_or_edit_message(message_id: message_id, text: text, chat_id: chat_id,
+                                             markup: markup, parse_mode: parse_mode)
     end
 
     def send_shorten_help_message(bot:, chat_id:)

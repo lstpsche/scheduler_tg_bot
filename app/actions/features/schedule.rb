@@ -5,7 +5,7 @@ module Actions
     class Schedule < Base
       attr_reader :bot, :chat_id, :talker, :user
 
-      def initialize(bot:, chat_id:, user:)
+      def initialize(bot:, chat_id:)
         @bot = bot
         @chat_id = chat_id
         @user = User.find_by(id: chat_id)
@@ -18,27 +18,27 @@ module Actions
         markup = create_inline_markup_with(Constants.schedule_options, schedule)
         text = "*#{schedule.name}*\n#{schedule_additional_info(schedule)}"
 
-        if user.replace_last_message?
-          talker.edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
-                              markup: markup, parse_mode: 'markdown')
-        else
-          talker.send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: 'markdown')
-        end
+        talker.send_or_edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
+                                    markup: markup, parse_mode: 'markdown')
         user.update(replace_last_message: true)
       end
 
-      def expand(schedule_id: schedule_id)
+      def expand(schedule_id:)
         schedule = ::Schedule.find_by(id: schedule_id)
 
         markup = create_inline_markup_with(Constants.in_schedule_options, schedule)
         text = ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
 
-        talker.edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
-                            markup: markup, parse_mode: 'markdown')
+        talker.send_or_edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
+                                    markup: markup, parse_mode: 'markdown')
         user.update(replace_last_message: true)
       end
 
       alias :hide :show
+
+      def back(schedule_id:)
+        user.update(replace_last_message: false)
+      end
 
       private
 

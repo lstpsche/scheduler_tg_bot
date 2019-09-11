@@ -8,7 +8,7 @@ module Handlers
 
         def method_missing(method_name, *args, &block)
           parsed_method_name = method_name.to_s.split('__')
-          @schedule = Actions::Features::Schedule.new(bot: bot, chat_id: chat_id, user: user)
+          @schedule = Actions::Features::Schedule.new(bot: bot, chat_id: chat_id)
 
           case parsed_method_name.last
           when 'show_schedule'
