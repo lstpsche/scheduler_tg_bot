@@ -19,7 +19,7 @@ module Actions
         text = "*#{schedule.name}*\n#{schedule_additional_info(schedule)}"
 
         talker.send_or_edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
-                                    markup: markup, parse_mode: 'markdown')
+                                    markup: markup)
         user.update(replace_last_message: true)
       end
 
@@ -30,14 +30,19 @@ module Actions
         text = ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
 
         talker.send_or_edit_message(message_id: user.last_message_id, text: text, chat_id: chat_id,
-                                    markup: markup, parse_mode: 'markdown')
+                                    markup: markup)
         user.update(replace_last_message: true)
       end
 
       alias :hide :show
 
+      def pin
+        binding.pry
+        talker.edit_message_reply_markup(chat_id: chat_id, message_id: user.last_message_id)
+        back
+      end
+
       def back
-        user.update(replace_last_message: true)
         Handlers::Messages::Common::Menu.new(bot: bot, chat_id: chat_id, user: user).my_schedules
       end
 

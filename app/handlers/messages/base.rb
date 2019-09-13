@@ -34,6 +34,7 @@ module Handlers
 
         parsed_command = command.match(Constants.command_regex)
         user = User.find_by(id: tg_user.id) || tg_user
+        user.update(replace_last_message: false)
 
         Handlers::Messages::Common::Base.new(bot: bot, chat_id: tg_user.id, user: user).(parsed_command[1])
       end

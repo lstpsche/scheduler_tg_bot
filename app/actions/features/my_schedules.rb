@@ -24,7 +24,7 @@ module Actions
 
         talker.send_or_edit_message(user: user, message_id: user.last_message_id,
                                     text: I18n.t('actions.features.my_schedules.header'), chat_id: chat_id,
-                                    markup: markup, parse_mode: 'markdown')
+                                    markup: markup)
         user.update(replace_last_message: true)
       end
 

@@ -29,8 +29,6 @@ module Handlers
             return false
           end
 
-          user.update(replace_last_message: false)
-
           ::Actions::Features::Menu.new(bot: bot).show(chat_id: chat_id)
         end
 

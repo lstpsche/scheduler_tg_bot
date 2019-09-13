@@ -3,7 +3,7 @@
 module Actions
   module Features
     class Menu < Base
-      attr_reader :bot, :chat_id, :talker
+      attr_reader :bot, :chat_id, :talker, :user
 
       def initialize(bot:)
         @bot = bot
@@ -12,6 +12,7 @@ module Actions
 
       def show(chat_id:)
         @chat_id = chat_id
+        @user = User.find_by(id: chat_id)
 
         menu_options_kb = []
         Constants.menu_options.each do |menu_option_name|
@@ -23,7 +24,9 @@ module Actions
         end
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: menu_options_kb)
 
-        talker.send_message(text: I18n.t('actions.features.menu.header'), chat_id: chat_id, markup: markup)
+        talker.send_or_edit_message(user: user, message_id: user.last_message_id,
+                                    text: I18n.t('actions.features.menu.header'), chat_id: chat_id, markup: markup)
+        user.update(replace_last_message: true)
       end
     end
   end

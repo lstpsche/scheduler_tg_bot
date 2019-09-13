@@ -15,6 +15,8 @@ module Handlers
             expand_schedule(parsed_method_name.first)
           when 'hide_schedule'
             hide_schedule(parsed_method_name.first)
+          when 'pin'
+            pin
           when 'back'
             back
           end
@@ -30,7 +32,13 @@ module Handlers
           schedule.hide(schedule_id: schedule_id)
         end
 
+        def pin
+          user.update(replace_last_message: false)
+          schedule.pin
+        end
+
         def back
+          user.update(replace_last_message: true)
           schedule.back
         end
       end

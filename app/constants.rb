@@ -74,6 +74,7 @@ class Constants
 
     IN_SCHEDULE_OPTIONS = [
       :hide_schedule,
+      :pin,
       :back
     ]
   end
