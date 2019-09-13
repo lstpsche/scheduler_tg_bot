@@ -22,8 +22,9 @@ module Actions
         end
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: my_schedules_kb)
 
-        talker.send_message(text: I18n.t('actions.features.my_schedules.header'), chat_id: chat_id, markup: markup,
-                            parse_mode: 'markdown')
+        talker.send_or_edit_message(user: user, message_id: user.last_message_id,
+                                    text: I18n.t('actions.features.my_schedules.header'), chat_id: chat_id,
+                                    markup: markup, parse_mode: 'markdown')
         user.update(replace_last_message: false)
       end
 

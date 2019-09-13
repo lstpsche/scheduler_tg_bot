@@ -36,8 +36,9 @@ module Actions
 
       alias :hide :show
 
-      def back(schedule_id:)
-        user.update(replace_last_message: false)
+      def back
+        user.update(replace_last_message: true)
+        Handlers::Messages::Common::Menu.new(bot: bot, chat_id: chat_id, user: user).my_schedules
       end
 
       private

@@ -15,6 +15,8 @@ module Handlers
             expand_schedule(parsed_method_name.first)
           when 'hide_schedule'
             hide_schedule(parsed_method_name.first)
+          when 'back'
+            back
           end
         end
 
@@ -26,6 +28,10 @@ module Handlers
 
         def hide_schedule(schedule_id)
           schedule.hide(schedule_id: schedule_id)
+        end
+
+        def back
+          schedule.back
         end
       end
     end
