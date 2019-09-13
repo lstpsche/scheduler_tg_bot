@@ -8,6 +8,7 @@ en:
         preferences: 'Preferences'
       my_schedules:
         header: 'My schedules'
+        back: 'Back'
       schedule:
         options:
           show_schedule: 'Show schedule'
@@ -29,6 +30,7 @@ en:
     shorten_help: "/main_menu - show main menu\n/preferences - setup preferences\n/help - show all commands"
     'no': 'No'
     'yes': 'Yes'
+    back: 'Back'
   errors:
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
     not_registered: "Sorry, you're not registered yet.\nPlease, run /start to register."

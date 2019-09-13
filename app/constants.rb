@@ -32,7 +32,7 @@ class Constants
     end
 
     def my_schedules_callback
-      "my_schedules-%{id}%{return_to}"
+      "my_schedules-%{command}%{return_to}"
     end
 
     def options
