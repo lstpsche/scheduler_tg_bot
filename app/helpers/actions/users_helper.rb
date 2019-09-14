@@ -35,7 +35,7 @@ module Helpers
 
         Constants.options.each do |option|
           text = option[:button]
-          callback = "preferences-#{option[:name]}" + ((context.nil? || context.strip.empty?) ? '' : "-#{context}")
+          callback = "preferences-show_#{option[:name]}" + ((context.nil? || context.strip.empty?) ? '' : "-#{context}")
           options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
             text: text, callback_data: callback
           )

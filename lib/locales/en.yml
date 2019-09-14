@@ -16,6 +16,13 @@ en:
           hide_schedule: 'Hide schedule'
           pin: 'Pin'
     users:
+      option:
+        change_option:
+          name: 'setup'
+          button: 'Change option'
+        back:
+          name: 'back'
+          button: 'Back'
       options:
         back:
           name: 'back'
@@ -36,8 +43,8 @@ en:
         welcome: "Hello, %{name}!\nWe need to quickly setup your account.\nPlease answer some questions."
   common:
     back: 'Back'
-    help: "/start - register\n/main_menu - show main menu\n/preferences - setup preferences\n/help - show all commands"
-    shorten_help: "/main_menu - show main menu\n/preferences - setup preferences\n/help - show all commands"
+    help: "/start - register\n/main_menu - show main menu\n/help - show all commands"
+    shorten_help: "/main_menu - show main menu\n/help - show all commands"
     'no': 'No'
     'yes': 'Yes'
   errors:

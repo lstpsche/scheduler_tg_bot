@@ -35,6 +35,19 @@ class Constants
       "my_schedules-%{command}%{return_to}"
     end
 
+    def option_callback
+      "options-%{command}%{return_to}"
+    end
+
+    def option_options
+      scope = 'actions.users.option'
+
+      OPTION_OPTIONS.inject([]) do |result, option_name|
+        # returns hash: { name: '.....', text: '....' }
+        result << I18n.t(option_name, scope: scope)
+      end
+    end
+
     def options
       scope = 'actions.users.options'
 
@@ -73,6 +86,11 @@ class Constants
     IN_SCHEDULE_OPTIONS = [
       :hide_schedule,
       :pin,
+      :back
+    ]
+
+    OPTION_OPTIONS = [
+      :change_option,
       :back
     ]
 

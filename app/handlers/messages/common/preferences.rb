@@ -15,8 +15,6 @@ module Handlers
 
         def method_missing(method_name, *args, &block)
           options.send(method_name, user)
-          user.update(replace_last_message: false)
-          Actions::Users::Preferences.new(bot: bot, chat_id: chat_id).show_options
         end
 
         def back

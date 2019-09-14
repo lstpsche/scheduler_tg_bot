@@ -12,15 +12,15 @@ module Actions
         @chat_id = chat_id || user.id
         @user = user || User.find_by(id: chat_id)
 
-        @talker = Talker.new(bot: bot, user: user)
-        @options = Options.new(bot: bot, chat_id: chat_id)
+        @talker = Talker.new(bot: bot, user: @user)
+        @options = Options.new(bot: bot, chat_id: @chat_id)
       end
 
       def init_setup(user_id)
         @user = User.find_by(id: user_id)
 
         Constants.options.each do |option|
-          options.send(option[:name], user)
+          options.send("setup_#{option[:name]}", user)
         end
 
         if user.save
