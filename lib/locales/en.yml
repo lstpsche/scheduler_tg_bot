@@ -11,27 +11,35 @@ en:
         back: 'Back'
       schedule:
         options:
+          back: 'Back'
           show_schedule: 'Show schedule'
           hide_schedule: 'Hide schedule'
           pin: 'Pin'
-          back: 'Back'
     users:
       options:
-        example_option_1: 'This is test method. What do you think?'
-        terms_and_conditions: 'Are you agree with Terms and Conditions?' # show keyboard with Yes and No. and after answer if it Yes or No, edit this message to remove keyboard
-        setup_successful: 'Setting is set up successfully!'
+        back:
+          name: 'back'
+          button: 'Back'
+        example_option_1:
+          name: 'example_option_1'
+          button: 'Example Option 1'
+          text: 'This is test method. What do you think?'
+        terms_and_conditions:
+          name: 'Terms and Conditions'
+          text: 'Are you agree with Terms and Conditions?' # show keyboard with Yes and No. and after answer if it Yes or No, edit this message to remove keyboard
+        setup_successful: 'Setting was set up successfully!'
       preferences:
         show_options: 'Choose a setting to setup:'
-        setup_successful: "Everything is set up.\nYou're ready to go!"
+        setup_successful: "Everything's set up.\nYou're ready to go!"
       registration:
         terms_and_conditions: "We will use some of your Telegram profile data.\n\nHere's a list of what we will use:\n1. First name\n2. Last name\n3. Username\n4. Telegram ID\n5. Info about your language.\n\nNothing of your personal data will be given to third parties. All your data is stored at ours servers and only used by us."
         welcome: "Hello, %{name}!\nWe need to quickly setup your account.\nPlease answer some questions."
   common:
+    back: 'Back'
     help: "/start - register\n/main_menu - show main menu\n/preferences - setup preferences\n/help - show all commands"
     shorten_help: "/main_menu - show main menu\n/preferences - setup preferences\n/help - show all commands"
     'no': 'No'
     'yes': 'Yes'
-    back: 'Back'
   errors:
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
     not_registered: "Sorry, you're not registered yet.\nPlease, run /start to register."

@@ -37,7 +37,6 @@ module Actions
       alias :hide :show
 
       def pin
-        binding.pry
         talker.edit_message_reply_markup(chat_id: chat_id, message_id: user.last_message_id)
         back
       end

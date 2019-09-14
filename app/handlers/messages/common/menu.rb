@@ -11,16 +11,16 @@ module Handlers
           @chat_id = chat_id
         end
 
-        def preferences
-          Actions::Users::Preferences.new(bot: bot, chat_id: chat_id).show_options_menu
-        end
-
         def my_schedules
           Actions::Features::MySchedules.new(bot: bot, chat_id: chat_id).show
         end
 
         def new_schedule
           # launch your your feature here
+        end
+
+        def preferences
+          Actions::Users::Preferences.new(bot: bot, chat_id: chat_id).show_options_menu
         end
       end
     end

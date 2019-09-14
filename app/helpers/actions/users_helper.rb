@@ -3,9 +3,12 @@
 module Helpers
   module Actions
     module UsersHelper
-      def send_option_message(option_name, chat_id, markup = nil)
-        message_text = I18n.t("actions.users.options.#{option_name}")
-        talker.send_message(text: message_text, chat_id: chat_id, markup: markup)
+      def send_option_message(option_name, user, markup = nil)
+        message_text = I18n.t("actions.users.options.#{option_name}.text")
+        talker.send_or_edit_message(
+          message_id: user.last_message_id, text: message_text,
+          chat_id: user.id, markup: markup
+        )
       end
 
       def setup_successfull
@@ -21,20 +24,21 @@ module Helpers
 
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: options_kb)
 
-        talker.send_message(
-          text: I18n.t('actions.users.preferences.show_options'),
-          chat_id: chat_id,
-          markup: markup
+        talker.send_or_edit_message(
+          user: user, message_id: user.last_message_id, text: I18n.t('actions.users.preferences.show_options'),
+          chat_id: chat_id, markup: markup
         )
       end
 
       def options_menu_inline_buttons(context: nil)
         options_kb = []
 
-        Constants.options.each do |option_name|
-          text = option_name.split('_').join(' ').capitalize
-          callback = "preferences-#{option_name}" + ((context.nil? && context.strip.empty?) ? "-#{context}" : nil)
-          options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(text: text, callback_data: callback)
+        Constants.options.each do |option|
+          text = option[:button]
+          callback = "preferences-#{option[:name]}" + ((context.nil? || context.strip.empty?) ? '' : "-#{context}")
+          options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
+            text: text, callback_data: callback
+          )
         end
 
         options_kb

@@ -13,20 +13,15 @@ module Handlers
           @user = user
         end
 
-        def call(command)
-          options.send(command, user)
-          show_successfully_setup
+        def method_missing(method_name, *args, &block)
+          options.send(method_name, user)
+          user.update(replace_last_message: false)
+          Actions::Users::Preferences.new(bot: bot, chat_id: chat_id).show_options
         end
 
-        private
-
-        def show_successfully_setup
-          Talker.send_message(
-            bot: bot,
-            text: I18n.t('actions.users.options.setup_successful'),
-            chat_id: chat_id,
-            markup: 'remove'
-          )
+        def back
+          user.update(replace_last_message: true)
+          options.back
         end
       end
     end

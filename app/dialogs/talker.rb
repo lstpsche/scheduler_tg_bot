@@ -32,13 +32,11 @@ class Talker
     markup = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true) if markup == 'remove'
 
     msg = bot.api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: parse_mode)
-    user.update(last_message: msg)
+    user(chat_id: chat_id).update(last_message: msg)
   end
 
   def send_or_edit_message(user: nil, message_id: nil, text: nil, chat_id:, markup: nil, parse_mode: 'markdown')
-    @user = user if @user.nil?
-
-    if @user.replace_last_message?
+    if user(user, chat_id: chat_id).replace_last_message?
       edit_message(message_id: message_id, text: text, chat_id: chat_id, markup: markup, parse_mode: parse_mode)
     else
       send_message(text: text, chat_id: chat_id, markup: markup, parse_mode: parse_mode)
@@ -57,6 +55,13 @@ class Talker
     send_message(text: I18n.t('errors.something_wrong'), chat_id: chat_id)
   end
 
+  private
+
+  def user(user = nil, chat_id: nil)
+    @user ||= user || User.find_by(id: chat_id)
+  end
+
+  public
   # self methods (copies of usual methods mostly)
   class << self
     def edit_message(bot:, message_id:, text:, chat_id:, markup: nil, parse_mode: 'markdown')
