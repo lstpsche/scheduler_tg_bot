@@ -2,6 +2,7 @@
 
 class Constants
   class << self
+    # REGEXES
     def command_regex
       /^\/(\w+)$/
     end
@@ -14,21 +15,43 @@ class Constants
       "*%{time}*: %{info} _(%{additional_info})_"
     end
 
+    # OPTIONS
+
     def in_schedule_options
       scope = 'actions.features.schedule.options'
 
-      IN_SCHEDULE_OPTIONS.map do |option|
-        I18n.t(option, scope: scope)
-      end
+      options_translations_for(IN_SCHEDULE_OPTIONS, scope)
+    end
+
+    def option_options
+      scope = 'actions.users.option'
+
+      options_translations_for(OPTION_OPTIONS, scope)
+    end
+
+    def preferences_options
+      scope = 'actions.users.options'
+
+      options_translations_for(PREFERENCES_OPTIONS, scope)
+    end
+
+    def schedule_options
+      scope = 'actions.features.schedule.options'
+
+      options_translations_for(SCHEDULE_OPTIONS, scope)
     end
 
     # TODO: rewrite all those like "schedule_options"
     def menu_options
-      [
-        'new schedule',
-        'my schedules',
-        'preferences'
-      ]
+      scope = 'actions.features.menu'
+
+      options_translations_for(MENU_OPTIONS, scope)
+    end
+
+    # CALLBACKS
+
+    def main_menu_callback
+      "menu-%{command}%{return_to}"
     end
 
     def my_schedules_callback
@@ -39,34 +62,9 @@ class Constants
       "options-%{command}%{return_to}"
     end
 
-    def option_options
-      scope = 'actions.users.option'
-
-      OPTION_OPTIONS.inject([]) do |result, option_name|
-        # returns hash: { name: '.....', text: '....' }
-        result << I18n.t(option_name, scope: scope)
-      end
-    end
-
-    def options
-      scope = 'actions.users.options'
-
-      PREFERENCES_OPTIONS.inject([]) do |result, option_name|
-        # returns hash: { name: '.....', text: '....' }
-        result << I18n.t(option_name, scope: scope)
-      end
-    end
-
     def schedule_callback
-      "schedule-%{schedule_id}__%{option}%{return_to}"
-    end
-
-    def schedule_options
-      scope = 'actions.features.schedule.options'
-
-      SCHEDULE_OPTIONS.map do |option|
-        I18n.t(option, scope: scope)
-      end
+      # command MUST be like "#{schedule_id}__#{action}
+      "schedule-%{command}%{return_to}"
     end
 
     # using for inner coding. doesn't needed to translate
@@ -83,10 +81,25 @@ class Constants
 
     private
 
+    def options_translations_for(options, scope)
+      # returns hash: { name: '.....', text: '....' }
+      options.map do |option|
+        I18n.t(option, scope: scope)
+      end
+    end
+
+    # OPTIONS LISTS
+
     IN_SCHEDULE_OPTIONS = [
-      :hide_schedule,
+      :hide,
       :pin,
       :back
+    ]
+
+    MENU_OPTIONS = [
+      :new_schedule,
+      :my_schedules,
+      :preferences
     ]
 
     OPTION_OPTIONS = [
@@ -100,7 +113,7 @@ class Constants
     ]
 
     SCHEDULE_OPTIONS = [
-      :show_schedule,
+      :show,
       :back
     ]
   end

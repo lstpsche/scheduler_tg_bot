@@ -33,7 +33,7 @@ module Helpers
       def options_menu_inline_buttons(context: nil)
         options_kb = []
 
-        Constants.options.each do |option|
+        Constants.preferences_options.each do |option|
           text = option[:button]
           callback = "preferences-show_#{option[:name]}" + ((context.nil? || context.strip.empty?) ? '' : "-#{context}")
           options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(

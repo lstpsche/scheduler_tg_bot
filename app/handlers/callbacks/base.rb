@@ -54,7 +54,7 @@ module Handlers
       end
 
       def show_main_menu
-        Actions::Features::Menu.new(bot: bot).show(chat_id: user_id)
+        Actions::Features::Menu.new(bot: bot, chat_id: chat_id).show
       end
     end
   end

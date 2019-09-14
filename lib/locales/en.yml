@@ -3,18 +3,32 @@ en:
     features:
       menu:
         header: 'Main menu'
-        new_schedule: 'New schedule'
-        my_schedules: 'My schedules'
-        preferences: 'Preferences'
+        new_schedule:
+          name: 'new_schedule'
+          button: 'New Schedule'
+        my_schedules:
+          name: 'my_schedules'
+          button: 'My schedules'
+        preferences:
+          name: 'preferences'
+          button: 'Preferences'
       my_schedules:
         header: 'My schedules'
         back: 'Back'
       schedule:
         options:
-          back: 'Back'
-          show_schedule: 'Show schedule'
-          hide_schedule: 'Hide schedule'
-          pin: 'Pin'
+          back:
+            name: 'back'
+            button: 'Back'
+          show:
+            name: 'show'
+            button: 'Show schedule'
+          hide:
+            name: 'hide'
+            button: 'Hide schedule'
+          pin:
+            name: 'pin'
+            button: 'Pin'
     users:
       option:
         change_option:

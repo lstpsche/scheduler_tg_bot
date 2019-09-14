@@ -19,7 +19,7 @@ module Actions
       def init_setup(user_id)
         @user = User.find_by(id: user_id)
 
-        Constants.options.each do |option|
+        Constants.preferences_options.each do |option|
           options.send("setup_#{option[:name]}", user)
         end
 

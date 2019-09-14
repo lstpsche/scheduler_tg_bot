@@ -11,9 +11,9 @@ module Handlers
           @schedule = Actions::Features::Schedule.new(bot: bot, chat_id: chat_id)
 
           case parsed_method_name.last
-          when 'show_schedule'
+          when 'show'
             expand_schedule(parsed_method_name.first)
-          when 'hide_schedule'
+          when 'hide'
             hide_schedule(parsed_method_name.first)
           when 'pin'
             pin
