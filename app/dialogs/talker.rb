@@ -24,7 +24,7 @@ class Talker
     bot.listen { |message| return message }
   end
 
-  def send_help_message(chat_id:)
+  def send_help_message
     send_message(text: I18n.t('common.help'), chat_id: chat_id)
   end
 
@@ -43,15 +43,15 @@ class Talker
     end
   end
 
-  def send_shorten_help_message(chat_id:)
+  def send_shorten_help_message
     send_message(text: I18n.t('common.shorten_help'), chat_id: chat_id)
   end
 
-  def show_not_registered(chat_id:)
+  def show_not_registered
     send_message(text: I18n.t('errors.not_registered'), chat_id: chat_id)
   end
 
-  def show_something_wrong(chat_id:)
+  def show_something_wrong
     send_message(text: I18n.t('errors.something_wrong'), chat_id: chat_id)
   end
 
@@ -73,7 +73,7 @@ class Talker
     end
 
     def send_help_message(bot:, chat_id:)
-      talker(bot, user(chat_id)).send_help_message(chat_id: chat_id)
+      talker(bot, user(chat_id)).send_help_message
     end
 
     def send_message(bot:, text:, chat_id:, markup: nil, parse_mode: 'markdown')
@@ -86,15 +86,15 @@ class Talker
     end
 
     def send_shorten_help_message(bot:, chat_id:)
-      talker(bot, user(chat_id)).send_shorten_help_message(chat_id: chat_id)
+      talker(bot, user(chat_id)).send_shorten_help_message
     end
 
     def show_not_registered(bot:, chat_id:)
-      talker(bot, user(chat_id)).show_not_registered(chat_id: chat_id)
+      talker(bot, user(chat_id)).show_not_registered
     end
 
     def show_something_wrong(bot:, chat_id:)
-      talker(bot, user(chat_id)).show_something_wrong(chat_id: chat_id)
+      talker(bot, user(chat_id)).show_something_wrong
     end
 
     def talker(bot, user)

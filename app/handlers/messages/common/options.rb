@@ -22,7 +22,7 @@ module Handlers
           when 'back'
             back
           when 'setup'
-            option.setup(option_name)
+            Services::OptionSetupService.new(bot: bot, user: user).perform(option_name)
           end
         end
 

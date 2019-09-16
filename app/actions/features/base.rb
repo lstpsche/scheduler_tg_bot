@@ -3,8 +3,11 @@
 module Actions
   module Features
     class Base
+      include Helpers::Common
+
       attr_reader :bot, :chat_id, :talker, :user
 
+      # TODO: REWRITE TO ACCEPT ONLY USER
       def initialize(bot:, chat_id:)
         @bot = bot
         @chat_id = chat_id
@@ -26,7 +29,7 @@ module Actions
         Handlers::Messages::Common::Base.new(bot: bot, chat_id: chat_id, user: user).main_menu
       end
 
-      protected
+      private
 
       def callback(command)
         command
@@ -55,14 +58,6 @@ module Actions
 
       def option_name(option)
         option[:name]
-      end
-
-      def set_replace_last_true
-        user.update(replace_last_message: true)
-      end
-
-      def set_replace_last_false
-        user.update(replace_last_message: false)
       end
     end
   end

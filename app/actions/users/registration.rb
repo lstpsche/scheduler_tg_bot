@@ -3,24 +3,26 @@
 module Actions
   module Users
     class Registration < Base
-      attr_reader :bot, :tg_user, :user, :talker, :preferences
+      # attrs from base -- :bot, :chat_id, :talker, :user
+      attr_reader :preferences
 
-      def initialize(bot:, tg_user:)
-        @bot = bot
-        @tg_user = tg_user
-        @talker = Talker.new(bot: bot)
+      # 'initialize' is in base
+      # 'show' is in basesdasdasd
+      # 'back' is in base
+
+      private
+
+      def before_show(*args)
+        @user = DB.create_user(tg_user: user)
+        @preferences = Actions::Users::Preferences.new(bot: bot, user: user)
       end
 
-      def launch
-        @user = DB.create_user(tg_user: tg_user)
-        @preferences = Actions::Users::Preferences.new(bot: bot, chat_id: user.id)
+      def after_show(*args)
+        preferences.show
+      end
 
-        talker.send_message(
-          text: I18n.t('actions.users.registration.welcome') % {name: user.first_name},
-          chat_id: user.id
-        )
-
-        preferences.init_setup(user.id)
+      def message_text
+        I18n.t('actions.users.registration.welcome') % { name: user.first_name }
       end
     end
   end

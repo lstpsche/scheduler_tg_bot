@@ -3,33 +3,20 @@
 module Actions
   module Users
     class Preferences < Base
-      attr_reader :bot, :chat_id, :options, :talker, :user
+      # attrs from base -- :bot, :chat_id, :talker, :user
+      attr_reader :options_router
 
       def initialize(bot:, chat_id: nil, user: nil)
-        return unless params_valid?(chat_id, user)
-
-        @bot = bot
-        @chat_id = chat_id || user.id
-        @user = user || User.find_by(id: chat_id)
-
-        @talker = Talker.new(bot: bot, user: @user)
-        @options = Options.new(bot: bot, chat_id: @chat_id)
+        super
+        @options_router = OptionsRouter.new(bot: bot, chat_id: @chat_id)
       end
 
-      def init_setup(user_id)
-        @user = User.find_by(id: user_id)
-
-        Constants.preferences_options.each do |option|
-          options.send("setup_#{option[:name]}", user)
-        end
-
-        if user.save
-          setup_successfull
-        else
-          talker.show_something_wrong(chat_id: chat_id)
-          # TODO: handle this
-        end
+      def show
+        setup_all_options
+        save_validate_user { setup_successfull }
       end
+
+      # 'back' is in base
 
       def show_options
         show_options_menu
@@ -37,8 +24,13 @@ module Actions
 
       private
 
-      def params_valid?(chat_id, user)
-        chat_id || user
+      # 'option_name' is in base
+
+      def setup_all_options
+        # setup all options one by one
+        Constants.preferences_options.each do |option|
+          options_router.setup(option_name(option))
+        end
       end
     end
   end

@@ -12,6 +12,8 @@ require 'telegram/bot'
 # require files
 ## helpers
 require_all 'app/helpers'
+## services
+require_all 'app/services'
 ## actions
 require_all 'app/actions/users'
 require_all 'app/actions/features'

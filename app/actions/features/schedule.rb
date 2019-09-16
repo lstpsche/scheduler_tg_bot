@@ -3,8 +3,11 @@
 module Actions
   module Features
     class Schedule < Base
+      # attrs from base -- :bot, :chat_id, :talker, :user
       attr_reader :schedule, :expand
       alias :expand? :expand
+
+      # 'initialize' is in base
 
       def show(schedule_id:)
         @schedule = ::Schedule.find_by(id: schedule_id)

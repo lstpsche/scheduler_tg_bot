@@ -3,6 +3,19 @@
 module Helpers
   module Actions
     module UsersHelper
+      def get_response
+        # THIS RESPONSE CAN BE FROM ANOTHER PERSON
+        # SHOULD TEST IT AND MAYBE ADD CHECKER, IF RESPONSE IS FROM NEEDED USER
+        @response = talker.get_message
+
+        case @response
+        when Telegram::Bot::Types::Message
+          return @response.text
+        when Telegram::Bot::Types::CallbackQuery
+          return @response.data
+        end
+      end
+
       def send_option_message(option_name, user, markup = nil)
         message_text = I18n.t("actions.users.options.#{option_name}.text")
         talker.send_or_edit_message(
@@ -14,6 +27,15 @@ module Helpers
       def setup_successfull
         talker.send_message(
           text: I18n.t('actions.users.preferences.setup_successful'),
+          chat_id: chat_id,
+          markup: 'remove'
+        )
+      end
+
+      def show_successfully_setup
+        Talker.send_message(
+          bot: bot,
+          text: I18n.t('actions.users.options.setup_successful'),
           chat_id: chat_id,
           markup: 'remove'
         )
