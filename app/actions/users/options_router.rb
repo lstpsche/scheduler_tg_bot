@@ -7,6 +7,7 @@ module Actions
 
       # 'initialize' is in base
 
+      # TODO: replace with route()
       def method_missing(method_name, *args, &block)
         action, option_name = method_name.to_s.split('_', 2)
 
@@ -18,15 +19,15 @@ module Actions
       end
 
       def show(option_name)
-        Actions::Users::Option.new(bot: bot, user: user).show(option_name)
+        show_option(option_name)
       end
 
       def setup(option_name)
-        Services::OptionSetupService.new(bot: bot, user: user).setup(option_name)
+        setup_option(option_name)
       end
 
       def back
-        Actions::Features::Menu.new(bot: bot, chat_id: chat_id).show
+        show_main_menu
       end
     end
   end

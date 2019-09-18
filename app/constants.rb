@@ -67,7 +67,16 @@ class Constants
       "schedule-%{command}%{return_to}"
     end
 
-    # using for inner coding. doesn't needed to translate
+    # using for inner coding. no need to translate
+
+    def text_commands
+      [
+        '/start',
+        '/main_menu',
+        '/help'
+      ]
+    end
+
     def weekdays
       [
         'monday',

@@ -6,7 +6,12 @@ module Actions
       # attrs from base -- :bot, :chat_id, :talker, :user
       # 'initialize' is in base
       # 'show' method is in base
-      # 'back' method is in base
+
+      # there is no 'back' in Main Menu
+      def back
+        raise NoMethodError
+      end
+
       private
 
       def callback(command)

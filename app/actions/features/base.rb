@@ -4,6 +4,8 @@ module Actions
   module Features
     class Base
       include Helpers::Common
+      include Helpers::TalkerActions
+      include Helpers::MenusActions
 
       attr_reader :bot, :chat_id, :talker, :user
 
@@ -26,7 +28,7 @@ module Actions
 
       def back
         set_replace_last_true
-        Handlers::Messages::Common::Base.new(bot: bot, chat_id: chat_id, user: user).main_menu
+        show_main_menu
       end
 
       private

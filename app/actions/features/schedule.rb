@@ -20,25 +20,26 @@ module Actions
         @schedule = ::Schedule.find_by(id: schedule_id)
         @expand = true
 
+        # TODO: rewrite this somehow, I don't like it
         Base.instance_method(:show).bind(self).call
       end
 
       alias :hide :show
 
       def pin
-        talker.edit_message_reply_markup(chat_id: chat_id, message_id: user.last_message_id)
+        edit_message_reply_markup(message_id: user.last_message_id)
         back
       end
 
       def back
-        Handlers::Messages::Common::Menu.new(bot: bot, chat_id: chat_id, user: user).my_schedules
+        show_my_schedules
       end
 
       private
 
       def callback(command)
         Constants.schedule_callback % {
-          command: "#{schedule.id}__#{command}",
+          command: "#{schedule.id}_#{command}",
           return_to: nil
         }
       end
@@ -62,7 +63,8 @@ module Actions
 
       def schedule_additional_info(schedule)
         add_info = schedule.additional_info
-        info = add_info.nil? ? nil : (add_info.strip.empty? ? nil : add_info)
+        stripped_add_info = add_info&.strip
+        info = stripped_add_info.empty? ? nil : add_info
       end
     end
   end

@@ -21,7 +21,7 @@ en:
             name: 'back'
             button: 'Back'
           show:
-            name: 'show'
+            name: 'expand'
             button: 'Show schedule'
           hide:
             name: 'hide'
@@ -58,9 +58,10 @@ en:
   common:
     back: 'Back'
     help: "/start - register\n/main_menu - show main menu\n/help - show all commands"
-    shorten_help: "/main_menu - show main menu\n/help - show all commands"
     'no': 'No'
     'yes': 'Yes'
   errors:
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
+    no_command: "There's no such command.\nYou can use /help to view available text commands."
     not_registered: "Sorry, you're not registered yet.\nPlease, run /start to register."
+    not_understand: "Sorry, I don't understand.\nYou can use /help to view available text commands."

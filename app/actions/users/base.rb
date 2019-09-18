@@ -4,6 +4,7 @@ module Actions
   module Users
     class Base
       include Helpers::Common
+      include Helpers::MenusActions
       include Helpers::Actions::UsersHelper
 
       attr_reader :bot, :chat_id, :talker, :user
@@ -15,7 +16,6 @@ module Actions
         @bot = bot
         @chat_id = chat_id || user.id
         @user = user || User.find_by(id: chat_id)
-
         @talker = Talker.new(bot: bot, user: @user)
       end
 
@@ -33,7 +33,7 @@ module Actions
 
       def back
         set_replace_last_true
-        Actions::Features::Menu.new(bot: bot, chat_id: chat_id, user: user).show
+        show_main_menu
       end
 
       private

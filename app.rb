@@ -20,9 +20,9 @@ require_all 'app/actions/features'
 ## dialogs
 require_relative 'app/dialogs/talker'
 ## handlers
-require_relative 'app/handlers/base'
 require_all 'app/handlers/callbacks'
-require_all 'app/handlers/messages'
+## routers
+require_all 'app/routers'
 ## serializers
 require_all 'app/serializers'
 ## models

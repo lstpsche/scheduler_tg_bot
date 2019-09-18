@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-HANDLERS = {
-  'Message' => Handlers::Messages::Base,
-  'CallbackQuery' => Handlers::Callbacks::Base
+ROUTERS = {
+  'Message' => Routers::TextCommandsRouter,
+  'CallbackQuery' => Routers::CallbacksRouter
 }.freeze
 
 class Bot
@@ -29,6 +29,6 @@ class Bot
 
   def parse_message_type(message)
     message_class = message.class.to_s.split('::').last
-    HANDLERS[message_class].new(bot: bot).(message)
+    ROUTERS[message_class].new(bot: bot).route(message)
   end
 end

@@ -31,12 +31,12 @@ module Actions
       end
 
       # here option, which will be passed, is one of user's schedule
-      def option_button(option)
-        option.name
+      def option_button(schedule)
+        schedule.name
       end
 
-      def option_name(option)
-        option.id
+      def option_name(schedule)
+        schedule.id
       end
     end
   end

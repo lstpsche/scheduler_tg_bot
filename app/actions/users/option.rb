@@ -18,7 +18,7 @@ module Actions
       end
 
       def back
-        Actions::Users::Preferences.new(bot: bot, user: user).show_options
+        show_preferences
       end
 
       private
