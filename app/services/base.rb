@@ -4,6 +4,7 @@ module Services
   class Base
     include Helpers::Common
     include Helpers::MenusActions
+    include Helpers::TalkerActions
 
     attr_reader :bot, :chat_id, :talker, :user
 

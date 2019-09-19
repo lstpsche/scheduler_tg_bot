@@ -2,18 +2,14 @@
 
 module Routers
   class TextCommandsRouter < Base
-    include Helpers::Common
-    include Helpers::TalkerActions
-    include Helpers::MenusActions
-
     # attrs from base -- :bot, :chat_id, :user
-    attr_reader :talker, :command
+    attr_reader :command
 
     # 'initialize' is in base
 
     def route(message)
       init_vars(message)
-      return false if check_command_invalidity
+      return false if validation_service.failure?
 
       actual_command = command.split('/').last
       set_replace_last_false
@@ -35,44 +31,10 @@ module Routers
       from = message.from
       @chat_id = from.id
       @user = get_user(chat_id: chat_id, fallback_user: from)
-      @talker = Talker.new(bot: bot, user: user)
     end
 
-    ###########################################
-    ###########################################
-    ###########################################
-    # TODO: move all this checks to a separate TextCommandValidityCheckService
-
-    def command_exists?
-      Constants.text_commands.include? command
-    end
-
-    def command_not_exists?
-      !command_exists?
-    end
-
-    def command_syntax_valid?
-      command.match(Constants.command_regex)
-    end
-
-    def command_syntax_invalid?
-      !command_syntax_valid?
-    end
-
-    def check_command_validity
-      (show_not_understand; return false) if command_syntax_invalid?
-      (show_no_command; return false) if command_not_exists?
-      (show_not_registered; return false) if registration_needed?
-
-      true
-    end
-
-    def check_command_invalidity
-      !check_command_validity
-    end
-
-    def registration_needed?
-      command != '/start' && user_not_registered?(id: user.id)
+    def validation_service
+      @validation_service ||= Services::TextCommandValiditationService.new(user: user, command: command)
     end
   end
 end

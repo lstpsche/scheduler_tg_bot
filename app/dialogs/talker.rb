@@ -82,8 +82,8 @@ class Talker
       talker(bot, user(chat_id)).get_message
     end
 
-    def send_help_message(bot:, chat_id:)
-      talker(bot, user(chat_id)).send_help_message
+    def show_help_message(bot:, chat_id:)
+      talker(bot, user(chat_id)).show_help_message
     end
 
     def send_message(bot:, text:, chat_id:, markup: nil, parse_mode: 'markdown')
@@ -93,10 +93,6 @@ class Talker
     def send_or_edit_message(bot:, user:, message_id: nil, text: nil, chat_id:, markup: nil, parse_mode: 'HTML')
       talker(bot, user).send_or_edit_message(message_id: message_id, text: text, chat_id: chat_id,
                                              markup: markup, parse_mode: parse_mode)
-    end
-
-    def send_shorten_help_message(bot:, chat_id:)
-      talker(bot, user(chat_id)).send_shorten_help_message
     end
 
     def show_no_command(bot:, chat_id:)
@@ -114,6 +110,8 @@ class Talker
     def show_something_wrong(bot:, chat_id:)
       talker(bot, user(chat_id)).show_something_wrong
     end
+
+    private
 
     def talker(bot, user)
       Talker.new(bot: bot, user: user)
