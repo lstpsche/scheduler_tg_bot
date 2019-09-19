@@ -10,7 +10,7 @@ module Services
     def initialize(user:, command:)
       @user = user
       @command = command
-      @errors = []
+      @errors = {}
       @success = validate
     end
 
@@ -41,19 +41,19 @@ module Services
     end
 
     def not_understand
-      errors << 'Not understand'
+      errors[:text_command] = 'Not understand'
       show_not_understand
       false
     end
 
     def show_no_command
-      errors << 'No command'
+      errors[:text_command] = 'No command'
       show_no_command
       false
     end
 
     def show_not_registered
-      errors << 'Not registered'
+      errors[:text_command] = 'Not registered'
       show_not_registered
       false
     end

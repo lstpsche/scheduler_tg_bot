@@ -9,7 +9,7 @@ module Routers
 
     def route(message)
       init_vars(message)
-      return false if validation_service.failure?
+      return validation_service.errors if validation_service.failure?
 
       actual_command = command.split('/').last
       set_replace_last_false
