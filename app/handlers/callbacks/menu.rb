@@ -10,7 +10,7 @@ module Handlers
       def show_new_schedule_menu
         return false if not_registered_user(id: chat_id)
 
-        # TODO: launch NewScheduleCreator here
+        # launch NewScheduleCreator here
       end
 
       def show_my_schedules_menu
@@ -39,7 +39,7 @@ module Handlers
       private
 
       def not_registered_user(id:)
-        if user_not_registered?(id: id)
+        unless user_registered?(id: id)
           show_not_registered(chat_id: id)
           return true
         end

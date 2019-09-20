@@ -3,7 +3,8 @@
 module Actions
   module Features
     class Menu < Base
-      # attrs from base -- :bot, :chat_id, :talker, :user
+      # attrs from base -- :bot, :chat_id, :user
+
       # 'initialize' is in base
       # 'show' method is in base
 

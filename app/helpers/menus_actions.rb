@@ -2,15 +2,18 @@
 
 module Helpers
   module MenusActions
+    def launch_registration
+      ::Actions::Users::Registration.new(bot: bot, tg_user: tg_user).launch
+    end
 
     ################# Main Menu ####################################
 
     def show_main_menu
-      ::Actions::Features::Menu.new(bot: bot, chat_id: chat_id).show
+      ::Actions::Features::Menu.new(bot: bot, user: user).show
     end
 
     def show_my_schedules
-      ::Actions::Features::MySchedules.new(bot: bot, chat_id: chat_id).show
+      ::Actions::Features::MySchedules.new(bot: bot, user: user).show
     end
 
     def show_preferences
@@ -20,31 +23,31 @@ module Helpers
     ################# My Schedules #################################
 
     def show_schedule(schedule_id)
-      ::Actions::Features::Schedule.new(bot: bot, chat_id: chat_id).show(schedule_id: schedule_id)
+      ::Actions::Features::Schedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
     end
 
     def call_back_my_schedules
-      ::Actions::Features::MySchedules.new(bot: bot, chat_id: chat_id).back
+      ::Actions::Features::MySchedules.new(bot: bot, user: user).back
     end
 
     ################# Schedule #####################################
 
     def expand_schedule(schedule_id)
-      ::Actions::Features::Schedule.new(bot: bot, chat_id: chat_id).expand(schedule_id: schedule_id)
+      ::Actions::Features::Schedule.new(bot: bot, user: user).expand(schedule_id: schedule_id)
     end
 
     def hide_schedule(schedule_id)
-      ::Actions::Features::Schedule.new(bot: bot, chat_id: chat_id).hide(schedule_id: schedule_id)
+      ::Actions::Features::Schedule.new(bot: bot, user: user).hide(schedule_id: schedule_id)
     end
 
     def pin_schedule
       set_replace_last_false
-      ::Actions::Features::Schedule.new(bot: bot, chat_id: chat_id).pin
+      ::Actions::Features::Schedule.new(bot: bot, user: user).pin
     end
 
     def call_back_schedule
       set_replace_last_true
-      ::Actions::Features::Schedule.new(bot: bot, chat_id: chat_id).back
+      ::Actions::Features::Schedule.new(bot: bot, user: user).back
     end
 
     ################# Preferences ##################################

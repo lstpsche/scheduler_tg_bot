@@ -3,21 +3,32 @@
 module Actions
   module Users
     class Registration < Base
-      # attrs from base -- :bot, :chat_id, :talker, :user
+      # attrs from base -- :bot, :chat_id, :user
+      attr_reader :tg_user
 
-      # 'initialize' is in base
-      # 'show' is in base
-      # 'back' is in base
+      def initialize(bot:, tg_user:)
+        @bot = bot
+        @tg_user = tg_user
+        @chat_id = tg_user.id
+      end
+
+      def show
+        @user = DB.create_user(tg_user: tg_user)
+
+        send_message(text: message_text)
+
+        setup_all_preferences
+        show_help
+      end
+
+      alias :launch :show
+
+      # Registration has no 'back' button
+      def back
+        raise NoMethodError
+      end
 
       private
-
-      def before_show(*args)
-        @user = DB.create_user(tg_user: user)
-      end
-
-      def after_show(*args)
-        setup_all_preferences
-      end
 
       def message_text
         I18n.t('actions.users.registration.welcome') % { name: user.first_name }

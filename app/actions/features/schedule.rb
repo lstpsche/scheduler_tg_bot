@@ -3,7 +3,7 @@
 module Actions
   module Features
     class Schedule < Base
-      # attrs from base -- :bot, :chat_id, :talker, :user
+      # attrs from base -- :bot, :chat_id, :user
       attr_reader :schedule, :expand
       alias :expand? :expand
 
@@ -20,7 +20,7 @@ module Actions
         @schedule = ::Schedule.find_by(id: schedule_id)
         @expand = true
 
-        # TODO: rewrite this somehow, I don't like it
+        # calls show from parent class (Base)
         Base.instance_method(:show).bind(self).call
       end
 

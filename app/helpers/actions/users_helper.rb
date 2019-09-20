@@ -6,7 +6,7 @@ module Helpers
       def get_response
         # THIS RESPONSE CAN BE FROM ANOTHER PERSON
         # SHOULD TEST IT AND MAYBE ADD CHECKER, IF RESPONSE IS FROM NEEDED USER
-        @response = talker.get_message
+        @response = get_message
 
         case @response
         when Telegram::Bot::Types::Message
@@ -18,25 +18,22 @@ module Helpers
 
       def send_option_message(option_name, user, markup = nil)
         message_text = I18n.t("actions.users.options.#{option_name}.text")
-        talker.send_or_edit_message(
+        send_or_edit_message(
           message_id: user.last_message_id, text: message_text,
-          chat_id: user.id, markup: markup
+          markup: markup
         )
       end
 
       def setup_successfull
-        talker.send_message(
+        send_message(
           text: I18n.t('actions.users.preferences.setup_successful'),
-          chat_id: chat_id,
           markup: 'remove'
         )
       end
 
       def show_successfully_setup
-        Talker.send_message(
-          bot: bot,
+        send_message(
           text: I18n.t('actions.users.options.setup_successful'),
-          chat_id: chat_id,
           markup: 'remove'
         )
       end
@@ -46,9 +43,9 @@ module Helpers
 
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: options_kb)
 
-        talker.send_or_edit_message(
-          user: user, message_id: user.last_message_id, text: I18n.t('actions.users.preferences.show_options'),
-          chat_id: chat_id, markup: markup
+        send_or_edit_message(
+          message_id: user.last_message_id, text: I18n.t('actions.users.preferences.show_options'),
+          markup: markup
         )
       end
 

@@ -35,13 +35,17 @@ class Constants
       options_translations_for(PREFERENCES_OPTIONS, scope)
     end
 
+    def preferences_setup_options
+      # remove last 'option' which is actualy :back
+      preferences_options[0..-2]
+    end
+
     def schedule_options
       scope = 'actions.features.schedule.options'
 
       options_translations_for(SCHEDULE_OPTIONS, scope)
     end
 
-    # TODO: rewrite all those like "schedule_options"
     def menu_options
       scope = 'actions.features.menu'
 
@@ -72,7 +76,6 @@ class Constants
     def text_commands
       [
         '/start',
-        '/main_menu',
         '/help'
       ]
     end

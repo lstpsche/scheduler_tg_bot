@@ -32,7 +32,7 @@ module Routers
       @user_id = callback.from.id
       @tapped_message = callback.message
       @chat_id = callback.from.id
-      @user = User.find_by(id: chat_id)
+      @user = get_user(chat_id: chat_id)
       parse_callback(callback.data)
     end
 

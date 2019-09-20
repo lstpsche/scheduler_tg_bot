@@ -4,28 +4,24 @@ module Actions
   module Users
     class Base
       include Helpers::Common
+      include Helpers::TalkerActions
       include Helpers::MenusActions
       include Helpers::Actions::UsersHelper
 
-      attr_reader :bot, :chat_id, :talker, :user
+      attr_reader :bot, :chat_id, :user
 
-      # TODO: REWRITE TO ACCEPT ONLY USER
-      def initialize(bot:, chat_id: nil, user: nil)
-        return unless params_valid?(chat_id, user)
-
+      def initialize(bot:, user:)
         @bot = bot
-        @chat_id = chat_id || user.id
-        @user = user || User.find_by(id: chat_id)
-        @talker = Talker.new(bot: bot, user: @user)
+        @user = user
+        @chat_id = user.id
       end
 
       def show(args = {})
         before_show(args.fetch(:before, nil))
 
-        talker.send_or_edit_message(
-          user: user, message_id: user.last_message_id,
-          text: message_text, chat_id: chat_id,
-          markup: create_markup(args.fetch(:markup_options, nil))
+        send_or_edit_message(
+          message_id: user.last_message_id,
+          text: message_text, markup: create_markup(args.fetch(:markup_options, nil))
         )
 
         after_show(args.fetch(:after, nil))
@@ -73,10 +69,6 @@ module Actions
 
       def option_name(option)
         option[:name]
-      end
-
-      def params_valid?(chat_id, user)
-        chat_id || user
       end
     end
   end

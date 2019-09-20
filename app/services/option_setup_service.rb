@@ -16,10 +16,6 @@ module Services
       # yield if block_given?
 
       save_validate_user { show_successfully_setup }
-
-      set_replace_last_false
-
-      show_option(option_name)
     end
 
     private

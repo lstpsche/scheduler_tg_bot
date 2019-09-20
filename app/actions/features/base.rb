@@ -7,22 +7,19 @@ module Actions
       include Helpers::TalkerActions
       include Helpers::MenusActions
 
-      attr_reader :bot, :chat_id, :talker, :user
+      attr_reader :bot, :chat_id, :user
 
-      # TODO: REWRITE TO ACCEPT ONLY USER
-      def initialize(bot:, chat_id:)
+      def initialize(bot:, user:)
         @bot = bot
-        @chat_id = chat_id
-        @user = User.find_by(id: chat_id)
-        @talker = Talker.new(bot: bot, user: user)
+        @user = user
+        @chat_id = user.id
       end
 
       def show
         markup = create_markup
         text = message_text
 
-        talker.send_or_edit_message(user: user, message_id: user.last_message_id,
-                                    text: text, chat_id: chat_id, markup: markup)
+        send_or_edit_message(message_id: user.last_message_id, text: text, markup: markup)
         set_replace_last_true
       end
 

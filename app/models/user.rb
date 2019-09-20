@@ -10,6 +10,22 @@ class User < ActiveRecord::Base
     nil
   end
 
+  def empty_context
+    {
+      'last_message' => {
+        'result' => {
+          'message_id' => nil
+        }
+      },
+      'replace_last_message' => false,
+      'return_to' => nil
+    }
+  end
+
+  def context
+    super.empty? ? empty_context : super
+  end
+
   def last_message
     context['last_message']
   end

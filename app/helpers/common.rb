@@ -6,8 +6,9 @@ module Helpers
       if user.save
         yield
       else
-        talker.show_something_wrong
-        # TODO: handle this
+        show_something_wrong
+        # maybe parse errors and show them to user
+        # (rather no)
       end
     end
 
@@ -20,15 +21,11 @@ module Helpers
     end
 
     def get_user(user = nil, chat_id: nil, fallback_user: nil)
-      @user ||= user || User.find_by(id: chat_id) || fallback_user
+      @user || user || User.find_by(id: chat_id) || fallback_user
     end
 
     def user_registered?(id:)
       get_user(chat_id: id) ? true : false
-    end
-
-    def user_not_registered?(id:)
-      !user_registered?(id: id)
     end
   end
 end

@@ -57,7 +57,7 @@ en:
         welcome: "Hello, %{name}!\nWe need to quickly setup your account.\nPlease answer some questions."
   common:
     back: 'Back'
-    help: "/start - register\n/main_menu - show main menu\n/help - show all commands"
+    help: "/start - show main menu\n/help - show all commands"
     'no': 'No'
     'yes': 'Yes'
   errors:

@@ -29,7 +29,7 @@ class Bot
 
   def parse_message_type(message)
     message_class = message.class.to_s.split('::').last
-    # TODO: maybe handle errors which are returned from this route()
+    # maybe handle errors which are returned from this route()
     # errors are returned only from text commands now
     ROUTERS[message_class].new(bot: bot).route(message)
   end

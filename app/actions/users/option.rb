@@ -3,7 +3,7 @@
 module Actions
   module Users
     class Option < Base
-      # attrs from base -- :bot, :chat_id, :talker, :user
+      # attrs from base -- :bot, :chat_id, :user
       attr_reader :option, :response
 
       # 'initialize' is in base

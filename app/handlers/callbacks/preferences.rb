@@ -8,7 +8,7 @@ module Handlers
       # 'initialize' is in base
 
       def handle(command)
-        Actions::Users::OptionsRouter.new(bot: bot, user: user).send(command)
+        Routers::OptionsRouter.new(bot: bot, user: user).route(command)
       end
     end
   end

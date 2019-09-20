@@ -3,10 +3,12 @@
 module Actions
   module Features
     class MySchedules < Base
-      # attrs from base -- :bot, :chat_id, :talker, :user
+      # attrs from base -- :bot, :chat_id, :user
+
       # 'initialize' is in base
       # 'show' method is in base
       # 'back' method is in base
+
       private
 
       # command here is schedule_id
