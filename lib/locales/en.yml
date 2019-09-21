@@ -58,10 +58,12 @@ en:
         welcome: "Hello, %{name}!\nWe need to quickly setup your account.\nPlease answer some questions."
   services:
     new_schedule_creation:
-      set_schedule_name: 'Enter schedule name:'
-    schedule_fill:
-      enter_events: "Enter schedule for *%{weekday}* following the next pattern:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info\n\nType /skip if there are no events at *%{weekday}*\nIf there are no events at all at this week, type /finish"
-      input_invalid: "%{error}.\nPlease, enter events following the next pattern:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info"
+      set_schedule_name_add_info: "Enter *schedule name* following the next pattern:\nSome schedule name -- additional information about schedule\n\nType /back to return to Main Menu."
+      input_invalid: "%{error}\nPlease, enter *schedule name* following the next pattern:\nSome schedule name -- additional information about schedule"
+      schedule_fill:
+        enter_events: "Enter schedule for *%{weekday}* following the next pattern:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info\n\nType /skip if there are no events at *%{weekday}*\nIf there are no events at all at this week, type /finish"
+        input_invalid: "%{error}\nPlease, enter events following the next pattern:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info"
+      successfully_created: "Schedule was successfully created!"
   common:
     back: 'Back'
     help: "/start - show main menu\n/help - show all commands"

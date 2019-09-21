@@ -41,13 +41,11 @@ module Helpers
                                   markup: markup, parse_mode: parse_mode)
     end
 
-    ################ Common commands ###############################
-
-    def show_help
-      talker.show_help
-    end
-
     #################### Errors ####################################
+
+    def show_new_schedule_error(error)
+      talker.show_new_schedule_error(error)
+    end
 
     def show_no_command
       talker.show_no_command
@@ -63,6 +61,22 @@ module Helpers
 
     def show_something_wrong
       talker.show_something_wrong
+    end
+
+    ##################### Other ####################################
+
+    def show_help
+      talker.show_help
+    end
+
+    def show_set_schedule_name_add_info
+      message_text = I18n.t('services.new_schedule_creation.set_schedule_name_add_info')
+      send_message(text: message_text)
+    end
+
+    def show_schedule_successfully_created
+      message_text = I18n.t('services.new_schedule_creation.successfully_created')
+      send_message(text: message_text)
     end
   end
 end

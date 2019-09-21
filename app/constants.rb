@@ -11,6 +11,14 @@ class Constants
       /^(\w+)-(\w+)(-(\w+))?$/
     end
 
+    def set_schedule_name_full_layout
+      /(.+) -- (.+)/
+    end
+
+    def set_schedule_name_layout_without_add_info
+      /(.+)/
+    end
+
     def day_event_full_layout
       /^(\d+:\d+) (.+) -- (.+)$/
     end
@@ -94,6 +102,7 @@ class Constants
         'tuesday',
         'wednesday',
         'thursday',
+        'friday',
         'saturday',
         'sunday'
       ]

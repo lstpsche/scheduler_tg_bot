@@ -3,13 +3,15 @@
 module Services
   class ScheduleFillService < Base
     # attrs from base -- :bot, :chat_id, :user
-    attr_reader :schedule, :errors, :finish, :params, :weekday
+    attr_reader :schedule, :errors, :finish, :skip, :params, :weekday
     alias :finish? :finish
+    alias :skip? :skip
 
     def initialize(bot:, user:, schedule:)
       super(bot: bot, user: user) do
         @schedule = schedule
         @params = []
+        @finish = false
       end
     end
 
@@ -17,6 +19,8 @@ module Services
       Constants.translated_weekdays.each do |weekday|
         @weekday = weekday
         @params = []
+        @skip = false
+
         fill_weekday
         break if finish?
       end
@@ -25,14 +29,14 @@ module Services
     private
 
     def message_text(weekday)
-      I18n.t('services.schedule_fill.enter_events') % { weekday: weekday }
+      I18n.t('services.new_schedule_creation.schedule_fill.enter_events') % { weekday: weekday }
     end
 
     def fill_weekday
       send_message(text: message_text(weekday))
 
       get_parse_valid_response
-      return if finish?
+      return if skip? || finish?
 
       params.each { |param| create_assign_event(param) }
     end
@@ -42,11 +46,12 @@ module Services
         @errors = []
         day_events = get_response_of_type('message').text.strip.split("\n")
 
-        return if day_events.first == '/skip'
+        return @skip = true if day_events.first == '/skip'
         return @finish = true if day_events.first == '/finish'
 
-        parse_validate(day_events) || handle_errors
-        errors.empty? ? break : next
+        parse_validate(day_events)
+
+        errors.empty? ? break : handle_errors
       end
     end
 
@@ -63,22 +68,25 @@ module Services
     def parse_validate(events)
       if events.is_a?(Array)
         events.each do |day_event|
+          @params << {}
           parse_validate(day_event)
         end
       elsif events.is_a?(String)
-        params << {}
         parse_validate_day_event(events)
       end
     rescue => error
-      errors << error.capitalize
+      @errors << error.to_s.capitalize
       return false
     end
 
     def parse_validate_day_event(day_event)
+      day_event.gsub!('—', '--')
       parsed = parse_day_events(day_event)
-      params.last[:time] = parsed[1]
-      params.last[:info] = parsed[2]
-      params.last[:additional_info] = parsed[3]
+      params[-1] = {
+        time: parsed[1],
+        info: parsed[2],
+        additional_info: parsed[3]
+      }
 
       validate_time(params.last[:time])
       true
@@ -91,9 +99,8 @@ module Services
     end
 
     def handle_errors
-      message_text = I18n.t('services.schedule_fill.input_invalid') % { error: errors.first }
-      send_message(text: message_text)
-      params.delete_if { |key, _v| key != :weekday }
+      show_new_schedule_error(errors.first)
+      @params = []
     end
 
     def validate_time(time)

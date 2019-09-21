@@ -12,10 +12,11 @@ module Helpers
 
       def decorate_for_show_schedule
         schedule_additional_info = schedule.additional_info
+        schedule_additional_info += "\n" unless schedule_additional_info.blank?
         text = "*#{schedule.name}*\n#{schedule_additional_info}\n"
 
         Constants.weekdays.each do |weekday|
-          text = text + "\n" + weekday_decorated_text(weekday)
+          text += weekday_decorated_text(weekday)
         end
 
         text
@@ -33,7 +34,7 @@ module Helpers
           } + "\n"
         end.inject(&:+)
 
-        schedule_events ? header_weekday + schedule_events : ''
+        schedule_events ? header_weekday + schedule_events + "\n" : ''
       end
     end
   end

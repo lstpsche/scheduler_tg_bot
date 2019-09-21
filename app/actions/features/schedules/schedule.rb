@@ -65,7 +65,7 @@ module Actions
         def schedule_additional_info(schedule)
           add_info = schedule.additional_info
           stripped_add_info = add_info&.strip
-          info = stripped_add_info.empty? ? nil : add_info
+          info = stripped_add_info.blank? ? nil : add_info
         end
       end
     end

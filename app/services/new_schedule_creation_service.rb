@@ -3,29 +3,66 @@
 module Services
   class NewScheduleCreationService < Base
     # attrs from base -- :bot, :chat_id, :user
-    attr_reader :schedule, :schedule_name
+    attr_reader :schedule, :params, :errors, :back
+    alias :back? :back
 
     # 'initialize' is in base
 
     def launch
-      set_schedule_name
-      create_assign_schedule
-      ScheduleFillService.new(bot: bot, user: user, schedule: schedule).launch
-      # TODO: show "Schedule created"
+      set_schedule_name_add_info
+      set_replace_last_false
+      unless back?
+        create_assign_schedule
+        ScheduleFillService.new(bot: bot, user: user, schedule: schedule).launch
+        show_schedule_successfully_created
+      end
+      show_main_menu
     end
 
     private
 
-    def set_schedule_name
-      message_text = I18n.t('services.new_schedule_creation.set_schedule_name')
-      send_message(text: message_text)
+    def set_schedule_name_add_info
+      show_set_schedule_name_add_info
+      get_parse_to_params_valid_response
+    end
 
-      @schedule_name = get_response_of_type('message').text
+    def get_parse_to_params_valid_response
+      loop do
+        @errors = []
+        raw_schedule_info = get_response_of_type('message').text.strip.gsub('—', '--')
+
+        return @back = true if raw_schedule_info == '/back'
+
+        parse_to_params_schedule_name(raw_schedule_info)
+
+        @errors.empty? ? break : handle_errors
+      end
+    end
+
+    def parse_to_params_schedule_name(raw_schedule_info)
+      parsed_info = parse_schedule_name(raw_schedule_info)
+      return if parsed_info.nil?
+
+      @params = { name: parsed_info[1], additional_info: parsed_info[2] }
+    end
+
+    def parse_schedule_name(raw_response)
+      raw_response.match(Constants.set_schedule_name_full_layout) ||
+        raw_response.match(Constants.set_schedule_name_layout_without_add_info) ||
+        (@errors << 'Input is invalid.'; return nil)
     end
 
     def create_assign_schedule
-      @schedule = DB.create_schedule(name: schedule_name)
+      @schedule = DB.create_schedule(
+        name: params[:name],
+        additional_info: params[:additional_info]
+      )
       user.schedules << schedule
+    end
+
+    def handle_errors
+      show_set_schedule_name_error(errors.first)
+      @params = []
     end
   end
 end
