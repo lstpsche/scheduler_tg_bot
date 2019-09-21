@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
     nil
   end
 
+  # message.message.message_id — получить id сообщения, от которого пришёл callback
+  # TODO:
+  # 1) сохранять _message.message_ в user.context['tapped_message'] (будет доступно по user.tapped_message)
+  # 2) при эдите сообщения, эдитить не последнее, а tapped_message
+
   def empty_context
     {
       'last_message' => {

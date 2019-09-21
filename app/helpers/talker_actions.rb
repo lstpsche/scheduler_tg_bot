@@ -14,6 +14,16 @@ module Helpers
       talker.get_message
     end
 
+    # type should be 'message' or 'callback_query'
+    def get_response_of_type(type)
+      type = type.split('_').map(&:capitalize).join
+
+      loop do
+        response = get_message
+        return response if response.class.name.demodulize == type
+      end
+    end
+
     def send_message(text:, markup: nil)
       talker.send_message(text: text, markup: markup)
     end

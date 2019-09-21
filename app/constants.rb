@@ -11,6 +11,14 @@ class Constants
       /^(\w+)-(\w+)(-(\w+))?$/
     end
 
+    def day_event_full_layout
+      /^(\d+:\d+) (.+) -- (.+)$/
+    end
+
+    def day_event_layout_without_add_info
+      /^(\d+:\d+) (.+)$/
+    end
+
     def event_in_schedule_decoration
       "*%{time}*: %{info} _(%{additional_info})_"
     end
@@ -18,7 +26,7 @@ class Constants
     # OPTIONS
 
     def in_schedule_options
-      scope = 'actions.features.schedule.options'
+      scope = 'actions.features.schedules.schedule.options'
 
       options_translations_for(IN_SCHEDULE_OPTIONS, scope)
     end
@@ -41,7 +49,7 @@ class Constants
     end
 
     def schedule_options
-      scope = 'actions.features.schedule.options'
+      scope = 'actions.features.schedules.schedule.options'
 
       options_translations_for(SCHEDULE_OPTIONS, scope)
     end
@@ -89,6 +97,12 @@ class Constants
         'saturday',
         'sunday'
       ]
+    end
+
+    def translated_weekdays
+      weekdays.map do |weekday|
+        I18n.t("weekdays.#{weekday}")
+      end
     end
 
     private

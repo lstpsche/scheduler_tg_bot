@@ -28,9 +28,8 @@ class Bot
   private
 
   def parse_message_type(message)
-    message_class = message.class.to_s.split('::').last
     # maybe handle errors which are returned from this route()
     # errors are returned only from text commands now
-    ROUTERS[message_class].new(bot: bot).route(message)
+    ROUTERS[message.class.name.demodulize].new(bot: bot).route(message)
   end
 end

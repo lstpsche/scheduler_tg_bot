@@ -10,7 +10,7 @@ module Handlers
       def show_new_schedule_menu
         return false if not_registered_user(id: chat_id)
 
-        # launch NewScheduleCreator here
+        launch_new_schedule_creation
       end
 
       def show_my_schedules_menu

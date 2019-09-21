@@ -8,6 +8,7 @@ require 'pry'
 require 'rake'
 require 'require_all'
 require 'telegram/bot'
+require 'time'
 
 # require files
 ## helpers
@@ -17,6 +18,7 @@ require_all 'app/services'
 ## actions
 require_all 'app/actions/users'
 require_all 'app/actions/features'
+require_all 'app/actions/features/schedules'
 ## dialogs
 require_relative 'app/dialogs/talker'
 ## handlers

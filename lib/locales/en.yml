@@ -12,23 +12,24 @@ en:
         preferences:
           name: 'preferences'
           button: 'Preferences'
-      my_schedules:
-        header: 'My schedules'
-        back: 'Back'
-      schedule:
-        options:
-          back:
-            name: 'back'
-            button: 'Back'
-          show:
-            name: 'expand'
-            button: 'Show schedule'
-          hide:
-            name: 'hide'
-            button: 'Hide schedule'
-          pin:
-            name: 'pin'
-            button: 'Pin'
+      schedules:
+        my_schedules:
+          header: 'My schedules'
+          back: 'Back'
+        schedule:
+          options:
+            back:
+              name: 'back'
+              button: 'Back'
+            show:
+              name: 'expand'
+              button: 'Show schedule'
+            hide:
+              name: 'hide'
+              button: 'Hide schedule'
+            pin:
+              name: 'pin'
+              button: 'Pin'
     users:
       option:
         change_option:
@@ -55,11 +56,25 @@ en:
       registration:
         terms_and_conditions: "We will use some of your Telegram profile data.\n\nHere's a list of what we will use:\n1. First name\n2. Last name\n3. Username\n4. Telegram ID\n5. Info about your language.\n\nNothing of your personal data will be given to third parties. All your data is stored at ours servers and only used by us."
         welcome: "Hello, %{name}!\nWe need to quickly setup your account.\nPlease answer some questions."
+  services:
+    new_schedule_creation:
+      set_schedule_name: 'Enter schedule name:'
+    schedule_fill:
+      enter_events: "Enter schedule for *%{weekday}* following the next pattern:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info\n\nType /skip if there are no events at *%{weekday}*\nIf there are no events at all at this week, type /finish"
+      input_invalid: "%{error}.\nPlease, enter events following the next pattern:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info"
   common:
     back: 'Back'
     help: "/start - show main menu\n/help - show all commands"
     'no': 'No'
     'yes': 'Yes'
+  weekdays:
+    monday: 'monday'
+    tuesday: 'tuesday'
+    wednesday: 'wednesday'
+    thursday: 'thursday'
+    friday: 'friday'
+    saturday: 'saturday'
+    sunday: 'sunday'
   errors:
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
     no_command: "There's no such command.\nYou can use /help to view available text commands."

@@ -12,42 +12,46 @@ module Helpers
       ::Actions::Features::Menu.new(bot: bot, user: user).show
     end
 
+    def launch_new_schedule_creation
+      ::Services::NewScheduleCreationService.new(bot: bot, user: user).launch
+    end
+
     def show_my_schedules
-      ::Actions::Features::MySchedules.new(bot: bot, user: user).show
+      ::Actions::Features::Schedules::MySchedules.new(bot: bot, user: user).show
     end
 
     def show_preferences
-      ::Actions::Users::Preferences.new(bot: bot, user: user).show
+      ::Actions::Users::Schedules::Preferences.new(bot: bot, user: user).show
     end
 
     ################# My Schedules #################################
 
     def show_schedule(schedule_id)
-      ::Actions::Features::Schedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
     end
 
     def call_back_my_schedules
-      ::Actions::Features::MySchedules.new(bot: bot, user: user).back
+      ::Actions::Features::Schedules::MySchedules.new(bot: bot, user: user).back
     end
 
     ################# Schedule #####################################
 
     def expand_schedule(schedule_id)
-      ::Actions::Features::Schedule.new(bot: bot, user: user).expand(schedule_id: schedule_id)
+      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).expand(schedule_id: schedule_id)
     end
 
     def hide_schedule(schedule_id)
-      ::Actions::Features::Schedule.new(bot: bot, user: user).hide(schedule_id: schedule_id)
+      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).hide(schedule_id: schedule_id)
     end
 
     def pin_schedule
       set_replace_last_false
-      ::Actions::Features::Schedule.new(bot: bot, user: user).pin
+      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).pin
     end
 
     def call_back_schedule
       set_replace_last_true
-      ::Actions::Features::Schedule.new(bot: bot, user: user).back
+      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).back
     end
 
     ################# Preferences ##################################
