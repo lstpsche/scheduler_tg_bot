@@ -21,7 +21,7 @@ module Helpers
     end
 
     def show_preferences
-      ::Actions::Users::Schedules::Preferences.new(bot: bot, user: user).show
+      ::Actions::Users::Preferences.new(bot: bot, user: user).show
     end
 
     ################# My Schedules #################################

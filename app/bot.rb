@@ -21,6 +21,9 @@ class Bot
         message = talker.get_message
         binding.pry
         parse_message_type(message)
+      rescue => error
+        # TODO: parse error and give error message basing on it
+        Talker.new(bot: bot, chat_id: message.from.id).show_bad_input
       end
     end
   end

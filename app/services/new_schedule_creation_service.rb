@@ -36,6 +36,7 @@ module Services
         parse_to_params_schedule_name(raw_schedule_info)
 
         @errors.empty? ? break : handle_errors
+        # TODO: add here rescue for errors
       end
     end
 
@@ -43,7 +44,7 @@ module Services
       parsed_info = parse_schedule_name(raw_schedule_info)
       return if parsed_info.nil?
 
-      @params = { name: parsed_info[1], additional_info: parsed_info[2] }
+      @params = { name: parsed_info[1]&.strip, additional_info: parsed_info[2]&.strip }
     end
 
     def parse_schedule_name(raw_response)

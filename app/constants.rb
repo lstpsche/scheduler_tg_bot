@@ -12,13 +12,14 @@ class Constants
     end
 
     def set_schedule_name_full_layout
-      /(.+) -- (.+)/
+      /(.+)--(.+)/
     end
 
     def set_schedule_name_layout_without_add_info
       /(.+)/
     end
 
+    # TODO: remove whitespaces around --
     def day_event_full_layout
       /^(\d+:\d+) (.+) -- (.+)$/
     end

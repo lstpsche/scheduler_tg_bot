@@ -18,7 +18,7 @@ module Actions
         send_message(text: message_text)
 
         setup_all_preferences
-        show_help
+        show_main_menu
       end
 
       alias :launch :show

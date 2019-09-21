@@ -3,9 +3,9 @@
 module Services
   class ScheduleFillService < Base
     # attrs from base -- :bot, :chat_id, :user
-    attr_reader :schedule, :errors, :finish, :skip, :params, :weekday
+    attr_reader :schedule, :errors, :finish, :next_day, :params, :weekday
     alias :finish? :finish
-    alias :skip? :skip
+    alias :next_day? :next_day
 
     def initialize(bot:, user:, schedule:)
       super(bot: bot, user: user) do
@@ -19,7 +19,7 @@ module Services
       Constants.translated_weekdays.each do |weekday|
         @weekday = weekday
         @params = []
-        @skip = false
+        @next_day = false
 
         fill_weekday
         break if finish?
@@ -29,14 +29,15 @@ module Services
     private
 
     def message_text(weekday)
-      I18n.t('services.new_schedule_creation.schedule_fill.enter_events') % { weekday: weekday }
+      I18n.t('services.new_schedule_creation.header') +
+        I18n.t('services.new_schedule_creation.schedule_fill.enter_events') % { weekday: weekday }
     end
 
     def fill_weekday
       send_message(text: message_text(weekday))
 
       get_parse_valid_response
-      return if skip? || finish?
+      return if next_day? || finish?
 
       params.each { |param| create_assign_event(param) }
     end
@@ -46,7 +47,7 @@ module Services
         @errors = []
         day_events = get_response_of_type('message').text.strip.split("\n")
 
-        return @skip = true if day_events.first == '/skip'
+        return @next_day = true if day_events.first == '/next_day'
         return @finish = true if day_events.first == '/finish'
 
         parse_validate(day_events)
@@ -83,12 +84,11 @@ module Services
       day_event.gsub!('—', '--')
       parsed = parse_day_events(day_event)
       params[-1] = {
-        time: parsed[1],
+        time: parse_validate_time(parsed[1]),
         info: parsed[2],
         additional_info: parsed[3]
       }
 
-      validate_time(params.last[:time])
       true
     end
 
@@ -103,9 +103,8 @@ module Services
       @params = []
     end
 
-    def validate_time(time)
-      Time.parse(time)
-      true
+    def parse_validate_time(time)
+      Time.parse(time).strftime('%H:%M')
     end
   end
 end

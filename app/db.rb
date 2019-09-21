@@ -4,6 +4,7 @@ class DB
   class << self
 
     # TODO: refactor all those arguments
+    # TODO: replace .fetch(..., '') with [:...] || ''
 
     def create_user(args)
       tg_user = args.fetch(:tg_user, nil)
@@ -21,7 +22,7 @@ class DB
     def create_schedule(args)
       Schedule.create(
         name: args[:name],
-        additional_info: args.fetch(:additional_info, '')
+        additional_info: args[:additional_info] || ''
       )
     end
 
@@ -30,7 +31,7 @@ class DB
         weekday: args[:weekday],
         time: args[:time],
         info: args[:info],
-        additional_info: args.fetch(:additional_info, ''),
+        additional_info: args[:additional_info] || '',
         schedule_id: args[:schedule_id]
       )
     end

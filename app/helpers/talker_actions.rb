@@ -70,7 +70,8 @@ module Helpers
     end
 
     def show_set_schedule_name_add_info
-      message_text = I18n.t('services.new_schedule_creation.set_schedule_name_add_info')
+      message_text = I18n.t('services.new_schedule_creation.header') +
+        I18n.t('services.new_schedule_creation.set_schedule_name_add_info')
       send_message(text: message_text)
     end
 
