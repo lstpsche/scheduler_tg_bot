@@ -8,9 +8,8 @@ module Routers
     # 'initialize' is in base
 
     def route(message)
-      validate_message(message)
       init_vars(message)
-      return validation_service.errors if validation_service.failure?
+      raise validation_service.errors.first if validation_service.failure?
 
       actual_command = command.split('/').last
 
@@ -29,10 +28,6 @@ module Routers
     end
 
     private
-
-    def validate_message(message)
-      raise ArgumentError if message.text == nil
-    end
 
     def init_vars(message)
       @command = message.text

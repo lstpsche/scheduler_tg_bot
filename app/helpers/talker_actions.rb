@@ -47,6 +47,10 @@ module Helpers
       talker.show_new_schedule_error(error)
     end
 
+    def show_bad_input
+      talker.show_bad_input
+    end
+
     def show_no_command
       talker.show_no_command
     end
