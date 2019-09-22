@@ -53,7 +53,7 @@ module Actions
 
         def message_text
           if expand?
-            ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
+            decorate_for_show_schedule(schedule)
           else
             "*#{schedule.name}*\n#{schedule_additional_info(schedule)}"
           end
