@@ -4,11 +4,15 @@
 require 'active_record'
 require 'dotenv/load'
 require 'i18n'
+require 'json'
+require 'net/http'
 require 'pry'
 require 'rake'
 require 'require_all'
+require 'securerandom'
 require 'telegram/bot'
 require 'time'
+require 'uri'
 
 # require files
 ## helpers
