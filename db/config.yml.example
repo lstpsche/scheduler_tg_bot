@@ -15,3 +15,5 @@ test: &test
   database: template_test
 
 production:
+  <<: *default
+  database: template_production
