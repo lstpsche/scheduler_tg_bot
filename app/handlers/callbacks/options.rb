@@ -10,7 +10,7 @@ module Handlers
       def handle(command)
         back && return if command.split('_').first == 'back'
 
-        Routers::OptionsRouter.new(bot: bot, user: user).route(command)
+        Routers::Features::OptionsRouter.new(bot: bot, user: user).route(command)
       end
 
       def back

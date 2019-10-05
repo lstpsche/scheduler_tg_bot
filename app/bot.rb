@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 ROUTERS = {
-  'Message' => Routers::TextCommandsRouter,
-  'CallbackQuery' => Routers::CallbacksRouter
+  'Message' => Routers::Messages::TextCommandsRouter,
+  'CallbackQuery' => Routers::Messages::CallbacksRouter
 }.freeze
 
 class Bot

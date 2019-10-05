@@ -27,6 +27,7 @@ require_all 'app/actions/features/schedules'
 require_relative 'app/dialogs/talker'
 ## handlers
 require_all 'app/handlers/callbacks'
+require_all 'app/handlers/text_commands'
 ## routers
 require_all 'app/routers'
 ## serializers
