@@ -25,7 +25,6 @@ namespace :app do
     ## actions
     require_all 'app/actions/users'
     require_all 'app/actions/features'
-    # TEMPLATE_TODO: require here your features folders
     ## dialogs
     require_all 'app/dialogs'
     ## handlers
