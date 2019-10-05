@@ -19,7 +19,7 @@ module Routers
 
         actual_command = command.split('/').last
 
-        HANDLERS[actual_command].new(bot: bot, chat_id: chat_id, user: user).handle
+        HANDLERS[actual_command].new(bot: bot, chat_id: chat_id, user: user || tg_user).handle
       end
 
       private
