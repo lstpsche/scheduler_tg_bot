@@ -50,6 +50,8 @@ en:
           name: 'Terms and Conditions'
           text: 'Are you agree with Terms and Conditions?' # show keyboard with Yes and No. and after answer if it Yes or No, edit this message to remove keyboard
         setup_successful: 'Setting was set up successfully!'
+      otp:
+        needed: Do you need to generate One-Time Password to log into your account at Web Version?
       preferences:
         show_options: 'Choose a setting to setup:'
         setup_successful: "Everything's set up.\nYou're ready to go!"

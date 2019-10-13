@@ -18,7 +18,7 @@ module Actions
         send_message(text: message_text)
 
         setup_all_preferences
-        show_main_menu
+        show_main_menu unless need_generate_otp
       end
 
       alias :launch :show
