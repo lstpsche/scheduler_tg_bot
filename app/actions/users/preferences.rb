@@ -8,7 +8,11 @@ module Actions
       # 'initialize' is in base
 
       def show
-        show_options_menu
+        params = {
+          markup_options: Constants.preferences_options
+        }
+
+        super(params)
       end
 
       def back
@@ -23,14 +27,22 @@ module Actions
 
       private
 
-      # 'option_name' is in base
-
       def setup_all_options
         # setup all options one by one
         Constants.preferences_setup_options.each do |option|
           setup_option(option_name(option))
         end
       end
+
+      def callback(option_name)
+        Constants.preferences_callback % { option_name: option_name }
+      end
+
+      def message_text
+        I18n.t('actions.users.preferences.show_options')
+      end
+
+      # 'option_name' is in base
     end
   end
 end

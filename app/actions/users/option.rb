@@ -34,7 +34,8 @@ module Actions
 
       def callback(command)
         Constants.option_callback % {
-          command: "#{command}_#{option_name(option)}"
+          option_name: option_name(option),
+          action: command
         }
       end
 

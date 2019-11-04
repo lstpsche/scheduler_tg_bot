@@ -8,7 +8,7 @@ class Constants
     end
 
     def context_command_regex
-      /^(\w+)-(\w+)(-(\w+))?$/
+      /^(\w+)-(\w+)$/
     end
 
     def set_schedule_name_full_layout
@@ -80,12 +80,16 @@ class Constants
     end
 
     def option_callback
-      'options-%{command}'
+      'options-%{option_name}__%{action}'
+    end
+
+    def preferences_callback
+      'preferences-%{option_name}__show'
     end
 
     def schedule_callback
       # TODO: command MUST be like "#{schedule_id}__#{action}
-      'schedule-%{command}'
+      'schedule-%{schedule_id}__%{action}'
     end
 
     # using for inner coding. no need to translate

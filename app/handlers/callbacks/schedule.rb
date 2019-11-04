@@ -8,9 +8,9 @@ module Handlers
       # 'initialize' is in base
 
       def handle(command)
-        schedule_id, option_name = command.to_s.split('_', 2)
+        schedule_id, action = command.to_s.split('__')
 
-        case option_name
+        case action
         when 'expand'
           expand_schedule(schedule_id)
         when 'hide'
