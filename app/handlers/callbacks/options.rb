@@ -8,7 +8,7 @@ module Handlers
       # 'initialize' is in base
 
       def handle(command)
-        back && return if command.split('_').first == 'back'
+        back && return if command.split('__').last == 'back'
 
         Routers::Features::OptionsRouter.new(bot: bot, user: user).route(command)
       end

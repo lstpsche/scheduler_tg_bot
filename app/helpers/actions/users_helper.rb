@@ -37,31 +37,6 @@ module Helpers
           markup: 'remove'
         )
       end
-
-      def show_options_menu
-        options_kb = options_menu_inline_buttons
-
-        markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: options_kb)
-
-        send_or_edit_message(
-          message_id: user.last_message_id, text: I18n.t('actions.users.preferences.show_options'),
-          markup: markup
-        )
-      end
-
-      def options_menu_inline_buttons(context: nil)
-        options_kb = []
-
-        Constants.preferences_options.each do |option|
-          text = option[:button]
-          callback = "preferences-show_#{option[:name]}" + ((context.nil? || context.strip.empty?) ? '' : "-#{context}")
-          options_kb << Telegram::Bot::Types::InlineKeyboardButton.new(
-            text: text, callback_data: callback
-          )
-        end
-
-        options_kb
-      end
     end
   end
 end
