@@ -24,7 +24,6 @@ module Routers
         init_vars(callback)
 
         call_handler
-        return_to_context
       end
 
       private
@@ -38,25 +37,15 @@ module Routers
       end
 
       def parse_callback(command)
-        # /^(\w+)-(\w+)(-(\w+))?$/
+        # /^(\w+)-(\w+)$/
         parsed_command = command.match(Constants.context_command_regex)
 
         params[:handler_class] = parsed_command[1]
         params[:command] = parsed_command[2]
-        params[:return_to] = parsed_command[4]
       end
 
       def call_handler
         HANDLERS[params[:handler_class]].new(bot: bot, user: user).handle(params[:command])
-      end
-
-      def return_to_context
-        case params[:return_to]
-        when 'options_menu'
-          show_preferences
-        when 'main_menu'
-          show_main_menu
-        end
       end
     end
   end

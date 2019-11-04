@@ -19,8 +19,7 @@ module Actions
 
       def callback(command)
         Constants.main_menu_callback % {
-          command: command,
-          return_to: nil
+          command: command
         }
       end
 

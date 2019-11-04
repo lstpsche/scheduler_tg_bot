@@ -2,7 +2,7 @@
 
 class User < ActiveRecord::Base
   serialize :context, ::Serializers::HashSerializer
-  store_accessor :context, :last_message, :replace_last_message, :return_to
+  store_accessor :context, :last_message, :replace_last_message
   has_many :schedule_users
   has_many :schedules, through: :schedule_users
 
@@ -22,8 +22,7 @@ class User < ActiveRecord::Base
           'message_id' => nil
         }
       },
-      'replace_last_message' => false,
-      'return_to' => nil
+      'replace_last_message' => false
     }
   end
 
@@ -41,10 +40,6 @@ class User < ActiveRecord::Base
 
   def replace_last_message?
     context['replace_last_message']
-  end
-
-  def return_to
-    context['return_to']
   end
 
   class << self
