@@ -2,74 +2,27 @@
 
 module Actions
   module Users
-    class Base
-      include Helpers::Common
-      include Helpers::TalkerActions
-      include Helpers::MenusActions
+    class Base < Actions::Base
       include Helpers::Actions::UsersHelper
+      # Helpers::Common
+      # Helpers::TalkerActions
+      # Helpers::MenusActions
 
-      attr_reader :bot, :chat_id, :user
+      # attrs from base -- :bot, :chat_id, :user
 
-      def initialize(bot:, user:)
-        @bot = bot
-        @user = user
-        @chat_id = user.id
-      end
+      # 'initialize' is in base
+      # 'show' is in base
+      # 'back' mock is in base
 
-      def show(args = {})
-        before_show(args.fetch(:before, nil))
+      # 'before_show' mock is in base
+      # 'after_show' mock is in base
+      # 'message_text' mock is in base
 
-        send_or_edit_message(
-          message_id: user.last_message_id,
-          text: message_text, markup: create_markup(args.fetch(:markup_options, nil))
-        )
-
-        after_show(args.fetch(:after, nil))
-      end
-
-      def back
-        set_replace_last_true
-        show_main_menu
-      end
-
-      private
-
-      def before_show(*args); end
-      def after_show(*args); end
-
-      def callback(command)
-        command
-      end
-
-      def create_button(text, callback)
-        Telegram::Bot::Types::InlineKeyboardButton.new(
-          text: text,
-          callback_data: callback(callback)
-        )
-      end
-
-      def create_markup(options)
-        return unless options
-
-        kb = []
-        options.each do |option|
-          kb << create_button(option_button(option), option_name(option))
-        end
-
-        Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-      end
-
-      def message_text
-        raise NotImplementedError
-      end
-
-      def option_button(option)
-        option[:button]
-      end
-
-      def option_name(option)
-        option[:name]
-      end
+      # 'callback' is in base
+      # 'create_button' is in base
+      # 'create_markup' is in base
+      # 'option_button' is in base
+      # 'option_name' is in base
     end
   end
 end

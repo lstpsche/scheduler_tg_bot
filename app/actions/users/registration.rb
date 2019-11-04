@@ -13,25 +13,28 @@ module Actions
       end
 
       def show
-        @user = DB.create_user(tg_user: tg_user)
+        params = {
+          markup_options: []
+        }
 
-        send_message(text: message_text)
-
-        setup_all_preferences
-        show_main_menu unless need_generate_otp
+        super(params)
       end
 
       alias :launch :show
 
-      # Registration has no 'back' button
-      def back
-        raise NoMethodError
-      end
-
       private
 
+      def before_show(*args)
+        @user = DB.create_user(tg_user: tg_user)
+      end
+
+      def after_show(*args)
+        setup_all_preferences
+        show_main_menu unless need_generate_otp
+      end
+
       def message_text
-        I18n.t('actions.users.registration.welcome') % { name: user.first_name }
+        I18n.t('actions.users.registration.welcome', name: user.first_name)
       end
     end
   end

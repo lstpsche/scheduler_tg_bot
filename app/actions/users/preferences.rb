@@ -11,7 +11,10 @@ module Actions
         show_options_menu
       end
 
-      # 'back' is in base
+      def back
+        set_replace_last_true
+        show_main_menu
+      end
 
       def setup_all
         setup_all_options

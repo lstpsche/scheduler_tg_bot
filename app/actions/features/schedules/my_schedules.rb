@@ -8,7 +8,19 @@ module Actions
 
         # 'initialize' is in base
         # 'show' method is in base
-        # 'back' method is in base
+
+        def show
+          params = {
+            markup_options: user.schedules
+          }
+
+          super(params)
+        end
+
+        def back
+          set_replace_last_true
+          show_main_menu
+        end
 
         private
 
@@ -20,11 +32,11 @@ module Actions
           }
         end
 
-        # create_button is in base
+        def create_markup(markup_options)
+          back_text = I18n.t('actions.features.schedules.my_schedules.back')
 
-        def create_markup
-          super(user.schedules) do
-            back_text = I18n.t('actions.features.schedules.my_schedules.back')
+          super(markup_options) do
+            # TODO: after removing all `return_to`, replace this 'back' with callback()
             create_button(back_text, 'back')
           end
         end
@@ -41,6 +53,8 @@ module Actions
         def option_name(schedule)
           schedule.id
         end
+
+        # 'create_button' is in base
       end
     end
   end

@@ -37,7 +37,7 @@ module Helpers
     ################# My Schedules #################################
 
     def show_schedule(schedule_id)
-      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_short(schedule_id: schedule_id)
     end
 
     def call_back_my_schedules
@@ -51,12 +51,10 @@ module Helpers
     end
 
     def expand_schedule(schedule_id)
-      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).expand(schedule_id: schedule_id)
+      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_expanded(schedule_id: schedule_id)
     end
 
-    def hide_schedule(schedule_id)
-      ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).hide(schedule_id: schedule_id)
-    end
+    alias :hide_schedule :show_schedule
 
     def pin_schedule
       set_replace_last_false

@@ -22,6 +22,7 @@ class Bot
         binding.pry
         parse_message_type(message)
       rescue => error
+        binding.pry
         Services::ErrorParserService.new(bot: bot, chat_id: message.from.id, error: error.to_s).handle_errors
       end
     end
