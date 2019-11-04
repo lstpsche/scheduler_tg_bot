@@ -19,23 +19,19 @@ module Actions
 
       def ask_if_needed
         text = I18n.t('actions.users.otp.needed')
-        markup = create_markup(buttons)
-        send_message(text: text, markup: markup)
+        send_message(text: text, markup: create_markup)
       end
 
-      def buttons
-        [
-          { name: 'yes', button: I18n.t('common.yes') },
-          { name: 'no', button: I18n.t('common.no') }
-        ]
-      end
+      def create_markup
+        yes_button = { name: 'yes', button: I18n.t('common.yes') }
+        no_button = { name: 'no', button: I18n.t('common.no') }
 
-      def create_markup(options)
-        kb = []
-        kb << create_button(option_button(options[0]), option_name(options[0]))
-        kb << create_button(option_button(options[1]), option_name(options[1]))
-
-        Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
+        super do
+          [
+            create_button(option_button(yes_button), option_name(yes_button)),
+            create_button(option_button(no_button), option_name(no_button))
+          ]
+        end
       end
     end
   end

@@ -23,6 +23,7 @@ namespace :app do
     ## services
     require_all 'app/services'
     ## actions
+    require_all 'app/actions/base.rb'
     require_all 'app/actions/users'
     require_all 'app/actions/features'
     ## dialogs

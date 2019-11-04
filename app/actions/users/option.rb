@@ -39,11 +39,6 @@ module Actions
         }
       end
 
-      # 'create_button' is in base
-      # 'create_markup' is in base
-      # 'option_button' is in base
-      # 'option_name' is in base
-
       def message_text
         user_option = user&.send(option_name(@option))
 
@@ -55,6 +50,11 @@ module Actions
 
         "*#{option_button(@option)}*\n#{user_option_text}"
       end
+
+      # 'create_button' is in base
+      # 'create_markup' is in base
+      # 'option_button' is in base
+      # 'option_name' is in base
     end
   end
 end
