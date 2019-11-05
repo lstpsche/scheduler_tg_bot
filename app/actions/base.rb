@@ -18,7 +18,7 @@ module Actions
       before_show(args[:before])
 
       send_or_edit_message(
-        message_id: user.last_message_id,
+        message_id: user.tapped_message_id,
         text: message_text, markup: create_markup(args[:markup_options])
       )
 

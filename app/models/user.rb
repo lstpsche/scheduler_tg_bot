@@ -2,18 +2,13 @@
 
 class User < ActiveRecord::Base
   serialize :context, ::Serializers::HashSerializer
-  store_accessor :context, :last_message, :replace_last_message
+  store_accessor :context, :last_message, :replace_last_message, :tapped_message
   has_many :schedule_users
   has_many :schedules, through: :schedule_users
 
   def method_missing(method_name, *args, &block)
     nil
   end
-
-  # message.message.message_id — получить id сообщения, от которого пришёл callback
-  # TODO:
-  # 1) сохранять _message.message_ в user.context['tapped_message'] (будет доступно по user.tapped_message)
-  # 2) при эдите сообщения, эдитить не последнее, а tapped_message
 
   def empty_context
     {
@@ -22,7 +17,8 @@ class User < ActiveRecord::Base
           'message_id' => nil
         }
       },
-      'replace_last_message' => false
+      'replace_last_message' => false,
+      'tapped_message' => nil
     }
   end
 
@@ -38,8 +34,16 @@ class User < ActiveRecord::Base
     last_message['result']['message_id']
   end
 
-  def replace_last_message?
-    context['replace_last_message']
+  def tapped_message
+    context['tapped_message'] || {}
+  end
+
+  def tapped_message=(msg)
+    context['tapped_message'] = msg
+  end
+
+  def tapped_message_id
+    tapped_message['message_id']
   end
 
   class << self

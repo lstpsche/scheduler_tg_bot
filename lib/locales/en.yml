@@ -2,58 +2,58 @@ en:
   actions:
     features:
       menu:
-        header: 'Main menu'
+        header: Main menu
         new_schedule:
-          name: 'new_schedule'
-          button: 'New Schedule'
+          name: new_schedule
+          button: New Schedule
         my_schedules:
-          name: 'my_schedules'
-          button: 'My schedules'
+          name: my_schedules
+          button: My schedules
         preferences:
-          name: 'preferences'
-          button: 'Preferences'
+          name: preferences
+          button: Preferences
       schedules:
         my_schedules:
-          header: 'My schedules'
-          back: 'Back'
+          header: My schedules
+          back: <-- Back
         schedule:
           options:
             show:
-              name: 'expand'
-              button: 'Show schedule'
+              name: expand
+              button: Show schedule
             hide:
-              name: 'hide'
-              button: 'Hide schedule'
+              name: hide
+              button: Hide schedule
             pin:
-              name: 'pin'
-              button: 'Pin'
+              name: pin
+              button: Pin
             back:
-              name: 'back'
-              button: 'Back'
+              name: back
+              button: <-- Back
     users:
       option:
         change_option:
-          name: 'setup'
-          button: 'Change option'
+          name: setup
+          button: Change option
         back:
-          name: 'back'
-          button: 'Back'
+          name: back
+          button: <-- Back
       options:
         back:
-          name: 'back'
-          button: 'Back'
+          name: back
+          button: <-- Back
         example_option_1:
-          name: 'example_option_1'
-          button: 'Example Option 1'
-          text: 'This is test method. What do you think?'
+          name: example_option_1
+          button: Example Option 1
+          text: This is test method. What do you think?
         terms_and_conditions:
-          name: 'Terms and Conditions'
-          text: 'Are you agree with Terms and Conditions?' # Inline keyboard with one button('Accept')
-        setup_successful: 'Setting was set up successfully!'
+          name: Terms and Conditions
+          text: Are you agree with Terms and Conditions? # Inline keyboard with one button('Accept')
+        setup_successful: Setting was set up successfully!
       otp:
         needed: Do you need to generate One-Time Password to log into your account at Web Version?
       preferences:
-        show_options: 'Choose a setting to setup'
+        show_options: Choose a setting to setup
         setup_successful: "Everything's set up.\nYou're ready to go!"
       registration:
         terms_and_conditions: "We will use some of your Telegram profile data.\n\nHere's a list of what we will use:\n1. First name\n2. Last name\n3. Username\n4. Telegram ID\n5. Info about your language.\n\nNothing of your personal data will be given to third parties. All your data is stored at ours servers and only used by us."
@@ -66,22 +66,22 @@ en:
       schedule_fill:
         enter_events: "Enter events for *%{weekday}*\n\nExample:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info\n\n*Note*: enter all events for this day at one message.\n\n/next\\_day — go to the next day;\n/finish — save schedule and exit."
         input_invalid: "*%{error}*\n\nPlease, enter events following the next pattern:\n9:00 Some event name -- additional info\n15:20 Second event name -- add info\n\n/next\\_day — go to the next day;\n/finish — save schedule and exit."
-      successfully_created: "Schedule was successfully created!"
+      successfully_created: Schedule was successfully created!
   common:
-    back: 'Back'
+    back: <-- Back
     help: "/menu - show main menu\n/help - show this message"
     'no': 'No'
     'yes': 'Yes'
   weekdays:
-    monday: 'monday'
-    tuesday: 'tuesday'
-    wednesday: 'wednesday'
-    thursday: 'thursday'
-    friday: 'friday'
-    saturday: 'saturday'
-    sunday: 'sunday'
+    monday: monday
+    tuesday: tuesday
+    wednesday: wednesday
+    thursday: thursday
+    friday: friday
+    saturday: saturday
+    sunday: sunday
   errors:
-    bad_input: "Please, be more serious."
+    bad_input: Please, be more serious.
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
     no_command: "There's no such command.\nYou can use /help to view available text commands."
     not_registered: "Sorry, you're not registered yet.\nPlease, run /start to register."

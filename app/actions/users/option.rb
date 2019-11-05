@@ -27,10 +27,6 @@ module Actions
         @option = Constants.preferences_options.select { |opt| opt[:name] == args[:option] }.first
       end
 
-      def after_show(*args)
-        set_replace_last_true
-      end
-
       def callback(command)
         Constants.option_callback % {
           option_name: option_name(option),

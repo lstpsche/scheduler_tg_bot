@@ -8,7 +8,6 @@ module Handlers
       # 'initialize' is in base
 
       def handle
-        set_replace_last_false
         show_help
       end
     end
