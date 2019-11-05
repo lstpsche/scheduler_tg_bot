@@ -3,7 +3,6 @@
 module Actions
   module Users
     class Base < Actions::Base
-      include Helpers::Actions::UsersHelper
       # Helpers::Common
       # Helpers::TalkerActions
       # Helpers::MenusActions

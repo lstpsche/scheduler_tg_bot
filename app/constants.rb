@@ -49,12 +49,8 @@ class Constants
     def preferences_options
       scope = 'actions.users.options'
 
-      options_translations_for(PREFERENCES_OPTIONS, scope)
-    end
-
-    def preferences_setup_options
-      # remove last 'option' which is actualy :back
-      preferences_options[0..-2]
+      # options_translations_for(NEW_OPTIONS, new_scope) +
+      options_translations_for(USER_PREFERENCES_OPTIONS, scope)
     end
 
     def schedule_options
@@ -147,7 +143,7 @@ class Constants
       :back
     ]
 
-    PREFERENCES_OPTIONS = [
+    USER_PREFERENCES_OPTIONS = [
       :example_option_1,
       :back
     ]

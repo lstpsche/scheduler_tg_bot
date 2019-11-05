@@ -23,9 +23,8 @@ module Actions
 
       private
 
-      def before_show(options = {})
-        scope = 'actions.users.options'
-        @option = I18n.t(options.fetch(:option), scope: scope)
+      def before_show(args = {})
+        @option = Constants.preferences_options.select { |opt| opt[:name] == args[:option] }.first
       end
 
       def after_show(*args)
