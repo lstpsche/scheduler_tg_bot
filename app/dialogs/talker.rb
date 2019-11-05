@@ -50,11 +50,6 @@ class Talker
 
   #################### Errors ####################################
 
-  def show_new_schedule_error(error)
-    text = I18n.t('services.new_schedule_creation.schedule_fill.input_invalid') % { error: error }
-    send_message(text: text)
-  end
-
   def show_bad_input
     send_message(text: I18n.t('errors.bad_input'))
   end
