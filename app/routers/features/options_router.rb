@@ -30,7 +30,6 @@ module Routers
       def setup(option_name)
         setup_option(option_name)
 
-        set_replace_last_false
         show_option(option_name)
       end
 

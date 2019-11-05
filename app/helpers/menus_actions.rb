@@ -57,12 +57,10 @@ module Helpers
     alias :hide_schedule :show_schedule
 
     def pin_schedule
-      set_replace_last_false
       ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).pin
     end
 
     def call_back_schedule
-      set_replace_last_true
       ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).back
     end
 

@@ -35,8 +35,8 @@ module Actions
         end
 
         def pin
-          edit_message_reply_markup(message_id: user.last_message_id)
-          # reset_user_tapped_message
+          edit_message_reply_markup(message_id: user.tapped_message_id)
+          reset_user_tapped_message
           back
         end
 

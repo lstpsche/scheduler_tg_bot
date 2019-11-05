@@ -17,6 +17,10 @@ module Helpers
       end
     end
 
+    def reset_user_tapped_message
+      user&.update(tapped_message: nil)
+    end
+
     def save_validate_user
       if user.save
         yield
@@ -25,14 +29,6 @@ module Helpers
         # maybe parse errors and show them to user
         # (rather no)
       end
-    end
-
-    def set_replace_last_true
-      user&.update(replace_last_message: true)
-    end
-
-    def set_replace_last_false
-      user&.update(replace_last_message: false)
     end
 
     def user_registered?(id:)

@@ -18,7 +18,6 @@ module Actions
         end
 
         def back
-          set_replace_last_true
           show_main_menu
         end
 

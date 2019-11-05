@@ -13,11 +13,6 @@ module Actions
       # 'show' is in base
       # 'back' is in base
 
-      def show(params)
-        super(params)
-        set_replace_last_true
-      end
-
       # 'before_show' mock is in base
       # 'after_show' mock is in base
 

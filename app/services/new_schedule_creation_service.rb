@@ -10,12 +10,13 @@ module Services
 
     def launch
       set_schedule_name_add_info
-      set_replace_last_false
+
       unless back?
         create_assign_schedule
         ScheduleFillService.new(bot: bot, user: user, schedule: schedule).launch
         show_schedule_successfully_created
       end
+
       show_main_menu
     end
 
