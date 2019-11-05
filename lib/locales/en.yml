@@ -6,15 +6,15 @@ en:
         new_schedule:
           name: new_schedule
           button: New Schedule
-        my_schedules:
-          name: my_schedules
-          button: My schedules
+        all_schedules:
+          name: all_schedules
+          button: All schedules
         preferences:
           name: preferences
           button: Preferences
       schedules:
-        my_schedules:
-          header: My schedules
+        all_schedules:
+          header: All schedules
           back: <-- Back
         schedule:
           options:

@@ -26,22 +26,22 @@ module Helpers
       ::Services::NewScheduleCreationService.new(bot: bot, user: user).launch
     end
 
-    def show_my_schedules
-      ::Actions::Features::Schedules::MySchedules.new(bot: bot, user: user).show
+    def show_all_schedules
+      ::Actions::Features::Schedules::AllSchedules.new(bot: bot, user: user).show
     end
 
     def show_preferences
       ::Actions::Users::Preferences.new(bot: bot, user: user).show
     end
 
-    ################# My Schedules #################################
+    ################# All Schedules #################################
 
     def show_schedule(schedule_id)
       ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_short(schedule_id: schedule_id)
     end
 
-    def call_back_my_schedules
-      ::Actions::Features::Schedules::MySchedules.new(bot: bot, user: user).back
+    def call_back_all_schedules
+      ::Actions::Features::Schedules::AllSchedules.new(bot: bot, user: user).back
     end
 
     ################# Schedule #####################################

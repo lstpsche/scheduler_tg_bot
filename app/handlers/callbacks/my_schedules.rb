@@ -2,7 +2,7 @@
 
 module Handlers
   module Callbacks
-    class MySchedules < Base
+    class AllSchedules < Base
       # attrs from base -- :bot, :chat_id, :user, :talker
 
       # 'initialize' is in base
@@ -12,7 +12,7 @@ module Handlers
         # when 'add_schedule'
         #   show_add_schedule
         when 'back'
-          call_back_my_schedules
+          call_back_all_schedules
         else
           schedule_id = command.to_i
           show_schedule(schedule_id) if schedule_id > 0
