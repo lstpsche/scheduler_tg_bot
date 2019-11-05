@@ -67,6 +67,10 @@ class Constants
 
     # CALLBACKS
 
+    def add_schedule_callback
+      'add_schedule-%{schedule_id}'
+    end
+
     def main_menu_callback
       'menu-%{command}'
     end

@@ -7,6 +7,7 @@ module Routers
       attr_reader :params, :tapped_message
 
       HANDLERS = {
+        'add_schedule' => Handlers::Callbacks::AddSchedule,
         'menu' => Handlers::Callbacks::Menu,
         'all_schedules' => Handlers::Callbacks::AllSchedules,
         'options' => Handlers::Callbacks::Options,

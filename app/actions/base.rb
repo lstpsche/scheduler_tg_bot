@@ -50,7 +50,7 @@ module Actions
 
       kb = []
       options.each do |option|
-        kb << create_button(option_button(option), option_name(option))
+        kb << create_button(option_button_text(option), option_name(option))
       end
       kb += Array.wrap(yield) if block_given?
 
@@ -61,8 +61,8 @@ module Actions
       raise NotImplementedError
     end
 
-    def option_button(option)
-      option[:button]
+    def option_button_text(option)
+      option[:button_text]
     end
 
     def option_name(option)
