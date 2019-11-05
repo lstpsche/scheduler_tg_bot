@@ -28,8 +28,8 @@ module Actions
 
         super do
           [
-            create_button(option_button(yes_button), option_name(yes_button)),
-            create_button(option_button(no_button), option_name(no_button))
+            create_button(option_button_text(yes_button), option_name(yes_button)),
+            create_button(option_button_text(no_button), option_name(no_button))
           ]
         end
       end

@@ -7,7 +7,6 @@ module Actions
         # attrs from base -- :bot, :chat_id, :user
 
         # 'initialize' is in base
-        # 'show' method is in base
 
         def show
           params = {
@@ -31,11 +30,16 @@ module Actions
         end
 
         def create_markup(markup_options)
-          back_text = I18n.t('actions.features.schedules.all_schedules.back')
+          add_text = I18n.t('actions.features.schedules.all_schedules.add_schedule.button_text')
+          add_callback = I18n.t('actions.features.schedules.all_schedules.add_schedule.name')
+          back_text = I18n.t('actions.features.schedules.all_schedules.back.button_text')
+          back_callback = I18n.t('actions.features.schedules.all_schedules.back.name')
 
           super(markup_options) do
-            # TODO: after removing all `return_to`, replace this 'back' with callback()
-            create_button(back_text, 'back')
+            [
+              create_button(add_text, add_callback),
+              create_button(back_text, back_callback)
+            ]
           end
         end
 
@@ -44,7 +48,7 @@ module Actions
         end
 
         # here option, which will be passed, is one of user's schedule
-        def option_button(schedule)
+        def option_button_text(schedule)
           schedule.name
         end
 

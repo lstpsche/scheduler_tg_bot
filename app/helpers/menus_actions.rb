@@ -32,6 +32,10 @@ module Helpers
 
     ################# All Schedules #################################
 
+    def show_add_schedule(no_back: false, message_text: nil)
+      ::Actions::Features::Schedules::AddSchedule.new(bot: bot, user: user, no_back: no_back, message_text: message_text).show
+    end
+
     def show_schedule(schedule_id)
       ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_short(schedule_id: schedule_id)
     end

@@ -19,7 +19,7 @@ module Actions
       # 'callback' is in base
       # 'create_button' is in base
       # 'create_markup' is in base
-      # 'option_button' is in base
+      # 'option_button_text' is in base
       # 'option_name' is in base
     end
   end

@@ -72,7 +72,7 @@ module Actions
         end
 
         # 'create_button' is in base
-        # 'option_button' is in base
+        # 'option_button_text' is in base
         # 'option_name' is in base
       end
     end

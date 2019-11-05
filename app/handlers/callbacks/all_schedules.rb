@@ -9,8 +9,8 @@ module Handlers
 
       def handle(command)
         case command
-        # when 'add_schedule'
-        #   show_add_schedule
+        when 'add_schedule'
+          show_add_schedule
         when 'back'
           call_back_all_schedules
         else

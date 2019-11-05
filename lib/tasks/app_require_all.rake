@@ -29,6 +29,7 @@ namespace :app do
     ## dialogs
     require_all 'app/dialogs'
     ## handlers
+    require_all 'app/handlers/callbacks/base.rb'
     require_all 'app/handlers/callbacks'
     require_all 'app/handlers/text_commands'
     ## routers

@@ -5,14 +5,34 @@ en:
         header: Main menu
         all_schedules:
           name: all_schedules
-          button: All schedules
+          button_text: Schedules
         preferences:
           name: preferences
-          button: Preferences
+          button_text: Preferences
       schedules:
+        add_schedule:
+          # TODO: REPHRASE THIS STRING
+          header: Add schedules
+          create_new_schedule:
+            name: create_schedule
+            button_text: + Create new schedule
+          create_new:
+            name: create
+            button_text: '+ Create new schedule'
+          back:
+            name: back
+            button_text: <-- Back
         all_schedules:
           header: All schedules
-          back: <-- Back
+          add_schedule:
+            name: add_schedule
+            button_text: + Add schedule
+          back:
+            name: back
+            button_text: <-- Back
+        create_schedule:
+          header: "By pressing this button you will be redirected to a new schedule creation at web-version of Scheduler\n\n*This link is one-time-use only!*"
+          button_text: Go to web version
         schedule:
           options:
             show:
@@ -69,6 +89,8 @@ en:
     friday: friday
     saturday: saturday
     sunday: sunday
+  web_version_links:
+    new_schedule: /schedules/new
   errors:
     bad_input: Please, be more serious.
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
