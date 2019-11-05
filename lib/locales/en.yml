@@ -69,7 +69,7 @@ en:
       successfully_created: "Schedule was successfully created!"
   common:
     back: 'Back'
-    help: "/start - show main menu\n/help - show this message"
+    help: "/menu - show main menu\n/help - show this message"
     'no': 'No'
     'yes': 'Yes'
   weekdays:

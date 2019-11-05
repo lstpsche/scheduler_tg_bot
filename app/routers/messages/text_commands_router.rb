@@ -8,6 +8,7 @@ module Routers
 
       HANDLERS = {
         'start' => Handlers::TextCommands::StartHandler,
+        'menu' => Handlers::TextCommands::MenuHandler,
         'help' => Handlers::TextCommands::HelpHandler
       }
 
