@@ -2,13 +2,14 @@
 
 module Handlers
   module TextCommands
-    class StartHandler < Base
+    class MenuHandler < Base
       # attrs from base -- :bot, :chat_id, :user
 
       # 'initialize' is in base
 
       def handle
-        launch_registration unless user_registered?(id: chat_id)
+        set_replace_last_false
+        show_main_menu
       end
     end
   end

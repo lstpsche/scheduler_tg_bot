@@ -93,6 +93,7 @@ class Constants
     def text_commands
       [
         '/start',
+        '/menu',
         '/help'
       ]
     end
