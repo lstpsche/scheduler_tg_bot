@@ -134,7 +134,6 @@ class Constants
     ]
 
     MENU_OPTIONS = [
-      :new_schedule,
       :all_schedules,
       :preferences
     ]

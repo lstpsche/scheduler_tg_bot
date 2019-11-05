@@ -22,10 +22,6 @@ module Helpers
       ::Actions::Features::Menu.new(bot: bot, user: user).show
     end
 
-    def launch_new_schedule_creation
-      ::Services::NewScheduleCreationService.new(bot: bot, user: user).launch
-    end
-
     def show_all_schedules
       ::Actions::Features::Schedules::AllSchedules.new(bot: bot, user: user).show
     end

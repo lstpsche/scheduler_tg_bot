@@ -7,12 +7,6 @@ module Handlers
 
       # 'initialize' is in base
 
-      def show_new_schedule_menu
-        return false if not_registered_user(id: chat_id)
-
-        launch_new_schedule_creation
-      end
-
       def show_all_schedules_menu
         return false if not_registered_user(id: chat_id)
 
@@ -27,8 +21,6 @@ module Handlers
 
       def handle(command)
         case command
-        when 'new_schedule'
-          show_new_schedule_menu
         when 'all_schedules'
           show_all_schedules_menu
         when 'preferences'

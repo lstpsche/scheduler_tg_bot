@@ -76,10 +76,6 @@ module Helpers
 
     #################### Errors ####################################
 
-    def show_new_schedule_error(error)
-      talker.show_new_schedule_error(error)
-    end
-
     def show_bad_input
       talker.show_bad_input
     end
@@ -104,17 +100,6 @@ module Helpers
 
     def show_help
       talker.show_help
-    end
-
-    def show_set_schedule_name_add_info
-      message_text = I18n.t('services.new_schedule_creation.header') +
-        I18n.t('services.new_schedule_creation.set_schedule_name_add_info')
-      send_message(text: message_text)
-    end
-
-    def show_schedule_successfully_created
-      message_text = I18n.t('services.new_schedule_creation.successfully_created')
-      send_message(text: message_text)
     end
   end
 end
