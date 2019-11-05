@@ -37,31 +37,31 @@ en:
           options:
             show:
               name: expand
-              button: Show schedule
+              button_text: Show schedule
             hide:
               name: hide
-              button: Hide schedule
+              button_text: Hide schedule
             pin:
               name: pin
-              button: Pin
+              button_text: Pin
             back:
               name: back
-              button: <-- Back
+              button_text: <-- Back
     users:
       option:
         change_option:
           name: setup
-          button: Change option
+          button_text: Change option
         back:
           name: back
-          button: <-- Back
+          button_text: <-- Back
       options:
         back:
           name: back
-          button: <-- Back
+          button_text: <-- Back
         example_option_1:
           name: example_option_1
-          button: Example Option 1
+          button_text: Example Option 1
           text: This is test method. What do you think?
         terms_and_conditions:
           name: Terms and Conditions
@@ -81,6 +81,11 @@ en:
     help: "/menu - show main menu\n/help - show this message"
     'no': 'No'
     'yes': 'Yes'
+  messages_layouts:
+    schedule_view:
+      title: "*%{schedule_name}* `#%{schedule_id}`\n%{schedule_additional_info}"
+      events:
+        weekday: "*%{weekday}*:\n"
   weekdays:
     monday: monday
     tuesday: tuesday
