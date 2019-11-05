@@ -45,7 +45,7 @@ module Services
     def get_parse_valid_response
       loop do
         @errors = []
-        day_events = get_response_of_type('message').text.strip.split("\n")
+        day_events = get_response_of_type('message').strip.split("\n")
 
         return @next_day = true if day_events.first == '/next_day'
         return @finish = true if day_events.first == '/finish'

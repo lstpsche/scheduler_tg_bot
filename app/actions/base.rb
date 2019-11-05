@@ -5,7 +5,6 @@ module Actions
     include Helpers::Common
     include Helpers::TalkerActions
     include Helpers::MenusActions
-    include Helpers::Actions::UsersHelper
 
     attr_reader :bot, :chat_id, :user
 

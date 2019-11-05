@@ -48,7 +48,7 @@ en:
           text: 'This is test method. What do you think?'
         terms_and_conditions:
           name: 'Terms and Conditions'
-          text: 'Are you agree with Terms and Conditions?' # show keyboard with Yes and No. and after answer if it Yes or No, edit this message to remove keyboard
+          text: 'Are you agree with Terms and Conditions?' # Inline keyboard with one button('Accept')
         setup_successful: 'Setting was set up successfully!'
       otp:
         needed: Do you need to generate One-Time Password to log into your account at Web Version?

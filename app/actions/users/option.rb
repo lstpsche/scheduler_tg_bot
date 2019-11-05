@@ -23,9 +23,8 @@ module Actions
 
       private
 
-      def before_show(options = {})
-        scope = 'actions.users.options'
-        @option = I18n.t(options.fetch(:option), scope: scope)
+      def before_show(args = {})
+        @option = Constants.preferences_options.select { |opt| opt[:name] == args[:option] }.first
       end
 
       def after_show(*args)
@@ -34,7 +33,8 @@ module Actions
 
       def callback(command)
         Constants.option_callback % {
-          command: "#{command}_#{option_name(option)}"
+          option_name: option_name(option),
+          action: command
         }
       end
 

@@ -2,7 +2,6 @@
 
 module Services
   class OptionSetupService < Base
-    include Helpers::Actions::UsersHelper
     include Helpers::Actions::OptionsSetups
 
     # attrs from base -- :bot, :chat_id, :talker, :user

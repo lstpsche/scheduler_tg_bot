@@ -13,7 +13,7 @@ module Routers
       end
 
       def route(command)
-        action, option_name = command.split('_', 2)
+        option_name, action = command.split('__')
 
         case action
         when 'show'

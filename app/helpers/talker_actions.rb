@@ -2,6 +2,8 @@
 
 module Helpers
   module TalkerActions
+    private
+
     #################### Setups ####################################
 
     def talker(bot = @bot, chat_id = @chat_id, user = @user)
@@ -14,13 +16,21 @@ module Helpers
       talker.get_message
     end
 
+    def get_response
+      # THIS RESPONSE CAN BE FROM ANOTHER PERSON
+      # SHOULD TEST IT AND MAYBE ADD CHECKER, IF RESPONSE IS FROM NEEDED USER
+      @response = get_message
+
+      message_data_from(@response)
+    end
+
     # type should be 'message' or 'callback_query'
     def get_response_of_type(type)
       type = type.split('_').map(&:capitalize).join
 
       loop do
         response = get_message
-        return response if response.class.name.demodulize == type
+        return message_data_from(response) if response.class.name.demodulize == type
       end
     end
 
@@ -39,6 +49,29 @@ module Helpers
     def send_or_edit_message(message_id: nil, text: nil, markup: nil, parse_mode: 'markdown')
       talker.send_or_edit_message(message_id: message_id, text: text,
                                   markup: markup, parse_mode: parse_mode)
+    end
+
+    def setup_successfull
+      send_message(
+        text: I18n.t('actions.users.preferences.setup_successful'),
+        markup: 'remove'
+      )
+    end
+
+    def show_successfully_setup
+      send_message(
+        text: I18n.t('actions.users.options.setup_successful'),
+        markup: 'remove'
+      )
+    end
+
+    # TODO: move this method to UserOptionSetupService
+    def send_option_message(option_name, user, markup = nil)
+      message_text = I18n.t("actions.users.options.#{option_name}.text")
+      send_or_edit_message(
+        message_id: user.last_message_id, text: message_text,
+        markup: markup
+      )
     end
 
     #################### Errors ####################################
