@@ -13,7 +13,11 @@ module Helpers
       def decorate_for_show_schedule
         schedule_additional_info = schedule.additional_info
         schedule_additional_info += "\n" unless schedule_additional_info.blank?
-        text = "*#{schedule.name}*\n#{schedule_additional_info}\n"
+        text = I18n.t('messages_layouts.schedule_view.title',
+                 schedule_name: schedule.name,
+                 schedule_id: schedule.id,
+                 schedule_additional_info: schedule_additional_info
+               )
 
         Constants.weekdays.each do |weekday|
           text += weekday_decorated_text(weekday)
@@ -25,7 +29,7 @@ module Helpers
       private
 
       def weekday_decorated_text(weekday)
-        header_weekday = "*#{weekday.capitalize}*:\n"
+        header_weekday = I18n.t('message_layouts.schedule_view.events.weekday', weekday: weekday.capitalize)
         schedule_events = events.select { |ev| ev.weekday == weekday }.map do |event|
           Constants.event_in_schedule_decoration % {
             time: event.time,
