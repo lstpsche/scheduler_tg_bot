@@ -3,7 +3,7 @@
 module Actions
   module Features
     module Schedules
-      class MySchedules < Base
+      class AllSchedules < Base
         # attrs from base -- :bot, :chat_id, :user
 
         # 'initialize' is in base
@@ -25,13 +25,13 @@ module Actions
 
         # command here is schedule_id
         def callback(command)
-          Constants.my_schedules_callback % {
+          Constants.all_schedules_callback % {
             command: command
           }
         end
 
         def create_markup(markup_options)
-          back_text = I18n.t('actions.features.schedules.my_schedules.back')
+          back_text = I18n.t('actions.features.schedules.all_schedules.back')
 
           super(markup_options) do
             # TODO: after removing all `return_to`, replace this 'back' with callback()
@@ -40,7 +40,7 @@ module Actions
         end
 
         def message_text
-          I18n.t('actions.features.schedules.my_schedules.header')
+          I18n.t('actions.features.schedules.all_schedules.header')
         end
 
         # here option, which will be passed, is one of user's schedule

@@ -71,8 +71,8 @@ class Constants
       'menu-%{command}'
     end
 
-    def my_schedules_callback
-      'my_schedules-%{command}'
+    def all_schedules_callback
+      'all_schedules-%{command}'
     end
 
     def option_callback
@@ -135,7 +135,7 @@ class Constants
 
     MENU_OPTIONS = [
       :new_schedule,
-      :my_schedules,
+      :all_schedules,
       :preferences
     ]
 

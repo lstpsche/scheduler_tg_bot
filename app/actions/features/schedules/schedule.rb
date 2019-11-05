@@ -41,7 +41,7 @@ module Actions
         end
 
         def back
-          show_my_schedules
+          show_all_schedules
         end
 
         private

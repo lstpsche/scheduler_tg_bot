@@ -13,10 +13,10 @@ module Handlers
         launch_new_schedule_creation
       end
 
-      def show_my_schedules_menu
+      def show_all_schedules_menu
         return false if not_registered_user(id: chat_id)
 
-        show_my_schedules
+        show_all_schedules
       end
 
       def show_preferences_menu
@@ -29,8 +29,8 @@ module Handlers
         case command
         when 'new_schedule'
           show_new_schedule_menu
-        when 'my_schedules'
-          show_my_schedules_menu
+        when 'all_schedules'
+          show_all_schedules_menu
         when 'preferences'
           show_preferences_menu
         end
