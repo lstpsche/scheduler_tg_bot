@@ -53,7 +53,7 @@ en:
       otp:
         needed: Do you need to generate One-Time Password to log into your account at Web Version?
       preferences:
-        show_options: 'Choose a setting to setup:'
+        show_options: 'Choose a setting to setup'
         setup_successful: "Everything's set up.\nYou're ready to go!"
       registration:
         terms_and_conditions: "We will use some of your Telegram profile data.\n\nHere's a list of what we will use:\n1. First name\n2. Last name\n3. Username\n4. Telegram ID\n5. Info about your language.\n\nNothing of your personal data will be given to third parties. All your data is stored at ours servers and only used by us."
