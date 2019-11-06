@@ -24,7 +24,7 @@ module Actions
 
         # command here is schedule_id
         def callback(command)
-          Constants.all_schedules_callback % {
+          Constant.all_schedules_callback % {
             command: command
           }
         end

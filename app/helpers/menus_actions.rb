@@ -33,7 +33,8 @@ module Helpers
     ################# All Schedules #################################
 
     def show_add_schedule(no_back: false, message_text: nil)
-      ::Actions::Features::Schedules::AddSchedule.new(bot: bot, user: user, no_back: no_back, message_text: message_text).show
+      ::Actions::Features::Schedules::AddSchedule
+        .new(bot: bot, user: user, no_back: no_back, message_text: message_text).show
     end
 
     def show_schedule(schedule_id)
@@ -54,7 +55,7 @@ module Helpers
       ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_expanded(schedule_id: schedule_id)
     end
 
-    alias :hide_schedule :show_schedule
+    alias_method :hide_schedule, :show_schedule
 
     def pin_schedule
       ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).pin

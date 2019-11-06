@@ -20,15 +20,15 @@ module Actions
         super(params)
       end
 
-      alias :launch :show
+      alias_method :launch, :show
 
       private
 
-      def before_show(*args)
+      def before_show(*)
         @user = DB.create_user(tg_user: tg_user)
       end
 
-      def after_show(*args)
+      def after_show(*)
         setup_all_preferences
         show_main_menu unless need_generate_otp
       end

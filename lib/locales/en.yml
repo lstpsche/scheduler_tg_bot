@@ -49,6 +49,10 @@ en:
               button_text: <-- Back
     users:
       option:
+        user_option_text:
+          not_present: This setting was not set for you yet
+          present: "_Current:_ %{option_value}"
+        message_text: "*%{button_text}*\n%{user_option_text}"
         change_option:
           name: setup
           button_text: Change option
@@ -81,11 +85,12 @@ en:
     help: "/menu - show main menu\n/help - show this message"
     'no': 'No'
     'yes': 'Yes'
-  messages_layouts:
-    schedule_view:
+  layouts:
+    schedule:
       title: "*%{schedule_name}* `#%{schedule_id}`\n%{schedule_additional_info}"
       events:
         weekday: "*%{weekday}*:\n"
+        event: "*%{time}*: %{info} _(%{additional_info})_\n"
   weekdays:
     monday: monday
     tuesday: tuesday

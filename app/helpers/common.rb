@@ -11,9 +11,9 @@ module Helpers
     def message_data_from(message)
       case message
       when Telegram::Bot::Types::Message
-        return message.text
+        message.text
       when Telegram::Bot::Types::CallbackQuery
-        return message.data
+        message.data
       end
     end
 
@@ -31,8 +31,16 @@ module Helpers
       end
     end
 
+    def user_option_text(option_name)
+      if user.try(option_name).present?
+        I18n.t('actions.users.option.user_option_text.present', option_value: user.try(option_name))
+      else
+        I18n.t('actions.users.option.user_option_text.not_present')
+      end
+    end
+
     def user_registered?(id:)
-      User.registered?(id: chat_id)
+      User.registered?(id: id)
     end
   end
 end

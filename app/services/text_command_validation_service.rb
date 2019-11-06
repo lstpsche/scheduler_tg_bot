@@ -5,7 +5,7 @@ module Services
     # attrs from base -- :bot, :chat_id, :user
     attr_reader :command, :success, :errors
 
-    alias :success? :success
+    alias_method :success?, :success
 
     def initialize(bot:, chat_id:, command:)
       @bot = bot
@@ -31,15 +31,15 @@ module Services
     end
 
     def message_valid
-      not command.nil?
+      !command.nil?
     end
 
     def command_syntax_valid?
-      command.match(Constants.command_regex)
+      command.match(Constant.command_regex)
     end
 
     def command_exists?
-      Constants.text_commands.include? command
+      Constant.text_commands.include? command
     end
 
     def registration_needed?

@@ -9,7 +9,7 @@ module Actions
 
       def show
         params = {
-          markup_options: Constants.preferences_options
+          markup_options: Constant.preferences_options
         }
 
         super(params)
@@ -27,7 +27,7 @@ module Actions
       private
 
       def callback(option_name)
-        Constants.preferences_callback % { option_name: option_name }
+        Constant.preferences_callback % { option_name: option_name }
       end
 
       def message_text
@@ -45,7 +45,7 @@ module Actions
 
       def options_to_setup
         # remove last 'option' which is actualy :back
-        Constants.preferences_options[0..-2]
+        Constant.preferences_options[0..-2]
       end
     end
   end

@@ -36,6 +36,9 @@ namespace :app do
     require_all 'app/routers'
     ## serializers
     require_all 'app/serializers'
+    ## constants
+    require_all 'app/constants/options_lists.rb'
+    require_all 'app/constants'
     ## models
     require_all 'app/models'
 
@@ -44,7 +47,7 @@ namespace :app do
   end
 
   task 'load_locales' do
-    I18n.load_path << Dir[File.expand_path("lib/locales") + "/*.yml"]
+    I18n.load_path << Dir[File.expand_path('lib/locales') + '/*.yml']
     I18n.default_locale = :en
   end
 

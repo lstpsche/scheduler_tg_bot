@@ -10,7 +10,7 @@ module Routers
         'start' => Handlers::TextCommands::StartHandler,
         'menu' => Handlers::TextCommands::MenuHandler,
         'help' => Handlers::TextCommands::HelpHandler
-      }
+      }.freeze
 
       # 'initialize' is in base
 
@@ -19,8 +19,7 @@ module Routers
         raise validation_service.errors.first if validation_service.failure?
 
         actual_command = command.split('/').last
-
-        HANDLERS[actual_command].new(bot: bot, chat_id: chat_id, user: user || tg_user).handle
+        call_handler_with(actual_command)
       end
 
       private
@@ -35,6 +34,10 @@ module Routers
 
       def validation_service
         @validation_service ||= Services::TextCommandValidationService.new(bot: bot, chat_id: chat_id, command: command)
+      end
+
+      def call_handler_with(actual_command)
+        HANDLERS[actual_command].new(bot: bot, chat_id: chat_id, user: user || tg_user).handle
       end
     end
   end

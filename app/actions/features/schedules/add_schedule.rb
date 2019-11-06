@@ -23,7 +23,7 @@ module Actions
         private
 
         def callback(schedule_id)
-          Constants.add_schedule_callback % { schedule_id: schedule_id }
+          Constant.add_schedule_callback % { schedule_id: schedule_id }
         end
 
         def create_markup(markup_options)

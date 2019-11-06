@@ -15,7 +15,7 @@ module Handlers
           call_back_all_schedules
         else
           schedule_id = command.to_i
-          show_schedule(schedule_id) if schedule_id > 0
+          show_schedule(schedule_id) if schedule_id.positive?
         end
       end
     end

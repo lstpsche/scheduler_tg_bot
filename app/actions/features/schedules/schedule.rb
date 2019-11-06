@@ -6,12 +6,12 @@ module Actions
       class Schedule < Base
         # attrs from base -- :bot, :chat_id, :user
         attr_reader :schedule, :expand
-        alias :expand? :expand
+        alias_method :expand?, :expand
 
         # 'initialize' is in base
 
         def show
-          markup_options = expand? ? Constants.in_schedule_options : Constants.schedule_options
+          markup_options = expand? ? Constant.in_schedule_options : Constant.schedule_options
 
           params = {
             markup_options: markup_options
@@ -51,7 +51,7 @@ module Actions
         end
 
         def callback(command)
-          Constants.schedule_callback % {
+          Constant.schedule_callback % {
             schedule_id: schedule.id,
             action: command
           }
@@ -61,18 +61,18 @@ module Actions
           if expand?
             decorate_for_show_schedule(schedule)
           else
-            I18n.t('messages_layouts.schedule_view.title',
-              schedule_name: schedule.name,
-              schedule_id: schedule.id,
-              schedule_additional_info: schedule_additional_info(schedule)
-            )
+            I18n.t('layouts.schedule.title',
+                   schedule_name: schedule.name,
+                   schedule_id: schedule.id,
+                   schedule_additional_info: schedule_additional_info(schedule)
+                  )
           end
         end
 
         def schedule_additional_info(schedule)
           add_info = schedule.additional_info
           stripped_add_info = add_info&.strip
-          info = stripped_add_info.blank? ? nil : add_info
+          stripped_add_info.blank? ? nil : add_info
         end
 
         # 'create_button' is in base
