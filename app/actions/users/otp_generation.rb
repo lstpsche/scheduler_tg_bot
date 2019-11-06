@@ -9,10 +9,9 @@ module Actions
 
       def launch
         ask_if_needed
-        return false if get_response == 'no'
+        return false if receive_response == 'no'
 
         otp_generation_request
-        return true
       end
 
       private

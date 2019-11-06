@@ -3,7 +3,7 @@
 namespace :db do
   desc 'Generates model with migration. rake db:generate_model[ModelName] -- ModelName should be in CamelCase.'
   task 'generate_model', :camel_model_name do |_tsk, args|
-    Dir.mkdir 'app/models' unless File.exists?('app/models/')
+    Dir.mkdir 'app/models' unless File.exist?('app/models/')
 
     camel_model_name = args['camel_model_name']
     snake_model_name = camel_model_name.split(/(?=[A-Z])/).map(&:downcase).join('_')

@@ -31,8 +31,9 @@ module Actions
 
     private
 
-    def before_show(*args); end
-    def after_show(*args); end
+    def before_show(*); end
+
+    def after_show(*); end
 
     def callback(command)
       command

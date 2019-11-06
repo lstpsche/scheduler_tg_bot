@@ -18,7 +18,7 @@ module Actions
 
         private
 
-        def before_show(*args)
+        def before_show(*)
           user.update(authentication_token: generate_auth_token) unless user.authentication_token.present?
         end
 

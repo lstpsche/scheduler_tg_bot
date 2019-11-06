@@ -6,30 +6,30 @@ module Helpers
 
     #################### Setups ####################################
 
-    def talker(bot = @bot, chat_id = @chat_id, user = @user)
+    def talker(bot = @bot, chat_id = @chat_id, _user = @user)
       Talker.new(bot: bot, chat_id: chat_id, user: get_user(chat_id: chat_id))
     end
 
     ############## Sending--Editing--Getting #######################
 
-    def get_message
-      talker.get_message
+    def receive_message
+      talker.receive_message
     end
 
-    def get_response
+    def receive_response
       # THIS RESPONSE CAN BE FROM ANOTHER PERSON
       # SHOULD TEST IT AND MAYBE ADD CHECKER, IF RESPONSE IS FROM NEEDED USER
-      @response = get_message
+      @response = receive_message
 
       message_data_from(@response)
     end
 
     # type should be 'message' or 'callback_query'
-    def get_response_of_type(type)
+    def receive_response_of_type(type)
       type = type.split('_').map(&:capitalize).join
 
       loop do
-        response = get_message
+        response = receive_message
         return message_data_from(response) if response.class.name.demodulize == type
       end
     end
@@ -46,9 +46,8 @@ module Helpers
       talker.edit_message_reply_markup(message_id: message_id, reply_markup: reply_markup)
     end
 
-    def send_or_edit_message(message_id: nil, text: nil, markup: nil, parse_mode: 'markdown')
-      talker.send_or_edit_message(message_id: message_id, text: text,
-                                  markup: markup, parse_mode: parse_mode)
+    def send_or_edit_message(message_id: nil, text: nil, markup: nil)
+      talker.send_or_edit_message(message_id: message_id, text: text, markup: markup)
     end
 
     def setup_successfull

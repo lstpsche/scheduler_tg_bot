@@ -13,19 +13,19 @@ class Talker
 
   ############## Sending--Editing--Getting #######################
 
-  def get_message
+  def receive_message
     bot.listen { |message| return message }
   end
 
-  def send_message(text:, markup: nil, parse_mode: 'markdown')
+  def send_message(text:, markup: nil)
     markup = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true) if markup == 'remove'
 
-    msg = bot.api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: parse_mode)
+    msg = bot.api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: 'markdown')
     user&.update(last_message: msg)
   end
 
-  def edit_message(message_id:, text: nil, markup: nil, parse_mode: 'markdown')
-    text && bot.api.edit_message_text(chat_id: chat_id, message_id: message_id, text: text, parse_mode: parse_mode)
+  def edit_message(message_id:, text: nil, markup: nil)
+    text && bot.api.edit_message_text(chat_id: chat_id, message_id: message_id, text: text, parse_mode: 'markdown')
     markup && bot.api.edit_message_reply_markup(chat_id: chat_id, message_id: message_id, reply_markup: markup)
     reset_user_tapped_message
   end
@@ -34,11 +34,13 @@ class Talker
     bot.api.edit_message_reply_markup(chat_id: chat_id, message_id: message_id, reply_markup: reply_markup)
   end
 
-  def send_or_edit_message(message_id: nil, text: nil, markup: nil, parse_mode: 'markdown')
-    if message_id.present? || user&.tapped_message.present?
-      edit_message(message_id: message_id.presence || tapped_message_id, text: text, markup: markup, parse_mode: parse_mode)
+  def send_or_edit_message(message_id: nil, text: nil, markup: nil)
+    message_id = message_id.presence || user&.tapped_message_id
+
+    if message_id
+      edit_message(message_id: message_id, text: text, markup: markup)
     else
-      send_message(text: text, markup: markup, parse_mode: parse_mode)
+      send_message(text: text, markup: markup)
     end
   end
 

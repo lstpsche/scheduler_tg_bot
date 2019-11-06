@@ -9,7 +9,7 @@ module Services
     # 'initialize' is in base
 
     def perform(option_name)
-      option_send_and_get_response(option_name: option_name)
+      option_send_and_receive_response(option_name: option_name)
 
       # SET SOME SETTING UP IN THIS YIELD
       # yield if block_given?
@@ -19,9 +19,9 @@ module Services
 
     private
 
-    def option_send_and_get_response(option_name:, markup: nil)
+    def option_send_and_receive_response(option_name:, markup: nil)
       send_option_message(option_name, user, markup)
-      get_response
+      receive_response
     end
   end
 end

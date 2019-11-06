@@ -2,6 +2,7 @@
 
 class DB
   class << self
+    # rubocop:disable Metrics/CyclomaticComplexity
     def create_user(args)
       tg_user = args.fetch(:tg_user, nil)
       return false unless tg_user || args.fetch(:id, nil)
@@ -14,6 +15,7 @@ class DB
         language_code: tg_user&.language_code || args.fetch(:language_code, 'en')
       )
     end
+    # rubocop:enable Metrics/CyclomaticComplexity
 
     def create_schedule(args)
       Schedule.create(

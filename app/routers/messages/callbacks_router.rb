@@ -13,7 +13,7 @@ module Routers
         'options' => Handlers::Callbacks::Options,
         'preferences' => Handlers::Callbacks::Preferences,
         'schedule' => Handlers::Callbacks::Schedule
-      }
+      }.freeze
 
       def initialize(bot:)
         super do
@@ -44,7 +44,7 @@ module Routers
 
       def parse_callback(command)
         # /^(\w+)-(\w+)$/
-        parsed_command = command.match(Constants.context_command_regex)
+        parsed_command = command.match(Constant.context_command_regex)
 
         params[:handler_class] = parsed_command[1]
         params[:command] = parsed_command[2]

@@ -18,11 +18,11 @@ class Bot
       talker = Talker.new(bot: bot)
 
       loop do
-        message = talker.get_message
-        binding.pry
+        message = talker.receive_message
+        # binding.pry
         parse_message_type(message)
-      rescue => error
-        binding.pry
+      rescue StandardError => error
+        # binding.pry
         Services::ErrorParserService.new(bot: bot, chat_id: message.from.id, error: error.to_s).handle_errors
       end
     end

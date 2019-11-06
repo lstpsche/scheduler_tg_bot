@@ -9,7 +9,7 @@ module Actions
 
       def show
         params = {
-          markup_options: Constants.menu_options
+          markup_options: Constant.menu_options
         }
 
         super(params)
@@ -18,7 +18,7 @@ module Actions
       private
 
       def callback(command)
-        Constants.main_menu_callback % {
+        Constant.main_menu_callback % {
           command: command
         }
       end

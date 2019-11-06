@@ -12,6 +12,7 @@ module Services
     def send
       prepare_request
       send_request
+      true
     end
 
     private

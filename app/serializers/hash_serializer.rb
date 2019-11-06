@@ -7,7 +7,7 @@ module Serializers
     end
 
     def self.load(hash)
-      JSON.parse (hash || '{}')
+      JSON.parse(hash || '{}')
     end
   end
 end
