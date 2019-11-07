@@ -3,6 +3,8 @@ detectors:
     enabled: false
   ControlParameter:
     enabled: false
+  InstanceVariableAssumption:
+    enabled: false
   IrresponsibleModule:
     enabled: false
   NilCheck:
