@@ -65,12 +65,9 @@ module Helpers
     end
 
     # TODO: move this method to UserOptionSetupService
-    def send_option_message(option_name, user, markup = nil)
+    def send_option_message(option_name, markup = nil)
       message_text = I18n.t("actions.users.options.#{option_name}.text")
-      send_or_edit_message(
-        message_id: user.last_message_id, text: message_text,
-        markup: markup
-      )
+      send_message(text: message_text, markup: markup)
     end
 
     #################### Errors ####################################

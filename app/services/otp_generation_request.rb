@@ -30,7 +30,7 @@ module Services
     end
 
     def prepare_request
-      @request = RequestToWeb.new
+      @request = RequestToWeb.new(I18n.t('web_version_links.otp_generation'))
       request.header = { 'Validity-Token': generate_bot_request_auth_token }
       request.body = { user: { username: user.username } }
     end

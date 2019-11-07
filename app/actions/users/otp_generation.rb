@@ -22,8 +22,8 @@ module Actions
       end
 
       def create_markup
-        yes_button = { name: 'yes', button: I18n.t('common.yes') }
-        no_button = { name: 'no', button: I18n.t('common.no') }
+        yes_button = { name: 'yes', button_text: I18n.t('common.yes') }
+        no_button = { name: 'no', button_text: I18n.t('common.no') }
 
         super do
           [
