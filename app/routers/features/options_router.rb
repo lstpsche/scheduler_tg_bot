@@ -29,7 +29,7 @@ module Routers
 
       def setup(option_name)
         setup_option(option_name)
-
+        reset_user_tapped_message
         show_option(option_name)
       end
 

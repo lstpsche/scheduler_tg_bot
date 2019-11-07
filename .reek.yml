@@ -1,0 +1,15 @@
+detectors:
+  BooleanParameter:
+    enabled: false
+  ControlParameter:
+    enabled: false
+  InstanceVariableAssumption:
+    enabled: false
+  IrresponsibleModule:
+    enabled: false
+  NilCheck:
+    enabled: false
+  TooManyInstanceVariables:
+    max_instance_variables: 6
+  UtilityFunction:
+    enabled: false

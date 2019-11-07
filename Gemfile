@@ -15,5 +15,6 @@ gem 'standalone_migrations', '~> 5.2.7'
 gem 'telegram-bot-ruby', '~> 0.11.0'
 
 group :code_climate do
+  gem 'reek'
   gem 'rubocop'
 end

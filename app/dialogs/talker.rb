@@ -7,7 +7,7 @@ class Talker
 
   def initialize(bot:, chat_id: nil, user: nil)
     @bot = bot
-    @chat_id = chat_id || user&.id
+    @chat_id = chat_id || (user.presence && user.id)
     @user = user || get_user(chat_id: chat_id)
   end
 
@@ -20,18 +20,18 @@ class Talker
   def send_message(text:, markup: nil)
     markup = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true) if markup == 'remove'
 
-    msg = bot.api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: 'markdown')
+    msg = bot_api.send_message(chat_id: chat_id, text: text, reply_markup: markup, parse_mode: 'markdown')
     user&.update(last_message: msg)
   end
 
   def edit_message(message_id:, text: nil, markup: nil)
-    text && bot.api.edit_message_text(chat_id: chat_id, message_id: message_id, text: text, parse_mode: 'markdown')
-    markup && bot.api.edit_message_reply_markup(chat_id: chat_id, message_id: message_id, reply_markup: markup)
+    text && bot_api.edit_message_text(chat_id: chat_id, message_id: message_id, text: text, parse_mode: 'markdown')
+    markup && bot_api.edit_message_reply_markup(chat_id: chat_id, message_id: message_id, reply_markup: markup)
     reset_user_tapped_message
   end
 
   def edit_message_reply_markup(message_id:, reply_markup: nil)
-    bot.api.edit_message_reply_markup(chat_id: chat_id, message_id: message_id, reply_markup: reply_markup)
+    bot_api.edit_message_reply_markup(chat_id: chat_id, message_id: message_id, reply_markup: reply_markup)
   end
 
   def send_or_edit_message(message_id: nil, text: nil, markup: nil)

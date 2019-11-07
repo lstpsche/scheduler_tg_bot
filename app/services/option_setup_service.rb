@@ -20,7 +20,7 @@ module Services
     private
 
     def option_send_and_receive_response(option_name:, markup: nil)
-      send_option_message(option_name, user, markup)
+      send_option_message(option_name, markup)
       receive_response
     end
   end

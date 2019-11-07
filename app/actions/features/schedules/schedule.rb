@@ -59,7 +59,7 @@ module Actions
 
         def message_text
           if expand?
-            decorate_for_show_schedule(schedule)
+            schedule.decorated.view
           else
             I18n.t('layouts.schedule.title',
                    schedule_name: schedule.name,

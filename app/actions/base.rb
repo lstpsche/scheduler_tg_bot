@@ -49,13 +49,16 @@ module Actions
     def create_markup(options = [])
       return unless !options.empty? || block_given?
 
+      kb = create_buttons(options) { yield if block_given? }
+      Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
+    end
+
+    def create_buttons(options)
       kb = []
       options.each do |option|
         kb << create_button(option_button_text(option), option_name(option))
       end
       kb += Array.wrap(yield) if block_given?
-
-      Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
     end
 
     def message_text

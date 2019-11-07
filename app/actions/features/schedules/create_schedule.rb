@@ -54,12 +54,13 @@ module Actions
         def generate_link_to_schedule_creation
           link = ENV['WEB_VERSION_URL'] + I18n.t('web_version_links.new_schedule') + '?'
 
-          user_auth_params.each do |key, value|
-            link += "#{key}=#{value}&"
-          end
+          add_user_params_to_link(link)
+        end
 
-          link.slice!(-1)
-          link
+        def add_user_params_to_link(raw_link)
+          user_auth_params.inject(raw_link) do |link, (key, value)|
+            link + "#{key}=#{value}&"
+          end
         end
       end
     end

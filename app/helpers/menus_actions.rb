@@ -47,10 +47,6 @@ module Helpers
 
     ################# Schedule #####################################
 
-    def decorate_for_show_schedule(schedule)
-      ::Helpers::Decorators::EventsDecorator.new(schedule).decorate_for_show_schedule
-    end
-
     def expand_schedule(schedule_id)
       ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_expanded(schedule_id: schedule_id)
     end

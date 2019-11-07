@@ -22,10 +22,10 @@ module Services
     private
 
     def validate
+      return not_registered if registration_needed?
       return bad_message unless message_valid
       return not_understand unless command_syntax_valid?
       return no_command unless command_exists?
-      return not_registered if registration_needed?
 
       true
     end

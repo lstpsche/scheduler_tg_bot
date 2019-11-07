@@ -101,6 +101,7 @@ en:
     sunday: sunday
   web_version_links:
     new_schedule: /schedules/new
+    otp_generation: /users/password
   errors:
     bad_input: Please, be more serious.
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
