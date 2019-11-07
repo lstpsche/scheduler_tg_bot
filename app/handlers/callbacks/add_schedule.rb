@@ -13,16 +13,21 @@ module Handlers
         when 'create'
           create_schedule_action
         when 'back'
-          show_all_schedules && return
-        else
-          @schedule = ::Schedule.find_by(id: command)
-          check_schedule_validity
-          add_schedule_to_user
           show_all_schedules
+        else
+          add_schedule(command)
         end
       end
 
       private
+
+      def add_schedule(schedule_id)
+        @schedule = ::Schedule.find_by(id: schedule_id)
+
+        check_schedule_validity
+        add_schedule_to_user
+        show_all_schedules
+      end
 
       def add_schedule_to_user
         Services::Schedules::ScheduleUserInteraction.new(bot: bot, user: user, schedule: schedule).perform

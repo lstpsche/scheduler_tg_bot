@@ -28,7 +28,7 @@ module Routers
         @command = message.text
         @tg_user = message.from
         @user = get_user(chat_id: tg_user.id)
-        @chat_id = tg_user.id
+        @chat_id = user.id
         reset_user_tapped_message if user&.tapped_message.present?
       end
 

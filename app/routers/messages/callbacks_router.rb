@@ -35,9 +35,8 @@ module Routers
       end
 
       def init_vars(callback)
-        @user_id = callback.from.id
-        @tapped_message = callback.message
         @chat_id = callback.from.id
+        @tapped_message = callback.message
         @user = get_user(chat_id: chat_id)
         parse_callback(callback.data)
       end

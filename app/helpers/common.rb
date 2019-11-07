@@ -4,6 +4,10 @@ module Helpers
   module Common
     private
 
+    def bot_api
+      bot.api
+    end
+
     def get_user(user = nil, chat_id: nil, fallback_user: nil)
       @user || user || User.find_by(id: chat_id) || fallback_user
     end
@@ -32,8 +36,10 @@ module Helpers
     end
 
     def user_option_text(option_name)
-      if user.try(option_name).present?
-        I18n.t('actions.users.option.user_option_text.present', option_value: user.try(option_name))
+      option = user.try(option_name)
+
+      if option.present?
+        I18n.t('actions.users.option.user_option_text.present', option_value: option)
       else
         I18n.t('actions.users.option.user_option_text.not_present')
       end
