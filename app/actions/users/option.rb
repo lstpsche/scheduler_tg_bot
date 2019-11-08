@@ -24,9 +24,11 @@ module Actions
       private
 
       def before_show
-        params.update(
-          resource: Constant.preferences_options.select { |opt| opt[:name] == params.before[:option] }.first
-        )
+        params.update(resource: given_option_params)
+      end
+
+      def given_option_params
+        Constant.preferences_options.select { |opt| opt[:name] == params.before[:option] }.first
       end
 
       def message_text
