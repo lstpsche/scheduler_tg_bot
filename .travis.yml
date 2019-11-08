@@ -1,0 +1,12 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.6.3
+services:
+  - postgresql
+before_script:
+  - RAILS_ENV=test bundle exec rake db:create db:schema:load
+script:
+  - bundle exec rubocop
+  - bundle exec reek
+  - bundle exec rspec

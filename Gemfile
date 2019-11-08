@@ -18,3 +18,7 @@ group :code_climate do
   gem 'reek'
   gem 'rubocop'
 end
+
+group :test do
+  gem 'rspec'
+end
