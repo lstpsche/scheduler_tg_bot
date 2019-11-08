@@ -21,6 +21,17 @@ module Helpers
       end
     end
 
+    # type should be 'message' or 'callback_query'
+    def message_is_a?(type, message)
+      type = type.split('_').map(&:capitalize).join
+
+      message_type(message) == type
+    end
+
+    def message_type(message)
+      message.class.name.demodulize
+    end
+
     def reset_user_tapped_message
       user&.update(tapped_message: nil)
     end

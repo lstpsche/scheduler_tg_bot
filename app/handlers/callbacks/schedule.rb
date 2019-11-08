@@ -12,14 +12,14 @@ module Handlers
         },
         'pin': :pin_schedule,
         'back': :call_back_schedule
-      }.freeze
+      }.with_indifferent_access
 
       # 'initialize' is in base
 
       def handle(command)
         schedule_id, action = command.to_s.split('__')
 
-        call_handler(action, schedule_id) if handlers_keys.include?(action)
+        call_handler(action, schedule_id) if handle_actions.include?(action)
       end
 
       private
@@ -34,7 +34,7 @@ module Handlers
         end
       end
 
-      def handlers_keys
+      def handle_actions
         HANDLE_METHODS.keys + HANDLE_METHODS[:with_args].keys
       end
     end

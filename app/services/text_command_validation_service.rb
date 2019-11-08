@@ -47,22 +47,22 @@ module Services
     end
 
     def bad_message
-      errors << 'Bad input'
+      errors << Error.new(code: 400, message: 'bad_input')
       false
     end
 
     def not_understand
-      errors << 'Not understand'
+      errors << Error.new(code: 400, message: 'not_understand')
       false
     end
 
     def no_command
-      errors << 'No command'
+      errors << Error.new(code: 501, message: 'no_command')
       false
     end
 
     def not_registered
-      errors << 'Not registered'
+      errors << Error.new(code: 401, message: 'not_registered')
       false
     end
   end

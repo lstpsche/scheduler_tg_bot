@@ -4,6 +4,23 @@ module Actions
   module Features
     module Schedules
       class Base < Actions::Features::Base
+        # Helpers::Common
+        # Helpers::TalkerActions
+        # Helpers::MenusActions
+
+        # attrs from base -- :bot, :chat_id, :user, :params
+
+        # 'initialize' is in base
+        # 'show' is in base
+        # 'back' is in base
+
+        # 'before_show' mock is in base
+        # 'after_show' mock is in base
+
+        # 'callback' is in base
+        # 'create_button' is in base
+        # 'create_markup' is in base
+        # 'button_args' is in base
       end
     end
   end

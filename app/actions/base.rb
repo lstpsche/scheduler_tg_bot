@@ -6,23 +6,24 @@ module Actions
     include Helpers::TalkerActions
     include Helpers::MenusActions
 
-    attr_reader :bot, :chat_id, :user
+    attr_reader :bot, :chat_id, :user, :params
 
     def initialize(bot:, user:)
       @bot = bot
       @user = user
       @chat_id = user.id
+      @params ||= Params.new
     end
 
-    def show(args = {})
-      before_show(args[:before])
+    def show
+      before_show
 
       send_or_edit_message(
         message_id: user.tapped_message_id,
-        text: message_text, markup: create_markup(args[:markup_options])
+        text: message_text, markup: create_markup
       )
 
-      after_show(args[:after])
+      after_show
     end
 
     def back
@@ -31,23 +32,15 @@ module Actions
 
     private
 
-    def before_show(*); end
+    def before_show; end
 
-    def after_show(*); end
+    def after_show; end
 
-    def callback(command)
-      command
-    end
+    def callback; end
 
-    def create_button(text, callback)
-      Telegram::Bot::Types::InlineKeyboardButton.new(
-        text: text,
-        callback_data: callback(callback)
-      )
-    end
-
-    def create_markup(options = [])
-      return unless !options.empty? || block_given?
+    def create_markup
+      options = @params.markup_options
+      return nil unless options.present? || block_given?
 
       kb = create_buttons(options) { yield if block_given? }
       Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
@@ -56,21 +49,27 @@ module Actions
     def create_buttons(options)
       kb = []
       options.each do |option|
-        kb << create_button(option_button_text(option), option_name(option))
+        kb << create_button_for_kb(option)
       end
       kb += Array.wrap(yield) if block_given?
     end
 
+    def create_button_for_kb(option)
+      button = create_button(option)
+      yield(button) if block_given?
+      button.inline
+    end
+
+    def create_button(option)
+      Button.new(button_args(option))
+    end
+
+    def button_args(option)
+      option.merge(callback: callback)
+    end
+
     def message_text
       raise NotImplementedError
-    end
-
-    def option_button_text(option)
-      option[:button_text]
-    end
-
-    def option_name(option)
-      option[:name]
     end
   end
 end

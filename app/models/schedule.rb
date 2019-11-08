@@ -30,6 +30,10 @@ class DecoratedSchedule < Schedule
     decorated_title + decorated_events
   end
 
+  def additional_info
+    super.presence
+  end
+
   private
 
   def decorated_additional_info

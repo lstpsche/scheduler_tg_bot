@@ -6,10 +6,9 @@ module Routers
       # attrs from base -- :bot, :chat_id, :user
 
       def initialize(bot:, user: nil)
-        super(bot: bot) do
-          @user = user
-          @chat_id = user.id
-        end
+        super(bot: bot)
+        @user = user
+        @chat_id = user.id
       end
 
       def route(command)

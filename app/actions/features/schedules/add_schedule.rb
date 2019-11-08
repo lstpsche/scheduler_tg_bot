@@ -4,7 +4,7 @@ module Actions
   module Features
     module Schedules
       class AddSchedule < Base
-        # attrs from base -- :bot, :chat_id, :user
+        # attrs from base -- :bot, :chat_id, :user, :params
 
         def initialize(bot:, user:, **params)
           super(bot: bot, user: user)
@@ -12,42 +12,37 @@ module Actions
           @message_text = params[:message_text]
         end
 
-        def show
-          params = {
-            markup_options: []
-          }
-
-          super(params)
-        end
+        # 'show' is in base
 
         private
 
-        def callback(schedule_id)
-          Constant.add_schedule_callback % { schedule_id: schedule_id }
+        def callback
+          Constant.add_schedule_callback
         end
 
-        def create_markup(markup_options)
-          super(markup_options) do
-            back = I18n.t('actions.features.schedules.add_schedule.back') unless @no_back
-            create = I18n.t('actions.features.schedules.add_schedule.create_new')
-
+        def create_markup
+          super do
             [
-              create_button(create[:button_text], create[:name]),
-              (@no_back ? nil : create_button(back[:button_text], back[:name]))
+              create_schedule_button,
+              back_button
             ].compact
           end
         end
 
+        def create_schedule_button
+          create_schedule = I18n.t('actions.features.schedules.add_schedule.create_new')
+          Button.new(button_args(create_schedule)).inline
+        end
+
+        def back_button
+          return nil if @no_back
+
+          back = I18n.t('actions.features.schedules.add_schedule.back')
+          Button.new(button_args(back)).inline
+        end
+
         def message_text
           I18n.t('actions.features.schedules.add_schedule.header')
-        end
-
-        def option_button_text(schedule)
-          schedule.name
-        end
-
-        def option_name(schedule)
-          schedule.id
         end
       end
     end

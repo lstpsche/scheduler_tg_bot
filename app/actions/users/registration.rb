@@ -3,32 +3,19 @@
 module Actions
   module Users
     class Registration < Base
-      # attrs from base -- :bot, :chat_id, :user
-      attr_reader :tg_user
+      # attrs from base -- :bot, :chat_id, :user, :params
 
       def initialize(bot:, tg_user:)
-        @bot = bot
-        @tg_user = tg_user
-        @chat_id = tg_user.id
+        super(bot: bot, user: DB.create_user(tg_user: tg_user))
       end
 
-      def show
-        params = {
-          markup_options: []
-        }
-
-        super(params)
-      end
+      # 'initialize' is in base
 
       alias_method :launch, :show
 
       private
 
-      def before_show(*)
-        @user = DB.create_user(tg_user: tg_user)
-      end
-
-      def after_show(*)
+      def after_show
         setup_all_preferences
         show_main_menu unless need_generate_otp
       end

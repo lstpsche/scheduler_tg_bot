@@ -3,16 +3,16 @@
 module Actions
   module Users
     class Preferences < Base
-      # attrs from base -- :bot, :chat_id, :user
+      # attrs from base -- :bot, :chat_id, :user, :params
 
       # 'initialize' is in base
 
       def show
-        params = {
+        @params = Params.new(
           markup_options: Constant.preferences_options
-        }
+        )
 
-        super(params)
+        super
       end
 
       def back
@@ -26,8 +26,8 @@ module Actions
 
       private
 
-      def callback(option_name)
-        Constant.preferences_callback % { option_name: option_name }
+      def callback
+        Constant.preferences_callback
       end
 
       def message_text
@@ -39,7 +39,7 @@ module Actions
       def setup_all_options
         # setup all options one by one
         options_to_setup.each do |option|
-          setup_option(option_name(option))
+          setup_option(option[:name])
         end
       end
 

@@ -13,7 +13,7 @@ module Handlers
       # 'initialize' is in base
 
       def handle(command)
-        if HANDLE_METHODS.keys.include?(command)
+        if handler_exists_for?(command)
           call_handler(command)
         else
           schedule_id = command.to_i
@@ -22,6 +22,10 @@ module Handlers
       end
 
       private
+
+      def handler_exists_for?(command)
+        HANDLE_METHODS.keys.include?(command)
+      end
 
       def call_handler(command)
         method(HANDLE_METHODS[command]).call

@@ -7,7 +7,7 @@ module Actions
       # Helpers::TalkerActions
       # Helpers::MenusActions
 
-      # attrs from base -- :bot, :chat_id, :user
+      # attrs from base -- :bot, :chat_id, :user, :params
 
       # 'initialize' is in base
       # 'show' is in base
@@ -19,9 +19,8 @@ module Actions
 
       # 'callback' is in base
       # 'create_button' is in base
+      # 'create_button_for_kb' is in base
       # 'create_markup' is in base
-      # 'option_button_text' is in base
-      # 'option_name' is in base
     end
   end
 end

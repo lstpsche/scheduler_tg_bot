@@ -9,11 +9,11 @@ module Actions
         # 'initialize' is in base
 
         def show
-          params = {
+          @params = Params.new(
             markup_options: user.schedules
-          }
+          )
 
-          super(params)
+          super
         end
 
         def back
@@ -23,14 +23,12 @@ module Actions
         private
 
         # command here is schedule_id
-        def callback(command)
-          Constant.all_schedules_callback % {
-            command: command
-          }
+        def callback
+          Constant.all_schedules_callback
         end
 
-        def create_markup(markup_options)
-          super(markup_options) do
+        def create_markup
+          super do
             [
               add_button,
               back_button
@@ -39,33 +37,28 @@ module Actions
         end
 
         def add_button
-          add_text = I18n.t('actions.features.schedules.all_schedules.add_schedule.button_text')
-          add_callback = I18n.t('actions.features.schedules.all_schedules.add_schedule.name')
-
-          create_button(add_text, add_callback)
+          add_schedule = I18n.t('actions.features.schedules.all_schedules.add_schedule')
+          create_button(add_schedule).inline
         end
 
         def back_button
-          back_text = I18n.t('actions.features.schedules.all_schedules.back.button_text')
-          back_callback = I18n.t('actions.features.schedules.all_schedules.back.name')
-
-          create_button(back_text, back_callback)
+          back_btn = I18n.t('actions.features.schedules.all_schedules.back')
+          create_button(back_btn).inline
         end
 
         def message_text
           I18n.t('actions.features.schedules.all_schedules.header')
         end
 
-        # here option, which will be passed, is one of user's schedule
-        def option_button_text(schedule)
-          schedule.name
+        def create_button_for_kb(schedule)
+          super({}) do |button|
+            button.update(schedule_options(schedule))
+          end
         end
 
-        def option_name(schedule)
-          schedule.id
+        def schedule_options(schedule)
+          { text: schedule.name, name: schedule.id }
         end
-
-        # 'create_button' is in base
       end
     end
   end

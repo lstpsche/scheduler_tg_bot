@@ -2,18 +2,18 @@
 
 module Handlers
   module Callbacks
-    class Base
-      include Helpers::Common
-      include Helpers::MenusActions
-      include Helpers::TalkerActions
+    class Base < Handlers::Base
+      # Helpers::Common
+      # Helpers::MenusActions
+      # Helpers::TalkerActions
 
-      attr_reader :bot, :chat_id, :user, :talker
+      # attrs from base -- :bot, :chat_id, :user
+      attr_reader :talker
 
       def initialize(bot:, user:)
         @bot = bot
         @chat_id = user.id
         @user = user
-        yield if block_given?
       end
     end
   end

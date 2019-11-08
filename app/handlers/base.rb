@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Services
+module Handlers
   class Base
     include Helpers::Common
     include Helpers::MenusActions
@@ -10,8 +10,8 @@ module Services
 
     def initialize(bot:, user:)
       @bot = bot
-      @user = user
       @chat_id = user.id
+      @user = user
     end
   end
 end

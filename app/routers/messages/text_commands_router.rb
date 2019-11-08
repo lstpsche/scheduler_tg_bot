@@ -36,7 +36,7 @@ module Routers
 
       def call_handler_with(command)
         actual_command = command.split('/').last
-        HANDLERS[actual_command].new(bot: bot, chat_id: chat_id, user: user).handle
+        HANDLERS[actual_command].new(bot: bot, user: user).handle
       end
 
       def command
