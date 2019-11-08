@@ -18,8 +18,7 @@ module Routers
         init_vars(message)
         raise validation_service.errors.first if validation_service.failure?
 
-        actual_command = command.split('/').last
-        call_handler_with(actual_command)
+        call_handler_with(command)
       end
 
       private
@@ -36,7 +35,8 @@ module Routers
         @validation_service ||= Services::TextCommandValidationService.new(bot: bot, chat_id: chat_id, command: command)
       end
 
-      def call_handler_with(actual_command)
+      def call_handler_with(command)
+        actual_command = command.split('/').last
         HANDLERS[actual_command].new(bot: bot, chat_id: chat_id, user: user).handle
       end
     end
