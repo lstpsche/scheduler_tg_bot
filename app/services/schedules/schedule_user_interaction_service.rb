@@ -15,12 +15,6 @@ module Services
         user.schedules << schedule
         user.save
       end
-
-      # this, probably, should be at web ver.
-      def edit_schedule
-        user.schedules.where(id: schedule.id).first = schedule.clone.update(custom: true, customed_by: user.id)
-        user.save
-      end
     end
   end
 end
