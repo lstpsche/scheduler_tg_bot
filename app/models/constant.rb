@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Constant
+  WEEKDAYS = %w[monday tuesday wednesday thursday friday saturday sunday].freeze
+
   class << self
     include Constants::Regexes
     include Constants::Options
@@ -12,18 +14,6 @@ class Constant
         '/start',
         '/menu',
         '/help'
-      ]
-    end
-
-    def weekdays
-      %w[
-        monday
-        tuesday
-        wednesday
-        thursday
-        friday
-        saturday
-        sunday
       ]
     end
 

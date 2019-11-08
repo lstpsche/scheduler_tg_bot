@@ -4,7 +4,7 @@ class RequestToWeb
   attr_reader :body, :request, :header, :uri
 
   def initialize(path)
-    @uri = URI.parse('http://localhost:3000' + path)
+    @uri = URI.parse(ENV['WEB_VERSION_URL'] + path)
     @header = { 'Content-Type': 'application/json',
                 'Accept': 'applications/json' }
     @body = {}

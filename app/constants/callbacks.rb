@@ -3,7 +3,7 @@
 module Constants
   module Callbacks
     def add_schedule_callback
-      'add_schedule-%{schedule_id}'
+      'add_schedule-%{command}'
     end
 
     def all_schedules_callback
@@ -19,7 +19,7 @@ module Constants
     end
 
     def preferences_callback
-      'preferences-%{option_name}__show'
+      'preferences-%{command}__show'
     end
 
     def schedule_callback

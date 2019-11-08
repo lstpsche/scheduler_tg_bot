@@ -3,7 +3,7 @@
 module Actions
   module Users
     class OTPGeneration < Base
-      # attrs from base -- :bot, :chat_id, :user
+      # attrs from base -- :bot, :chat_id, :user, :params
 
       # 'initialize' is in base
 
@@ -22,15 +22,20 @@ module Actions
       end
 
       def create_markup
-        yes_button = { name: 'yes', button_text: I18n.t('common.yes') }
-        no_button = { name: 'no', button_text: I18n.t('common.no') }
-
         super do
           [
-            create_button(option_button_text(yes_button), option_name(yes_button)),
-            create_button(option_button_text(no_button), option_name(no_button))
+            yes_button,
+            no_button
           ]
         end
+      end
+
+      def yes_button
+        create_button(name: 'yes', button_text: I18n.t('common.yes')).inline
+      end
+
+      def no_button
+        create_button(name: 'no', button_text: I18n.t('common.no')).inline
       end
     end
   end

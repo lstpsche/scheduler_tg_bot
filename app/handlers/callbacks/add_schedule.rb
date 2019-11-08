@@ -10,6 +10,8 @@ module Handlers
 
       def handle(command)
         case command
+        # when 'external'
+        #   add schedule by link or token
         when 'create'
           create_schedule_action
         when 'back'
@@ -20,6 +22,9 @@ module Handlers
       end
 
       private
+
+      # This is legacy-code for now
+      # don't remove it, because maybe I will use it at 'add_external' implementation
 
       def add_schedule(schedule_id)
         @schedule = ::Schedule.find_by(id: schedule_id)

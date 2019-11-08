@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-ROUTERS = {
-  'Message' => Routers::Messages::TextCommandsRouter,
-  'CallbackQuery' => Routers::Messages::CallbacksRouter
-}.freeze
-
 class Bot
   attr_reader :bot
 
@@ -34,19 +29,23 @@ class Bot
   def receive_and_parse_message
     @message = @talker.receive_message
     # binding.pry
-    parse_message_type
+    parse_message
   end
 
   def handle_error(error)
     # binding.pry
     raise error unless ENV['ENV'] == 'production'
 
-    Services::ErrorParserService.new(bot: bot, chat_id: @message.from.id, error: error.to_s).handle_errors
+    errors_handler.handle(error: error)
   end
 
-  def parse_message_type
+  def parse_message
     # maybe handle errors which are returned from this route()
     # errors are returned only from text commands now
-    ROUTERS[@message.class.name.demodulize].new(bot: bot).route(@message)
+    Routers::Messages::MessagesRouter.new(bot: bot).parse_message(@message)
+  end
+
+  def errors_handler
+    @errors_handler ||= Handlers::ErrorsHandler.new(bot: bot, chat_id: @message.from.id)
   end
 end

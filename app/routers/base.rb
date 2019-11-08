@@ -10,7 +10,6 @@ module Routers
 
     def initialize(bot:)
       @bot = bot
-      yield if block_given?
     end
   end
 end

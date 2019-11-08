@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module Handlers
-  module TextCommands
-    class Base < Handlers::Base
+module Routers
+  module Messages
+    class Base < Routers::Base
       # Helpers::Common
-      # Helpers::MenusActions
       # Helpers::TalkerActions
+      # Helpers::MenusActions
 
       # attrs from base -- :bot, :chat_id, :user
 

@@ -16,9 +16,8 @@ module Routers
       }.freeze
 
       def initialize(bot:)
-        super do
-          @params = {}
-        end
+        super
+        @params = {}
       end
 
       def route(callback)

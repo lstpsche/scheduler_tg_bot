@@ -24,13 +24,10 @@ module Helpers
       message_data_from(@response)
     end
 
-    # type should be 'message' or 'callback_query'
     def receive_response_of_type(type)
-      type = type.split('_').map(&:capitalize).join
-
       loop do
         response = receive_message
-        return message_data_from(response) if response.class.name.demodulize == type
+        return message_data_from(response) if message_is_a?(type, response)
       end
     end
 

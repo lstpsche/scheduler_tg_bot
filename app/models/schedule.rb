@@ -21,13 +21,17 @@ class Schedule < ActiveRecord::Base
   end
 
   def order_by_weekday(events)
-    events.sort_by { |event| Constant.weekdays.index(event.weekday) }
+    events.sort_by { |event| Constant::WEEKDAYS.index(event.weekday) }
   end
 end
 
 class DecoratedSchedule < Schedule
   def view
     decorated_title + decorated_events
+  end
+
+  def additional_info
+    super.presence
   end
 
   private

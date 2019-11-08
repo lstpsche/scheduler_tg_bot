@@ -22,18 +22,23 @@ namespace :app do
     require_all 'app/helpers'
     ## services
     require_all 'app/services'
+    ## handlers
+    require_all 'app/handlers/*.rb'
+    require_all 'app/handlers/callbacks/base.rb'
+    require_all 'app/handlers/callbacks'
+    require_all 'app/handlers/text_commands'
     ## actions
     require_all 'app/actions/base.rb'
     require_all 'app/actions/users'
     require_all 'app/actions/features'
     ## dialogs
     require_all 'app/dialogs'
-    ## handlers
-    require_all 'app/handlers/callbacks/base.rb'
-    require_all 'app/handlers/callbacks'
-    require_all 'app/handlers/text_commands'
     ## routers
-    require_all 'app/routers'
+    require_all 'app/routers/base.rb'
+    require_all 'app/routers/features'
+    require_all 'app/routers/messages/text_commands_router.rb'
+    require_all 'app/routers/messages/callbacks_router.rb'
+    require_all 'app/routers/messages'
     ## serializers
     require_all 'app/serializers'
     ## constants
