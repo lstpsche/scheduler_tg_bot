@@ -36,7 +36,7 @@ class Bot
     # binding.pry
     raise error unless ENV['ENV'] == 'production'
 
-    errors_handler.handle(error: error.to_s)
+    errors_handler.handle(error: error)
   end
 
   def parse_message

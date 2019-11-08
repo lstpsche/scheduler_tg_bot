@@ -21,16 +21,20 @@ module Services
 
     private
 
+    CHECKS = {
+      registration_not_needed?: :not_registered,
+      message_valid?: :bad_message,
+      command_syntax_valid?: :not_understand,
+      command_exists?: :no_command
+    }.with_indifferent_access
+
     def validate
-      return not_registered if registration_needed?
-      return bad_message unless message_valid
-      return not_understand unless command_syntax_valid?
-      return no_command unless command_exists?
+      CHECKS.each { |check, callback| return send(callback) unless send(check) }
 
       true
     end
 
-    def message_valid
+    def message_valid?
       !command.nil?
     end
 
@@ -42,27 +46,27 @@ module Services
       Constant.text_commands.include? command
     end
 
-    def registration_needed?
-      command != '/start' && !user_registered?(id: chat_id)
+    def registration_not_needed?
+      user_registered?(id: chat_id) || command == '/start'
     end
 
     def bad_message
-      errors << Error.new(code: 400, message: 'bad_input')
+      errors << Error.new(code: 400, message: 'Bad input')
       false
     end
 
     def not_understand
-      errors << Error.new(code: 400, message: 'not_understand')
+      errors << Error.new(code: 400, message: 'Not understand')
       false
     end
 
     def no_command
-      errors << Error.new(code: 501, message: 'no_command')
+      errors << Error.new(code: 501, message: 'No command')
       false
     end
 
     def not_registered
-      errors << Error.new(code: 401, message: 'not_registered')
+      errors << Error.new(code: 401, message: 'Not registered')
       false
     end
   end

@@ -7,12 +7,12 @@ module Handlers
 
     HANDLE_METHODS = {
       client: {
-        'bad_input' => :show_bad_input,
-        'not_understand' => :show_not_understand,
-        'not_registered' => :show_not_registered
+        'Bad input' => :show_bad_input,
+        'Not understand' => :show_not_understand,
+        'Not registered' => :show_not_registered
       },
       server: {
-        'no_command' => :show_no_command
+        'No command' => :show_no_command
       }
     }.with_indifferent_access
 

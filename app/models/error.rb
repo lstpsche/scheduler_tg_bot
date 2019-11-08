@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-class Error
+class Error < StandardError
   attr_reader :code, :message
 
   def initialize(code: nil, message: nil)
     @code = code
     @message = message
+    super(full_message)
   end
 
-  def full
+  def full_message
     "#{code}: #{message}"
   end
 
