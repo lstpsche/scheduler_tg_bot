@@ -3,17 +3,17 @@ default: &default
   encoding: unicode
   pool: 5
   host: localhost
-  user: postgres
-  password: password
+  user: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
 
 development:
   <<: *default
-  database: template_development
+  database: scheduler_development
 
 test: &test
   <<: *default
-  database: template_test
+  database: scheduler_test
 
 production:
   <<: *default
-  database: template_production
+  database: scheduler_production

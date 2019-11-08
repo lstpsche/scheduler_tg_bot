@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - db/*
     - lib/locales/*
+    - vendor/**/*
 
 Layout/MultilineMethodCallBraceLayout:
   EnforcedStyle: new_line

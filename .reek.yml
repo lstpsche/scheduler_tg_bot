@@ -13,3 +13,8 @@ detectors:
     max_instance_variables: 6
   UtilityFunction:
     enabled: false
+
+exclude_paths:
+  - db/
+  - lib/locales/
+  - vendor/
