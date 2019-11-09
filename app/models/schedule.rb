@@ -3,7 +3,7 @@
 class Schedule < ActiveRecord::Base
   has_many :schedule_users
   has_many :users, through: :schedule_users
-  has_many :events
+  has_many :events, dependent: :destroy
 
   scope :customed, -> { where(customed: true) }
   scope :not_customed, -> { where(customed: false) }
