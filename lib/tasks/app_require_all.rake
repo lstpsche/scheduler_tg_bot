@@ -18,9 +18,17 @@ namespace :app do
   task 'require_files' do
     # ORDER MATTERS
 
-    ## helpers
+    ## helpers -- talker
     require_all 'app/helpers/talker/common_actions.rb'
     require_all 'app/helpers/talker/errors.rb'
+    require_all 'app/helpers/talker'
+    ## helpers -- menus
+    require_all 'app/helpers/menus/registration.rb'
+    require_all 'app/helpers/menus/main_menu.rb'
+    require_all 'app/helpers/menus/schedules.rb'
+    require_all 'app/helpers/menus/preferences.rb'
+    require_all 'app/helpers/menus'
+    ## helpers
     require_all 'app/helpers'
     ## services
     require_all 'app/services'

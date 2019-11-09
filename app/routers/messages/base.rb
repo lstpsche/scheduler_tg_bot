@@ -5,7 +5,7 @@ module Routers
     class Base < Routers::Base
       # Helpers::Common
       # Helpers::Talker::Actions
-      # Helpers::MenusActions
+      # Helpers::Menus::Actions
 
       # attrs from base -- :bot, :chat_id, :user
 

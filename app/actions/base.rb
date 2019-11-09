@@ -4,7 +4,7 @@ module Actions
   class Base
     include Helpers::Common
     include Helpers::Talker::Actions
-    include Helpers::MenusActions
+    include Helpers::Menus::Actions
 
     attr_reader :bot, :chat_id, :user, :params
 
