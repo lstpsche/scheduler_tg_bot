@@ -3,20 +3,17 @@
 module Services
   class TextCommandValidationService < Base
     # attrs from base -- :bot, :chat_id, :user
-    attr_reader :command, :success, :errors
-
-    alias_method :success?, :success
+    attr_reader :command, :errors
 
     def initialize(bot:, chat_id:, command:)
       @bot = bot
       @chat_id = chat_id
-      @command = command
       @errors = []
-      @success = validate
+      @command = command
     end
 
     def failure?
-      !success
+      !validate
     end
 
     private

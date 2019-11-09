@@ -3,8 +3,8 @@
 module Actions
   class Base
     include Helpers::Common
-    include Helpers::TalkerActions
-    include Helpers::MenusActions
+    include Helpers::Talker::Actions
+    include Helpers::Menus::Actions
 
     attr_reader :bot, :chat_id, :user, :params
 

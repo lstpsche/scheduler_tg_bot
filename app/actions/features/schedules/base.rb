@@ -5,8 +5,8 @@ module Actions
     module Schedules
       class Base < Actions::Features::Base
         # Helpers::Common
-        # Helpers::TalkerActions
-        # Helpers::MenusActions
+        # Helpers::Talker::Actions
+        # Helpers::Menus::Actions
 
         # attrs from base -- :bot, :chat_id, :user, :params
 
