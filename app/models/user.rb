@@ -3,7 +3,7 @@
 class User < ActiveRecord::Base
   serialize :context, ::Serializers::HashSerializer
   store_accessor :context, :last_message, :replace_last_message, :tapped_message
-  has_many :schedule_users
+  has_many :schedule_users, dependent: :destroy
   has_many :schedules, through: :schedule_users
 
   def context
