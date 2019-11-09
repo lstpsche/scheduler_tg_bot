@@ -5,7 +5,7 @@ module Handlers
     class Base < Handlers::Base
       # Helpers::Common
       # Helpers::MenusActions
-      # Helpers::TalkerActions
+      # Helpers::Talker::Actions
 
       # attrs from base -- :bot, :chat_id, :user
 

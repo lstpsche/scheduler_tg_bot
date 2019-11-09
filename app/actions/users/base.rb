@@ -4,7 +4,7 @@ module Actions
   module Users
     class Base < Actions::Base
       # Helpers::Common
-      # Helpers::TalkerActions
+      # Helpers::Talker::Actions
       # Helpers::MenusActions
 
       # attrs from base -- :bot, :chat_id, :user, :params

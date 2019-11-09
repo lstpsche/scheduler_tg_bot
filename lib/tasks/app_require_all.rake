@@ -19,6 +19,8 @@ namespace :app do
     # ORDER MATTERS
 
     ## helpers
+    require_all 'app/helpers/talker/common_actions.rb'
+    require_all 'app/helpers/talker/errors.rb'
     require_all 'app/helpers'
     ## services
     require_all 'app/services'

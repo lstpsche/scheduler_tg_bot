@@ -13,7 +13,7 @@ module Services
     end
 
     def failure?
-      !validate(command)
+      !validate
     end
 
     private

@@ -4,7 +4,7 @@ module Handlers
   class Base
     include Helpers::Common
     include Helpers::MenusActions
-    include Helpers::TalkerActions
+    include Helpers::Talker::Actions
 
     attr_reader :bot, :chat_id, :user
 
