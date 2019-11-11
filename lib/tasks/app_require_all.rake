@@ -40,6 +40,7 @@ namespace :app do
     ## actions
     require_all 'app/actions/base.rb'
     require_all 'app/actions/users'
+    require_all 'app/actions/features/schedules/schedule/schedule.rb'
     require_all 'app/actions/features'
     ## dialogs
     require_all 'app/dialogs'
