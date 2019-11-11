@@ -32,7 +32,7 @@ module Services
     end
 
     def message_valid?
-      !command.nil?
+      command.present?
     end
 
     def command_syntax_valid?

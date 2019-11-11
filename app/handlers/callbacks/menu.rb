@@ -5,38 +5,21 @@ module Handlers
     class Menu < Base
       # attrs from base -- :bot, :chat_id, :user
 
+      HANDLE_METHODS = {
+        'all_schedules': :show_all_schedules,
+        'preferences': :show_preferences
+      }.with_indifferent_access
+
       # 'initialize' is in base
 
-      def show_all_schedules_menu
-        return false if not_registered_user(id: chat_id)
-
-        show_all_schedules
-      end
-
-      def show_preferences_menu
-        return false if not_registered_user(id: chat_id)
-
-        show_preferences
-      end
-
       def handle(command)
-        case command
-        when 'all_schedules'
-          show_all_schedules_menu
-        when 'preferences'
-          show_preferences_menu
-        end
+        raise Error.new(code: 400, message: 'Not understand') unless handler_exists_for?(command)
+
+        method(HANDLE_METHODS[command]).call
       end
 
-      private
-
-      def not_registered_user(id:)
-        unless user_registered?(id: id)
-          show_not_registered(chat_id: id)
-          return true
-        end
-
-        false
+      def handler_exists_for?(command)
+        HANDLE_METHODS.keys.include?(command)
       end
     end
   end

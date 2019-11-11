@@ -38,12 +38,12 @@ class User < ActiveRecord::Base
     authentication_token.presence || generate_new_auth_token
   end
 
+  private
+
   def generate_new_auth_token
     update(authentication_token: SecureRandom.urlsafe_base64)
     authentication_token
   end
-
-  private
 
   def empty_context
     empty_context_last_message.merge(empty_context_tapped_message)

@@ -16,8 +16,8 @@ module Handlers
         if handler_exists_for?(command)
           call_handler(command)
         else
-          schedule_id = command.to_i
-          show_schedule(schedule_id) if schedule_id.positive?
+          check_schedule_validity(command)
+          show_schedule(@schedule.id)
         end
       end
 

@@ -46,8 +46,14 @@ module Helpers
       end
     end
 
+    def user_option(option_name)
+      # add here options from related models
+      # for example:
+      user.try(option_name) # || user.student_settings.try(option_name)
+    end
+
     def user_option_text(option_name)
-      option = user.try(option_name)
+      option = user_option(option_name)
 
       if option.present?
         I18n.t('actions.users.option.user_option_text.present', option_value: option)

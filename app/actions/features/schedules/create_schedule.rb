@@ -16,11 +16,13 @@ module Actions
         end
 
         def create_markup
-          link_button_text = I18n.t('actions.features.schedules.create_schedule.button_text')
-
           super do
             create_button_with_url(link_button_text)
           end
+        end
+
+        def link_button_text
+          I18n.t('actions.features.schedules.create_schedule.button_text')
         end
 
         def message_text
@@ -46,7 +48,7 @@ module Actions
         def user_auth_params
           {
             user_id: user.id,
-            user_token: user.create_auth_token
+            user_token: user.authentication_token
           }
         end
       end

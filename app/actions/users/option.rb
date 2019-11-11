@@ -14,7 +14,7 @@ module Actions
           markup_options: Constant.option_options
         )
 
-        super
+        super()
       end
 
       def back
@@ -51,9 +51,6 @@ module Actions
           action: args[:name]
         }
       end
-
-      # 'create_button' is in base
-      # 'create_markup' is in base
     end
   end
 end

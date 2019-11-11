@@ -24,10 +24,6 @@ module Actions
       def message_text
         I18n.t('actions.features.menu.header')
       end
-
-      # 'create_button' is in base
-      # 'create_markup' is in base
-      # 'button_args' is in base
     end
   end
 end
