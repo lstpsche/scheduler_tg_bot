@@ -1,6 +1,6 @@
 # Scheduler Telegram Bot
 
-Groups are **not supported**!
+[![Build Status](https://travis-ci.com/lstpsche/scheduler_tg_bot.svg?branch=master)](https://travis-ci.com/lstpsche/scheduler_tg_bot)
 
 # Feature list
 
