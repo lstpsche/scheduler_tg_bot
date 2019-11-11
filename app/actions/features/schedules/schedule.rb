@@ -4,7 +4,7 @@ module Actions
   module Features
     module Schedules
       class Schedule < Base
-        # attrs from base -- :bot, :chat_id, :user
+        # attrs from base -- :bot, :chat_id, :user, :params
         attr_reader :schedule, :expand
         alias_method :expand?, :expand
 

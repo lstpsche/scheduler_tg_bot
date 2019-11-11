@@ -20,6 +20,10 @@ module Helpers
         ::Actions::Features::Schedules::AllSchedules.new(bot: bot, user: user).back
       end
 
+      def create_schedule_action
+        ::Actions::Features::Schedules::CreateSchedule.new(bot: bot, user: user).show
+      end
+
       ################# Schedule #####################################
 
       def expand_schedule(schedule_id)

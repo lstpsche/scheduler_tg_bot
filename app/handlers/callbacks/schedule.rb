@@ -18,6 +18,7 @@ module Handlers
 
       def handle(command)
         schedule_id, action = command.to_s.split('__')
+        check_schedule_validity(schedule_id)
 
         call_handler(action, schedule_id) if handle_actions.include?(action)
       end
