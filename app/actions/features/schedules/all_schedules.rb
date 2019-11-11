@@ -3,7 +3,7 @@
 module Actions
   module Features
     module Schedules
-      class AllSchedules < Base
+      class AllSchedules < Actions::Features::Schedules::Base
         # attrs from base -- :bot, :chat_id, :user, :params
 
         # 'initialize' is in base

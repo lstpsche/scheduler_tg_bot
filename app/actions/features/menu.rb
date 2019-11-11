@@ -2,7 +2,7 @@
 
 module Actions
   module Features
-    class Menu < Base
+    class Menu < Actions::Features::Base
       # attrs from base -- :bot, :chat_id, :user, :params
 
       # 'initialize' is in base
