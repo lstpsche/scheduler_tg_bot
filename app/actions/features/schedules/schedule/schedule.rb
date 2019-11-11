@@ -3,14 +3,11 @@
 module Actions
   module Features
     module Schedules
-      class Schedule < Base
+      class Schedule < Actions::Features::Schedules::Base
         # attrs from base -- :bot, :chat_id, :user, :params
-        attr_reader :schedule, :expand
-        alias_method :expand?, :expand
 
         # 'initialize' is in base
 
-        # at Schedule
         def show(schedule_id:)
           find_schedule_by(id: schedule_id)
 
@@ -39,7 +36,7 @@ module Actions
 
         def schedule_callback(args)
           Constant.schedule_callback % {
-            schedule_id: schedule.id,
+            schedule_id: @schedule.id,
             action: args[:name]
           }
         end

@@ -39,7 +39,10 @@ namespace :app do
     require_all 'app/handlers/text_commands'
     ## actions
     require_all 'app/actions/base.rb'
+    require_all 'app/actions/users/base.rb'
     require_all 'app/actions/users'
+    require_all 'app/actions/features/base.rb'
+    require_all 'app/actions/features/schedules/base.rb'
     require_all 'app/actions/features/schedules/schedule/schedule.rb'
     require_all 'app/actions/features'
     ## dialogs

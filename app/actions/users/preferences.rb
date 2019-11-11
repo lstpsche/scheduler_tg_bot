@@ -2,7 +2,7 @@
 
 module Actions
   module Users
-    class Preferences < Base
+    class Preferences < Actions::Users::Base
       # attrs from base -- :bot, :chat_id, :user, :params
 
       # 'initialize' is in base

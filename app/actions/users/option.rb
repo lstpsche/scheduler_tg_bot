@@ -2,7 +2,7 @@
 
 module Actions
   module Users
-    class Option < Base
+    class Option < Actions::Users::Base
       # attrs from base -- :bot, :chat_id, :user, :params
       attr_reader :response
 

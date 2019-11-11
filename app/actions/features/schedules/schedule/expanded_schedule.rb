@@ -4,7 +4,7 @@ module Actions
   module Features
     module Schedules
       class ExpandedSchedule < Actions::Features::Schedules::Schedule
-        # attrs from parent -- :bot, :chat_id, :user, :params, :schedule
+        # attrs from parent -- :bot, :chat_id, :user, :params
 
         # 'initialize' is in base
 
@@ -18,7 +18,7 @@ module Actions
         end
 
         def message_text
-          schedule.decorated.view
+          @schedule.decorated.view
         end
       end
     end

@@ -2,7 +2,7 @@
 
 module Actions
   module Users
-    class Registration < Base
+    class Registration < Actions::Users::Base
       # attrs from base -- :bot, :chat_id, :user, :params
 
       def initialize(bot:, tg_user:)

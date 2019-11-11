@@ -2,7 +2,7 @@
 
 module Actions
   module Users
-    class OTPGeneration < Base
+    class OTPGeneration < Actions::Users::Base
       # attrs from base -- :bot, :chat_id, :user, :params
 
       # 'initialize' is in base
