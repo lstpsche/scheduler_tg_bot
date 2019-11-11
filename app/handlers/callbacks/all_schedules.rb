@@ -17,7 +17,7 @@ module Handlers
           call_handler(command)
         else
           check_schedule_validity(command)
-          show_schedule(@schedule.id)
+          show_short_schedule(@schedule.id)
         end
       end
 

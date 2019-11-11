@@ -12,10 +12,6 @@ module Helpers
           .new(bot: bot, user: user, no_back: no_back, message_text: message_text).show
       end
 
-      def show_schedule(schedule_id)
-        ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_short(schedule_id: schedule_id)
-      end
-
       def call_back_all_schedules
         ::Actions::Features::Schedules::AllSchedules.new(bot: bot, user: user).back
       end
@@ -26,11 +22,13 @@ module Helpers
 
       ################# Schedule #####################################
 
-      def expand_schedule(schedule_id)
-        ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).show_expanded(schedule_id: schedule_id)
+      def show_short_schedule(schedule_id)
+        ::Actions::Features::Schedules::ShortSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
       end
 
-      alias_method :hide_schedule, :show_schedule
+      def show_expanded_schedule(schedule_id)
+        ::Actions::Features::Schedules::ExpandedSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      end
 
       def pin_schedule
         ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).pin

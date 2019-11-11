@@ -27,7 +27,15 @@ end
 
 class DecoratedSchedule < Schedule
   def view
-    decorated_title + decorated_events
+    title + decorated_events
+  end
+
+  def title
+    I18n.t('layouts.schedule.title',
+           schedule_name: name,
+           schedule_id: id,
+           schedule_additional_info: decorated_additional_info
+          )
   end
 
   def additional_info
@@ -38,14 +46,6 @@ class DecoratedSchedule < Schedule
 
   def decorated_additional_info
     additional_info + "\n"
-  end
-
-  def decorated_title
-    I18n.t('layouts.schedule.title',
-           schedule_name: name,
-           schedule_id: id,
-           schedule_additional_info: decorated_additional_info
-          )
   end
 
   def decorated_events

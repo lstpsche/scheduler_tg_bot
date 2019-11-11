@@ -7,8 +7,8 @@ module Handlers
 
       HANDLE_METHODS = {
         with_args: {
-          'expand': :expand_schedule,
-          'hide': :hide_schedule
+          'expand': :show_expanded_schedule,
+          'hide': :show_short_schedule
         },
         'pin': :pin_schedule,
         'back': :call_back_schedule
