@@ -8,7 +8,6 @@ module Actions
 
         # 'initialize' is in base
 
-        # at Schedule
         def show(schedule_id:)
           find_schedule_by(id: schedule_id)
 
