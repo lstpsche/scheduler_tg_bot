@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Handlers
-  class ErrorsHandler < Base
+  class ErrorsHandler < Handlers::Base
     # attrs from base -- :bot, :chat_id, :user
     attr_reader :error
 

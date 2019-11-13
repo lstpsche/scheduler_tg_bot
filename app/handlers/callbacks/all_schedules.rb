@@ -2,7 +2,7 @@
 
 module Handlers
   module Callbacks
-    class AllSchedules < Base
+    class AllSchedules < Handlers::Callbacks::Base
       # attrs from base -- :bot, :chat_id, :user, :talker
 
       HANDLE_METHODS = {
@@ -13,22 +13,10 @@ module Handlers
       # 'initialize' is in base
 
       def handle(command)
-        if handler_exists_for?(command)
-          call_handler(command)
-        else
+        super do
           check_schedule_validity(command)
           show_short_schedule(@schedule.id)
         end
-      end
-
-      private
-
-      def handler_exists_for?(command)
-        HANDLE_METHODS.keys.include?(command)
-      end
-
-      def call_handler(command)
-        method(HANDLE_METHODS[command]).call
       end
     end
   end

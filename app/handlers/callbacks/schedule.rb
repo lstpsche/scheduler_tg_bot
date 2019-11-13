@@ -2,7 +2,7 @@
 
 module Handlers
   module Callbacks
-    class Schedule < Base
+    class Schedule < Handlers::Callbacks::Base
       # attrs from base -- :bot, :chat_id, :user, :talker
 
       HANDLE_METHODS = {

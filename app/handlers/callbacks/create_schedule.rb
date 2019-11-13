@@ -2,12 +2,11 @@
 
 module Handlers
   module Callbacks
-    class Menu < Handlers::Callbacks::Base
+    class CreateSchedule < Handlers::Callbacks::Base
       # attrs from base -- :bot, :chat_id, :user
 
       HANDLE_METHODS = {
-        'all_schedules': :show_all_schedules,
-        'preferences': :show_preferences
+        'back': :show_add_schedule
       }.with_indifferent_access
 
       # 'initialize' is in base
