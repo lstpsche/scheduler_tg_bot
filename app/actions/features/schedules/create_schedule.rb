@@ -17,23 +17,32 @@ module Actions
 
         def create_markup
           super do
-            create_button_with_url(link_button_text)
+            [
+              go_to_web_button,
+              back_button
+            ]
           end
-        end
-
-        def link_button_text
-          I18n.t('actions.features.schedules.create_schedule.button_text')
         end
 
         def message_text
           I18n.t('actions.features.schedules.create_schedule.header')
         end
 
-        def create_button_with_url(text)
-          Button.new(button_text: text).inline_url(generate_link_to_schedule_creation)
+        def callback
+          Constant.create_schedule_callback
         end
 
-        def generate_link_to_schedule_creation
+        def go_to_web_button
+          go_to_web = I18n.t('actions.features.schedules.create_schedule.go_to_web')
+          Button.new(button_args(go_to_web)).inline_url(generate_url_to_schedule_creation)
+        end
+
+        def back_button
+          back = I18n.t('actions.features.schedules.create_schedule.back')
+          Button.new(button_args(back)).inline
+        end
+
+        def generate_url_to_schedule_creation
           link = ENV['WEB_VERSION_URL'] + I18n.t('web_version_links.new_schedule') + '?'
 
           add_user_params_to_link(link)

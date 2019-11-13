@@ -33,6 +33,7 @@ namespace :app do
     ## services
     require_all 'app/services'
     ## handlers
+    require_all 'app/handlers/base.rb'
     require_all 'app/handlers/*.rb'
     require_all 'app/handlers/callbacks/base.rb'
     require_all 'app/handlers/callbacks'

@@ -16,7 +16,7 @@ module Routers
 
         case action
         when 'show'
-          option_name == 'back' ? back : show(option_name)
+          show(option_name)
         when 'setup'
           setup(option_name)
         end
@@ -30,10 +30,6 @@ module Routers
         setup_option(option_name)
         reset_user_tapped_message
         show_option(option_name)
-      end
-
-      def back
-        show_main_menu
       end
     end
   end

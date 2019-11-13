@@ -2,7 +2,7 @@
 
 module Handlers
   module Callbacks
-    class AddSchedule < Base
+    class AddSchedule < Handlers::Callbacks::Base
       # attrs from base -- :bot, :chat_id, :user
       attr_reader :schedule
 
@@ -15,22 +15,12 @@ module Handlers
       # 'initialize' is in base
 
       def handle(command)
-        if handler_exists_for?(command)
-          call_handler(command)
-        else
+        super do
           add_schedule(command)
         end
       end
 
       private
-
-      def handler_exists_for?(command)
-        HANDLE_METHODS.keys.include?(command)
-      end
-
-      def call_handler(command)
-        method(HANDLE_METHODS[command]).call
-      end
 
       # This is legacy-code for now
       # don't remove it, because maybe I will use it at 'add_external' implementation

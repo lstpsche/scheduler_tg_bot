@@ -8,6 +8,7 @@ module Routers
 
       HANDLERS = {
         'add_schedule' => Handlers::Callbacks::AddSchedule,
+        'create_schedule' => Handlers::Callbacks::CreateSchedule,
         'menu' => Handlers::Callbacks::Menu,
         'schedules' => Handlers::Callbacks::AllSchedules,
         'options' => Handlers::Callbacks::Options,

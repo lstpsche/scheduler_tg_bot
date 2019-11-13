@@ -10,6 +10,10 @@ module Constants
       'schedules-%{command}'
     end
 
+    def create_schedule_callback
+      'create_schedule-%{command}'
+    end
+
     def main_menu_callback
       'menu-%{command}'
     end
