@@ -15,7 +15,7 @@ module Handlers
         action = command.split('__').first
 
         super(action) do
-          Routers::Features::OptionsRouter.new(bot: bot, user: user).route(command)
+          call_options_router_with(command)
         end
       end
     end
