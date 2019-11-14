@@ -12,7 +12,7 @@ module Actions
       private
 
       def message_text
-        I18n.t('actions.users.otp.needed')
+        I18n.t('actions.users.otp.question')
       end
 
       def create_markup
@@ -29,11 +29,11 @@ module Actions
       end
 
       def yes_button
-        create_button(name: 'yes', button_text: I18n.t('common.yes')).inline
+        create_button(name: 'generate_otp', button_text: I18n.t('actions.users.otp.generate')).inline
       end
 
       def no_button
-        create_button(name: 'no', button_text: I18n.t('common.no')).inline
+        create_button(name: 'main_menu', button_text: I18n.t('actions.users.otp.not_generate')).inline
       end
     end
   end

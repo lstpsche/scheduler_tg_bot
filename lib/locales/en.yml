@@ -75,7 +75,9 @@ en:
           text: Are you agree with Terms and Conditions? # Inline keyboard with one button('Accept')
         setup_successful: Setting was set up successfully!
       otp:
-        needed: Do you need to generate One-Time Password to log into your account at Web Version?
+        question: Do you need to generate One-Time Password to log into your account at Web Version?
+        generate: Generate
+        not_generate: Cancel
       preferences:
         show_options: Choose a setting to setup
         setup_successful: "Everything's set up.\nYou're ready to go!"

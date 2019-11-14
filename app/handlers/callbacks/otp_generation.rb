@@ -6,8 +6,8 @@ module Handlers
       # attrs from base -- :bot, :chat_id, :user
 
       HANDLE_METHODS = {
-        'yes': :generate_otp,
-        'no': :show_main_menu
+        'generate_otp': :generate_otp,
+        'main_menu': :show_main_menu
       }.with_indifferent_access
 
       # 'initialize' is in base
