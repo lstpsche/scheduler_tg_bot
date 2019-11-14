@@ -17,7 +17,7 @@ module Actions
 
       def after_show
         setup_all_preferences
-        show_main_menu unless need_generate_otp
+        show_otp_generation_question
       end
 
       def message_text

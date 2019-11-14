@@ -9,11 +9,11 @@ module Helpers
         ::Actions::Users::Registration.new(bot: bot, tg_user: user).launch
       end
 
-      def need_generate_otp
-        ::Actions::Users::OTPGeneration.new(bot: bot, user: user).launch
+      def show_otp_generation_question
+        ::Actions::Users::OTPGeneration.new(bot: bot, user: user).show
       end
 
-      def otp_generation_request
+      def generate_otp
         ::Services::OTPGenerationRequest.new(user: user).send
       end
     end

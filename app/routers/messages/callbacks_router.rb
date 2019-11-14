@@ -10,10 +10,11 @@ module Routers
         'add_schedule' => Handlers::Callbacks::AddSchedule,
         'create_schedule' => Handlers::Callbacks::CreateSchedule,
         'menu' => Handlers::Callbacks::Menu,
-        'schedules' => Handlers::Callbacks::AllSchedules,
         'options' => Handlers::Callbacks::Options,
+        'otp_generation' => Handlers::Callbacks::OTPGeneration,
         'preferences' => Handlers::Callbacks::Preferences,
-        'schedule' => Handlers::Callbacks::Schedule
+        'schedule' => Handlers::Callbacks::Schedule,
+        'schedules' => Handlers::Callbacks::AllSchedules
       }.freeze
 
       def initialize(bot:)

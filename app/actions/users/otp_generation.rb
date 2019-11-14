@@ -7,18 +7,12 @@ module Actions
 
       # 'initialize' is in base
 
-      def launch
-        ask_if_needed
-        return false if receive_response == 'no'
-
-        otp_generation_request
-      end
+      # 'show' is in base
 
       private
 
-      def ask_if_needed
-        text = I18n.t('actions.users.otp.needed')
-        send_message(text: text, markup: create_markup)
+      def message_text
+        I18n.t('actions.users.otp.needed')
       end
 
       def create_markup
@@ -28,6 +22,10 @@ module Actions
             no_button
           ]
         end
+      end
+
+      def callback
+        Constant.otp_generation_callback
       end
 
       def yes_button

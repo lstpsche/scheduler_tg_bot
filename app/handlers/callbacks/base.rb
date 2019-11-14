@@ -8,7 +8,6 @@ module Handlers
       # Helpers::Talker::Actions
 
       # attrs from base -- :bot, :chat_id, :user
-      attr_reader :talker
 
       def initialize(bot:, user:)
         @bot = bot
