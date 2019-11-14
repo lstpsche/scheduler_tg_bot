@@ -22,6 +22,10 @@ module Constants
       'options-%{option_name}__%{action}'
     end
 
+    def otp_generation_callback
+      'otp_generation-%{command}'
+    end
+
     def preferences_callback
       'preferences-%{command}__show'
     end
