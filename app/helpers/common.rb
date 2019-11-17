@@ -33,7 +33,7 @@ module Helpers
     end
 
     def reset_user_tapped_message
-      user&.update(tapped_message: nil)
+      user.present? && user.try(:tapped_message).present? && user.update(tapped_message: nil)
     end
 
     def save_validate_user

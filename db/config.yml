@@ -18,9 +18,7 @@ test: &test
   database: scheduler_test
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+  <<: *default
   database: <%= ENV['DB_NAME'] %>
   host: <%= ENV['DB_HOST'] %>
   user: <%= ENV['DB_USER'] %>

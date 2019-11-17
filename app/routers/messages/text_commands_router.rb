@@ -25,8 +25,9 @@ module Routers
       private
 
       def init_vars
+        @user = get_user(chat_id: tg_user.id, fallback_user: tg_user)
         @chat_id = user.id
-        reset_user_tapped_message if user.try(:tapped_message).present?
+        reset_user_tapped_message
       end
 
       def validation_service
