@@ -32,12 +32,21 @@ namespace :db do
   desc 'Connects database'
   task :connect do
     require 'dotenv/load'
+
+    if ENV['RAILS_ENV'] == 'production'
+      host = ENV['DB_HOST']
+      name = ENV['DB_NAME']
+      user = ENV['DB_USER']
+      pass = ENV['DB_PASS']
+    else
+      host = ENV['DEV_DB_HOST']
+      name = ENV['DEV_DB_NAME'] + '_' + ENV['RAILS_ENV']
+      user = ENV['DEV_DB_USER']
+      pass = ENV['DEV_DB_PASS']
+    end
+
     ActiveRecord::Base.establish_connection(
-      adapter: 'postgresql',
-      host: ENV['DB_HOST'],
-      database: ENV['DB_NAME'] + '_' + ENV['RAILS_ENV'],
-      username: ENV['DB_USER'],
-      password: ENV['DB_PASS']
+      adapter: 'postgresql', host: host, database: name, username: user, password: pass
     )
   end
 end
