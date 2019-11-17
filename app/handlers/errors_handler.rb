@@ -23,7 +23,7 @@ module Handlers
 
     def handle(error:)
       @error = error
-      if error_types.include?(error.type)
+      if error.is_a?(Error) && error_types.include?(error&.type)
         call_handler(error)
       else
         show_something_wrong

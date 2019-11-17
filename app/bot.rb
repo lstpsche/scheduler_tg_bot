@@ -34,7 +34,7 @@ class Bot
 
   def handle_error(error)
     # binding.pry
-    raise error unless ENV['ENV'] == 'production'
+    raise error unless ENV['RAILS_ENV'] == 'production'
 
     errors_handler.handle(error: error)
   end

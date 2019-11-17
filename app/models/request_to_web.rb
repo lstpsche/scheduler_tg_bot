@@ -32,7 +32,7 @@ class RequestToWeb
   private
 
   def http
-    Net::HTTP.new(uri.host, uri.port)
+    Net::HTTP.new(uri.host)
   end
 
   def generate_request
