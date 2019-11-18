@@ -7,6 +7,9 @@ AllCops:
 Layout/MultilineMethodCallBraceLayout:
   EnforcedStyle: new_line
 
+Metrics/AbcSize:
+  Max: 10
+
 Metrics/BlockLength:
   Enabled: false
 

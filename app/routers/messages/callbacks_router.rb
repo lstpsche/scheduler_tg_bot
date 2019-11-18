@@ -24,6 +24,7 @@ module Routers
 
       def route(callback)
         init_vars(callback)
+        update_language_code(tg_user.language_code)
 
         update_user_tapped_message
         call_handler
@@ -39,7 +40,6 @@ module Routers
         @chat_id = callback.from.id
         @tapped_message = callback.message
         @user = get_user(chat_id: chat_id)
-        update_language_code(tg_user.language_code)
         parse_callback(callback.data)
       end
 

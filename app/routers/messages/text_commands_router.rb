@@ -25,9 +25,10 @@ module Routers
       private
 
       def init_vars
-        @user = get_user(chat_id: tg_user.id, fallback_user: tg_user)
-        update_language_code(tg_user.language_code)
+        user = tg_user
         @chat_id = user.id
+        @user = get_user(chat_id: chat_id, fallback_user: user)
+        update_language_code(user.language_code)
         reset_user_tapped_message
       end
 
