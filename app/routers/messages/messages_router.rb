@@ -2,7 +2,7 @@
 
 module Routers
   module Messages
-    class MessagesRouter < Base
+    class MessagesRouter < Routers::Messages::Base
       # attrs from base -- :bot, :chat_id, :user
 
       ROUTERS = {

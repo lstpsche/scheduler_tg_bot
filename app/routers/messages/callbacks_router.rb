@@ -2,7 +2,7 @@
 
 module Routers
   module Messages
-    class CallbacksRouter < Base
+    class CallbacksRouter < Routers::Messages::Base
       # attrs from base -- :bot, :chat_id, :user
       attr_reader :params, :tapped_message
 
@@ -39,6 +39,7 @@ module Routers
         @chat_id = callback.from.id
         @tapped_message = callback.message
         @user = get_user(chat_id: chat_id)
+        update_language_code(tg_user.language_code)
         parse_callback(callback.data)
       end
 

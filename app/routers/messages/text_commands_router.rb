@@ -2,7 +2,7 @@
 
 module Routers
   module Messages
-    class TextCommandsRouter < Base
+    class TextCommandsRouter < Routers::Messages::Base
       # attrs from base -- :bot, :chat_id, :user
       attr_reader :message
 
@@ -26,6 +26,7 @@ module Routers
 
       def init_vars
         @user = get_user(chat_id: tg_user.id, fallback_user: tg_user)
+        update_language_code(tg_user.language_code)
         @chat_id = user.id
         reset_user_tapped_message
       end
