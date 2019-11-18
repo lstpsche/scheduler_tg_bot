@@ -51,6 +51,7 @@ namespace :app do
     ## routers
     require_all 'app/routers/base.rb'
     require_all 'app/routers/features'
+    require_all 'app/routers/messages/base.rb'
     require_all 'app/routers/messages/text_commands_router.rb'
     require_all 'app/routers/messages/callbacks_router.rb'
     require_all 'app/routers/messages'
