@@ -5,8 +5,9 @@ module Helpers
     module Registration
       private
 
-      def launch_registration
-        ::Actions::Users::Registration.new(bot: bot, tg_user: user).launch
+      def register_user
+        @user = DB.create_user(tg_user: @user)
+        set_first_start_false
       end
 
       def show_otp_generation_question

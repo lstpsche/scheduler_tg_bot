@@ -7,10 +7,6 @@ module Helpers
 
       ################# Preferences ##################################
 
-      def setup_all_preferences
-        ::Actions::Users::Preferences.new(bot: bot, user: user).setup_all
-      end
-
       def show_option(option_name)
         ::Actions::Users::Option.new(bot: bot, user: user).show(option_name)
       end

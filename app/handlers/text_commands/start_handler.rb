@@ -8,7 +8,15 @@ module Handlers
       # 'initialize' is in base
 
       def handle
-        launch_registration unless user_registered?(id: chat_id)
+        if user_registered?(id: chat_id)
+          show_welcome_message if user.first_start_message?
+          show_main_menu
+        else
+          register_user
+          show_welcome_message
+          show_otp_generation_question
+          show_help_message
+        end
       end
     end
   end

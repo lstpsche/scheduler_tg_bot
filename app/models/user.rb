@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
     super.empty? ? empty_context : super
   end
 
+  def create_auth_token
+    authentication_token.presence || generate_new_auth_token
+  end
+
+  def first_start_message?
+    global_bot_first_start
+  end
+
   def last_message
     context['last_message']
   end
@@ -32,10 +40,6 @@ class User < ActiveRecord::Base
 
   def self.registered?(id:)
     find_by(id: id).present?
-  end
-
-  def create_auth_token
-    authentication_token.presence || generate_new_auth_token
   end
 
   private

@@ -24,8 +24,8 @@ module Helpers
 
       ##################### Other ####################################
 
-      def show_help
-        talker.show_help
+      def show_help_message
+        talker.show_help_message
       end
     end
   end
