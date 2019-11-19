@@ -46,7 +46,7 @@ class Talker
 
   ################ Common commands ###############################
 
-  def show_help
+  def show_help_message
     send_message(text: I18n.t('common.help'))
   end
 

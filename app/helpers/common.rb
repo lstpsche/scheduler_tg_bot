@@ -67,7 +67,15 @@ module Helpers
     end
 
     def update_language_code(code)
-      @user.update(language_code: code) unless @user.blank? && @user.language_code == code
+      @user.update(language_code: code) unless user_is_tg_user? && @user.language_code == code
+    end
+
+    def user_is_tg_user?
+      @user.present? && @user.is_a?(Telegram::Bot::Types::User)
+    end
+
+    def set_first_start_false
+      @user.update(global_bot_first_start: false)
     end
   end
 end

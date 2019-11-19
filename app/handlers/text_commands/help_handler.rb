@@ -8,7 +8,7 @@ module Handlers
       # 'initialize' is in base
 
       def handle
-        show_help
+        show_help_message
       end
     end
   end

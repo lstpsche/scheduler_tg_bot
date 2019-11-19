@@ -19,11 +19,6 @@ module Actions
         show_main_menu
       end
 
-      def setup_all
-        setup_all_options
-        save_validate_user { setup_successfull }
-      end
-
       private
 
       def callback

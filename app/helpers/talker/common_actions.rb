@@ -41,17 +41,16 @@ module Helpers
       end
 
       def setup_successfull
-        send_message(
-          text: I18n.t('actions.users.preferences.setup_successful'),
-          markup: 'remove'
-        )
+        send_message(text: I18n.t('actions.users.preferences.setup_successful'))
       end
 
       def show_successfully_setup
-        send_message(
-          text: I18n.t('actions.users.options.setup_successful'),
-          markup: 'remove'
-        )
+        send_message(text: I18n.t('actions.users.options.setup_successful'))
+      end
+
+      def show_welcome_message
+        send_message(text: I18n.t('actions.users.registration.welcome', name: user.first_name))
+        set_first_start_false
       end
     end
   end
