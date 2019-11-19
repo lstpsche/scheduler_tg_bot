@@ -17,10 +17,7 @@ module Actions
 
       def create_markup
         super do
-          [
-            yes_button,
-            no_button
-          ]
+          yes_button
         end
       end
 
@@ -30,10 +27,6 @@ module Actions
 
       def yes_button
         create_button(name: 'generate_otp', button_text: I18n.t('actions.users.otp.generate')).inline
-      end
-
-      def no_button
-        create_button(name: 'main_menu', button_text: I18n.t('actions.users.otp.not_generate')).inline
       end
     end
   end
