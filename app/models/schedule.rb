@@ -27,7 +27,7 @@ end
 
 class DecoratedSchedule < Schedule
   def view
-    title + decorated_events
+    title + "\n" + decorated_events
   end
 
   def title
