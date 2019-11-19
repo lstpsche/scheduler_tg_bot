@@ -60,10 +60,6 @@ class Talker
     send_message(text: I18n.t('errors.no_command'))
   end
 
-  def show_not_registered
-    send_message(text: I18n.t('errors.not_registered'))
-  end
-
   def show_not_understand
     send_message(text: I18n.t('errors.not_understand'))
   end

@@ -13,8 +13,9 @@ module Helpers
         talker.show_no_command
       end
 
-      def show_not_registered
-        talker.show_not_registered
+      def not_registered_error
+        # TODO: Log here error
+        # Do not show not registered message
       end
 
       def show_not_understand

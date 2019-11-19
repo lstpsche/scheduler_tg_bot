@@ -9,7 +9,7 @@ module Handlers
       client: {
         'Bad input' => :show_bad_input,
         'Not understand' => :show_not_understand,
-        'Not registered' => :show_not_registered
+        'Not registered' => :not_registered_error
       },
       server: {
         'No command' => :show_no_command
@@ -23,7 +23,7 @@ module Handlers
 
     def handle(error:)
       @error = error
-      if error.is_a?(Error) && error_types.include?(error&.type)
+      if error.is_a?(Error) && error_messages.include?(error.message)
         call_handler(error)
       else
         show_something_wrong
@@ -36,8 +36,8 @@ module Handlers
       method(handle_methods_for_error_type[error.message]).call
     end
 
-    def error_types
-      HANDLE_METHODS.keys
+    def error_messages
+      HANDLE_METHODS[:client].merge(HANDLE_METHODS[:server])
     end
 
     def handle_methods_for_error_type
