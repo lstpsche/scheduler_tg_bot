@@ -25,7 +25,6 @@ module Handlers
       def start_not_registered
         register_user
         show_welcome_message
-        show_otp_generation_question
         show_help_message
       end
     end

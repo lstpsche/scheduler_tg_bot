@@ -11,7 +11,6 @@ module Routers
         'create_schedule' => Handlers::Callbacks::CreateSchedule,
         'menu' => Handlers::Callbacks::Menu,
         'options' => Handlers::Callbacks::Options,
-        'otp_generation' => Handlers::Callbacks::OTPGeneration,
         'preferences' => Handlers::Callbacks::Preferences,
         'schedule' => Handlers::Callbacks::Schedule,
         'schedules' => Handlers::Callbacks::AllSchedules

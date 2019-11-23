@@ -74,9 +74,6 @@ en:
           name: Terms and Conditions
           text: Are you agree with Terms and Conditions? # Inline keyboard with one button('Accept')
         setup_successful: Setting was set up successfully!
-      otp:
-        question: "Tap this button, if you need to generate One-Time Password to log into your account at Web Version.\n_Consider this as Web Version Password Reset_"
-        generate: Generate
       preferences:
         show_options: Choose a setting to setup
         setup_successful: "Everything's set up.\nYou're ready to go!"
@@ -105,7 +102,6 @@ en:
     sunday: sunday
   web_version_links:
     new_schedule: /schedules/new
-    otp_generation: /users/password
   errors:
     bad_input: Please, be more serious.
     something_wrong: "Sorry, something's gone wrong.\nPlease, try again."
