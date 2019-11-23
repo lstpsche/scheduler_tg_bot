@@ -14,6 +14,12 @@ module Actions
         # 'show' is in base
         # 'back' is in base
 
+        private
+
+        def find_schedule_by(id:)
+          @schedule = ::Schedule.find_by(id: id)
+        end
+
         # 'before_show' mock is in base
         # 'after_show' mock is in base
 

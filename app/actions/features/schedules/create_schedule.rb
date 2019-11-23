@@ -4,7 +4,7 @@ module Actions
   module Features
     module Schedules
       class CreateSchedule < Actions::Features::Schedules::Base
-        # attrs from base -- :bot, :chat_id, :user
+        # attrs from base -- :bot, :chat_id, :user, :params
 
         # 'initialize' is in base
         # 'show' is in base
