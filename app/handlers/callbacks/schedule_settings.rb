@@ -13,20 +13,13 @@ module Handlers
       # 'initialize' is in base
 
       def handle(command)
-        schedule_id, action = command.to_s.split('__')
-        check_schedule_validity(schedule_id)
-
-        call_handler(action, schedule_id) if handle_actions.include?(action)
+        handle_schedule(command)
       end
 
       private
 
       def call_handler(action, schedule_id)
         method(HANDLE_METHODS[action]).call(schedule_id)
-      end
-
-      def handle_actions
-        HANDLE_METHODS.keys
       end
     end
   end
