@@ -30,10 +30,6 @@ module Actions
 
         private
 
-        def find_schedule_by(id:)
-          @schedule = ::Schedule.find_by(id: id)
-        end
-
         def schedule_callback(args)
           Constant.schedule_callback % {
             schedule_id: @schedule.id,
@@ -48,6 +44,7 @@ module Actions
         end
 
         # 'create_button' is in base
+        # `find_schedule_by` is in base
       end
     end
   end

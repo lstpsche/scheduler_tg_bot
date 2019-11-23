@@ -22,20 +22,28 @@ module Helpers
 
       ################# Schedule #####################################
 
-      def show_short_schedule(schedule_id)
-        ::Actions::Features::Schedules::ShortSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
-      end
-
-      def show_expanded_schedule(schedule_id)
-        ::Actions::Features::Schedules::ExpandedSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      def call_back_schedule
+        ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).back
       end
 
       def pin_schedule
         ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).pin
       end
 
-      def call_back_schedule
-        ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).back
+      def show_expanded_schedule(schedule_id)
+        ::Actions::Features::Schedules::ExpandedSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      end
+
+      def show_schedule_setting(_schedule_id)
+        # ::Actions::Features::Schedules::ScheduleSetting.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      end
+
+      def show_schedule_settings(schedule_id)
+        ::Actions::Features::Schedules::ScheduleSettings.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      end
+
+      def show_short_schedule(schedule_id)
+        ::Actions::Features::Schedules::ShortSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
       end
     end
   end

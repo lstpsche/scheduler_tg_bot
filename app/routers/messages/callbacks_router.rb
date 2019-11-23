@@ -13,6 +13,7 @@ module Routers
         'options' => Handlers::Callbacks::Options,
         'preferences' => Handlers::Callbacks::Preferences,
         'schedule' => Handlers::Callbacks::Schedule,
+        'schedule_settings' => Handlers::Callbacks::ScheduleSettings,
         'schedules' => Handlers::Callbacks::AllSchedules
       }.freeze
 

@@ -24,14 +24,25 @@ module Handlers
         end
       end
 
+      def handle_schedule(command)
+        schedule_id, action = command.to_s.split('__')
+        check_schedule_validity(schedule_id)
+
+        call_handler(action, schedule_id) if handler_exists_for?(action)
+      end
+
       private
 
       def handle_methods
         self.class::HANDLE_METHODS
       end
 
+      def handle_actions
+        handle_methods.keys
+      end
+
       def handler_exists_for?(command)
-        handle_methods.keys.include?(command)
+        handle_actions.include?(command)
       end
 
       def call_handler(command)

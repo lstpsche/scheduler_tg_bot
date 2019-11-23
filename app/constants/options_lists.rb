@@ -2,30 +2,49 @@
 
 module Constants
   module OptionsLists
-    IN_SCHEDULE_OPTIONS = %i[
-      hide
-      pin
-      back
-    ].freeze
+    def in_schedule_options_list
+      %i[
+        hide
+        pin
+        settings
+        back
+      ]
+    end
 
-    MENU_OPTIONS = %i[
-      all_schedules
-      preferences
-    ].freeze
+    def menu_options_list
+      %i[
+        all_schedules
+        preferences
+      ]
+    end
 
-    OPTION_OPTIONS = %i[
-      change_option
-      back
-    ].freeze
+    def option_options_list
+      %i[
+        change_option
+        back
+      ]
+    end
 
-    USER_PREFERENCES_OPTIONS = %i[
-      example_option_1
-      back
-    ].freeze
+    def user_preferences_options_list
+      %i[
+        example_option_1
+        back
+      ]
+    end
 
-    SCHEDULE_OPTIONS = %i[
-      show
-      back
-    ].freeze
+    def schedule_options_list
+      %i[
+        show
+        settings
+        back
+      ]
+    end
+
+    def schedule_settings_options_list
+      %i[
+        example_option
+        back
+      ]
+    end
   end
 end

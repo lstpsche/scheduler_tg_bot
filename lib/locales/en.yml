@@ -38,18 +38,30 @@ en:
             button_text: <-- Back
         schedule:
           options:
-            show:
-              name: expand
-              button_text: Show schedule
+            back:
+              name: back
+              button_text: <-- Back
             hide:
               name: hide
               button_text: Hide schedule
             pin:
               name: pin
               button_text: Pin
+            settings:
+              name: settings
+              button_text: Options
+            show:
+              name: expand
+              button_text: Show schedule
+        schedule_settings:
+          header: Choose schedule option
+          options:
             back:
-              name: back
               button_text: <-- Back
+              name: back
+            example_option:
+              button_text: Some option
+              name: example_option
     users:
       option:
         user_option_text:
