@@ -14,7 +14,7 @@ module Helpers
       ################# Options ######################################
 
       def setup_option(option_name)
-        ::Services::OptionSetupService.new(bot: bot, user: user).perform(option_name)
+        ::Services::UserOptionSetupService.new(bot: bot, user: user).perform(option_name)
       end
 
       def call_back_option

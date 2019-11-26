@@ -13,5 +13,15 @@ module Services
       @user = user
       @chat_id = user.id
     end
+
+    private
+
+    def send_setting_message(option_name)
+      send_message(text: message_text)
+    end
+
+    def message_text
+      raise NotImplementedError
+    end
   end
 end

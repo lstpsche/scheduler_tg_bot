@@ -32,7 +32,7 @@ module Handlers
       end
 
       def add_schedule_to_user
-        Services::Schedules::ScheduleUserInteraction.new(bot: bot, user: user, schedule: schedule).perform
+        Services::Schedules::ScheduleUserInteraction.new(bot: bot, user: user, schedule: schedule).add_schedule_to_user
       end
     end
   end

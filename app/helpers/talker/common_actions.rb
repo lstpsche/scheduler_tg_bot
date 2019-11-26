@@ -17,6 +17,7 @@ module Helpers
         message_data_from(@response)
       end
 
+      # type is 'message' or 'callback_query'
       def receive_response_of_type(type)
         loop do
           response = receive_message
@@ -40,12 +41,12 @@ module Helpers
         talker.send_or_edit_message(message_id: message_id, text: text, markup: markup)
       end
 
-      def setup_successfull
-        send_message(text: I18n.t('actions.users.preferences.setup_successful'))
+      def show_not_setup
+        send_message(text: I18n.t('shared.settings.not_setup'))
       end
 
       def show_successfully_setup
-        send_message(text: I18n.t('actions.users.options.setup_successful'))
+        send_message(text: I18n.t('shared.settings.setup_successful'))
       end
 
       def show_welcome_message

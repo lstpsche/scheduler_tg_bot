@@ -5,7 +5,7 @@ module Helpers
     module Schedules
       private
 
-      ################# All Schedules #################################
+      ################# All Schedules ##############################
 
       def show_add_schedule(no_back: false, message_text: nil)
         ::Actions::Features::Schedules::AddSchedule
@@ -20,7 +20,7 @@ module Helpers
         ::Actions::Features::Schedules::CreateSchedule.new(bot: bot, user: user).show
       end
 
-      ################# Schedule #####################################
+      ################# Schedule ###################################
 
       def call_back_schedule
         ::Actions::Features::Schedules::Schedule.new(bot: bot, user: user).back
@@ -34,16 +34,24 @@ module Helpers
         ::Actions::Features::Schedules::ExpandedSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
       end
 
-      def show_schedule_setting(_schedule_id)
-        # ::Actions::Features::Schedules::ScheduleSetting.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      def show_short_schedule(schedule_id)
+        ::Actions::Features::Schedules::ShortSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
+      end
+
+      ################ Schedule Settings ###########################
+
+      def setup_schedule_setting(schedule, option_name)
+        ::Services::Schedules::ScheduleSettingSetupService.new(bot: bot, user: user, schedule: schedule)
+          .setup_option(setting_name: option_name)
+      end
+
+      def show_schedule_setting(schedule, option_name)
+        ::Actions::Features::Schedules::ScheduleSetting.new(bot: bot, user: user)
+          .show(schedule: schedule, setting_name: option_name)
       end
 
       def show_schedule_settings(schedule_id)
         ::Actions::Features::Schedules::ScheduleSettings.new(bot: bot, user: user).show(schedule_id: schedule_id)
-      end
-
-      def show_short_schedule(schedule_id)
-        ::Actions::Features::Schedules::ShortSchedule.new(bot: bot, user: user).show(schedule_id: schedule_id)
       end
     end
   end

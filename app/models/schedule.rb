@@ -26,8 +26,15 @@ class Schedule < ActiveRecord::Base
 end
 
 class DecoratedSchedule < Schedule
-  def view
-    title + "\n" + decorated_events
+  def additional_info
+    super.presence
+  end
+
+  def settings
+    Constant.schedule_settings_list.map do |result, setting|
+      str_setting = setting.to_s
+      result.merge(name: str_setting, button_text: str_setting.capitalize, value: try(setting))
+    end
   end
 
   def title
@@ -38,8 +45,8 @@ class DecoratedSchedule < Schedule
           )
   end
 
-  def additional_info
-    super.presence
+  def view
+    title + "\n" + decorated_events
   end
 
   private

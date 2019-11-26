@@ -2,16 +2,12 @@
 
 module Services
   module Schedules
-    class ScheduleUserInteraction < Base
-      # attrs from base -- :bot, :chat_id, :user
-      attr_reader :schedule
+    class ScheduleUserInteraction < Services::Base
+      # attrs from base -- :bot, :chat_id, :user, :schedule
 
-      def initialize(bot:, user:, schedule: nil)
-        super(bot: bot, user: user)
-        @schedule = schedule
-      end
+      # 'initialize' is in base
 
-      def perform
+      def add_schedule_to_user
         user.schedules << schedule
         user.save
       end

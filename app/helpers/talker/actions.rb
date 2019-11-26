@@ -16,12 +16,6 @@ module Helpers
 
       ############## Sending--Editing--Getting #######################
 
-      # TODO: move this method to UserOptionSetupService
-      def send_option_message(option_name, markup = nil)
-        message_text = I18n.t("actions.users.options.#{option_name}.text")
-        send_message(text: message_text, markup: markup)
-      end
-
       ##################### Other ####################################
 
       def show_help_message

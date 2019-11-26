@@ -6,20 +6,25 @@ module Handlers
       # attrs from base -- :bot, :chat_id, :user, :talker
 
       HANDLE_METHODS = {
-        'example_option': :show_schedule_setting,
         'back': :show_short_schedule
       }.with_indifferent_access
 
       # 'initialize' is in base
 
       def handle(command)
-        handle_schedule(command)
+        schedule_id, option_action = command.split('__', 2)
+        @schedule = ::Schedule.find_by(id: schedule_id)
+        action = option_action.split('__').first
+
+        super(action) do
+          call_schedule_settings_router_with(@schedule, option_action)
+        end
       end
 
       private
 
-      def call_handler(action, schedule_id)
-        method(HANDLE_METHODS[action]).call(schedule_id)
+      def call_handler(command)
+        method(HANDLE_METHODS[command]).call(@schedule.id)
       end
     end
   end
