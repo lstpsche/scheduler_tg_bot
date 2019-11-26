@@ -21,8 +21,8 @@ module Services
       receive_response
     end
 
-    def setup_and_save
-      @resource.send("#{@setting_name}=", @response)
+    def setup_and_save(setting, value)
+      @resource.send("#{setting}=", value)
       save_with_action { show_successfully_setup }
     end
 

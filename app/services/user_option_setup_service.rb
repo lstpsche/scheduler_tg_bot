@@ -12,7 +12,7 @@ module Services
       @resource = @user
       send_setting_message_and_receive_response
 
-      setup_and_save
+      setup_and_save(@setting_name, @response)
     rescue NoMethodError
       show_not_setup
     end

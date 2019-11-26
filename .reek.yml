@@ -10,7 +10,7 @@ detectors:
   NilCheck:
     enabled: false
   TooManyInstanceVariables:
-    max_instance_variables: 6
+    max_instance_variables: 4
   UtilityFunction:
     enabled: false
 
