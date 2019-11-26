@@ -7,14 +7,12 @@ module Services
 
       # 'initialize' is in base
 
-      def setup_option(setting_name: option_name)
+      def setup_option(setting_name:)
         @setting_name = setting_name
-        send_setting_message(@setting_name)
-        receive_response
+        @resource = @schedule
+        send_setting_message_and_receive_response
 
-        @schedule.send("#{@setting_name}=", @response)
-
-        save_action_schedule { show_successfully_setup }
+        setup_and_save
       rescue NoMethodError
         show_not_setup
       end
@@ -23,16 +21,6 @@ module Services
 
       def message_text
         I18n.t("actions.features.schedules.schedule_settings.options.#{@setting_name}.text")
-      end
-
-      def save_action_schedule
-        if schedule.save
-          yield
-        else
-          show_something_wrong
-          # TBD: maybe parse errors and show them to user
-          # (rather no)
-        end
       end
     end
   end

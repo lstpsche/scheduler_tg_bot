@@ -16,7 +16,27 @@ module Services
 
     private
 
-    def send_setting_message(option_name)
+    def send_setting_message_and_receive_response
+      send_setting_message
+      receive_response
+    end
+
+    def setup_and_save
+      @resource.send("#{@setting_name}=", @response)
+      save_with_action { show_successfully_setup }
+    end
+
+    def save_with_action
+      if @resource.save
+        yield
+      else
+        show_something_wrong
+        # TBD: maybe parse errors and show them to user
+        # (rather no)
+      end
+    end
+
+    def send_setting_message
       send_message(text: message_text)
     end
 

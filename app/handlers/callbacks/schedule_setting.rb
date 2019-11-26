@@ -23,7 +23,7 @@ module Handlers
 
       private
 
-      def call_handler(action)
+      def call_handler(*)
         show_schedule_settings(@schedule_id)
       end
     end

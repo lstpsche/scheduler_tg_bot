@@ -8,13 +8,11 @@ module Services
     # 'initialize' is in base
 
     def perform(option_name)
-      @option_name = option_name
-      send_setting_message(@option_name)
-      receive_response
+      @setting_name = option_name
+      @resource = @user
+      send_setting_message_and_receive_response
 
-      @user.send("#{@option_name}=", @response)
-
-      save_action_user { show_successfully_setup }
+      setup_and_save
     rescue NoMethodError
       show_not_setup
     end
@@ -22,17 +20,7 @@ module Services
     private
 
     def message_text
-      I18n.t("actions.users.options.#{@option_name}.text")
-    end
-
-    def save_action_user
-      if user.save
-        yield
-      else
-        show_something_wrong
-        # TBD: maybe parse errors and show them to user
-        # (rather no)
-      end
+      I18n.t("actions.users.options.#{@setting_name}.text")
     end
   end
 end

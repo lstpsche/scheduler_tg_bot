@@ -42,12 +42,12 @@ module Helpers
 
       def setup_schedule_setting(schedule, option_name)
         ::Services::Schedules::ScheduleSettingSetupService.new(bot: bot, user: user, schedule: schedule)
-          .setup_option(setting_name: option_name)
+                                                          .setup_option(setting_name: option_name)
       end
 
       def show_schedule_setting(schedule, option_name)
         ::Actions::Features::Schedules::ScheduleSetting.new(bot: bot, user: user)
-          .show(schedule: schedule, setting_name: option_name)
+                                                       .show(schedule: schedule, setting_name: option_name)
       end
 
       def show_schedule_settings(schedule_id)
