@@ -7,17 +7,19 @@ module Services
 
       # 'initialize' is in base
 
-      def setup_option(setting_name:)
+      def setup_option(setting_name)
         @setting_name = setting_name
-        @resource = @schedule
-        send_setting_message_and_receive_response
 
-        setup_and_save(@setting_name, @response)
-      rescue NoMethodError
+        setup(setting_name)
+      rescue StandardError
         show_not_setup
       end
 
       private
+
+      def resource
+        @schedule
+      end
 
       def message_text
         I18n.t("actions.features.schedules.schedule_settings.options.#{@setting_name}.text")

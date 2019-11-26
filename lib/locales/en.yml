@@ -69,10 +69,12 @@ en:
             back:
               button_text: <-- Back
               name: back
-            example_option:
-              button_text: Some option
-              name: example_option
-              text: Test method, yeah
+            private:
+              button_text: Privacy
+              name: private
+              value:
+                'true': Private
+                'false': Public
     users:
       option:
         user_option_text:

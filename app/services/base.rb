@@ -8,26 +8,46 @@ module Services
 
     attr_reader :bot, :chat_id, :user
 
+    SETTING_SETUP = {
+      TrueClass: :toggle_bool_value,
+      FalseClass: :toggle_bool_value,
+      String: :setup_string_setting
+    }.with_indifferent_access
+
     def initialize(bot:, user:)
       @bot = bot
       @user = user
       @chat_id = user.id
     end
 
+    def setup(setting_name)
+      class_name = resource.try(setting_name).class.to_s
+
+      method(SETTING_SETUP[class_name]).call
+    end
+
     private
 
-    def send_setting_message_and_receive_response
+    def toggle_bool_value
+      new_value = !resource.try(@setting_name)
+
+      setup_and_save(@setting_name, new_value)
+    end
+
+    def setup_string_setting
       send_setting_message
-      receive_response
+      response = receive_response_of_type('message')
+
+      setup_and_save(@setting_name, response)
     end
 
     def setup_and_save(setting, value)
-      @resource.send("#{setting}=", value)
+      resource.send("#{setting}=", value)
       save_with_action { show_successfully_setup }
     end
 
     def save_with_action
-      if @resource.save
+      if resource.save
         yield
       else
         show_something_wrong
@@ -38,6 +58,10 @@ module Services
 
     def send_setting_message
       send_message(text: message_text)
+    end
+
+    def resource
+      raise NotImplementedError
     end
 
     def message_text

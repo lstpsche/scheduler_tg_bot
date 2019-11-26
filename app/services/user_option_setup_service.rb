@@ -9,15 +9,17 @@ module Services
 
     def perform(option_name)
       @setting_name = option_name
-      @resource = @user
-      send_setting_message_and_receive_response
 
-      setup_and_save(@setting_name, @response)
+      setup(option_name)
     rescue NoMethodError
       show_not_setup
     end
 
     private
+
+    def resource
+      @user
+    end
 
     def message_text
       I18n.t("actions.users.options.#{@setting_name}.text")
