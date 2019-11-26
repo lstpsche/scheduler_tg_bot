@@ -27,7 +27,7 @@ module Actions
         def schedule_settings_callback(args)
           Constant.schedule_settings_callback % {
             schedule_id: @schedule.id,
-            action: args[:name]
+            setting_name: args[:name]
           }
         end
 

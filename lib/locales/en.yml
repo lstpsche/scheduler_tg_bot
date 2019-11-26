@@ -53,6 +53,15 @@ en:
             show:
               name: expand
               button_text: Show schedule
+        schedule_setting:
+          header:
+          options:
+            back:
+              button_text: <-- Back
+              name: back
+            change_setting:
+              button_text: Change setting
+              name: setup
         schedule_settings:
           header: Choose schedule option
           options:
@@ -62,6 +71,7 @@ en:
             example_option:
               button_text: Some option
               name: example_option
+              text: Test method, yeah
     users:
       option:
         user_option_text:
@@ -85,14 +95,11 @@ en:
         terms_and_conditions:
           name: Terms and Conditions
           text: Are you agree with Terms and Conditions? # Inline keyboard with one button('Accept')
-        setup_successful: Setting was set up successfully!
       preferences:
         show_options: Choose a setting to setup
-        setup_successful: "Everything's set up.\nYou're ready to go!"
       registration:
         terms_and_conditions: "We will use some of your Telegram profile data.\n\nHere's a list of what we will use:\n1. First name\n2. Last name\n3. Username\n4. Telegram ID\n5. Info about your language.\n\nNothing of your personal data will be given to third parties. All your data is stored at ours servers and only used by us."
         welcome: "Hello, %{name}!\nWelcome to Scheduler Global Bot!"
-  services:
   common:
     back: <-- Back
     help: "/menu - show main menu\n/help - show this message"
@@ -104,6 +111,10 @@ en:
       events:
         weekday: "*%{weekday}*:\n"
         event: "*%{time}*: %{info} _(%{additional_info})_\n"
+  shared:
+    settings:
+      not_setup: Setting was not setup.
+      setup_successful: Setting was set up successfully!
   weekdays:
     monday: monday
     tuesday: tuesday

@@ -5,7 +5,7 @@ module Routers
     class OptionsRouter < Base
       # attrs from base -- :bot, :chat_id, :user
 
-      def initialize(bot:, user: nil)
+      def initialize(bot:, user:)
         super(bot: bot)
         @user = user
         @chat_id = user.id

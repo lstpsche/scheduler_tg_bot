@@ -4,9 +4,9 @@ module Helpers
   module Actions
     module OptionsSetups
       # :reek:UncommunicativeMethodName:
-      def setup_example_option_1
-        setup('example_option_1')
-      end
+      # def setup_example_option_1
+      #   setup('example_option_1')
+      # end
     end
   end
 end

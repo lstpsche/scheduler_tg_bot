@@ -36,16 +36,6 @@ module Helpers
       user.present? && user.try(:tapped_message).present? && user.update(tapped_message: nil)
     end
 
-    def save_validate_user
-      if user.save
-        yield
-      else
-        show_something_wrong
-        # maybe parse errors and show them to user
-        # (rather no)
-      end
-    end
-
     def user_option(option_name)
       # add here options from related models
       # for example:

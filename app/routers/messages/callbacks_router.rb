@@ -10,9 +10,10 @@ module Routers
         'add_schedule' => Handlers::Callbacks::AddSchedule,
         'create_schedule' => Handlers::Callbacks::CreateSchedule,
         'menu' => Handlers::Callbacks::Menu,
-        'options' => Handlers::Callbacks::Options,
+        'options' => Handlers::Callbacks::Option,
         'preferences' => Handlers::Callbacks::Preferences,
         'schedule' => Handlers::Callbacks::Schedule,
+        'schedule_setting' => Handlers::Callbacks::ScheduleSetting,
         'schedule_settings' => Handlers::Callbacks::ScheduleSettings,
         'schedules' => Handlers::Callbacks::AllSchedules
       }.freeze
