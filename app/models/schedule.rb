@@ -39,14 +39,17 @@ class DecoratedSchedule < Schedule
 
   def title
     I18n.t('layouts.schedule.title',
-           schedule_name: name,
-           schedule_id: id,
-           schedule_additional_info: decorated_additional_info
+            schedule_name: name,
+            schedule_id: id
           )
   end
 
+  def title_with_add_info
+    title + "\n" + additional_info
+  end
+
   def view
-    title + "\n" + decorated_events
+    title_with_add_info + "\n" + decorated_events
   end
 
   private

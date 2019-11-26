@@ -42,7 +42,7 @@ module Helpers
       end
 
       def show_not_setup
-        send_message(text: I18n.t('shared.settings.not_setup'))
+        send_message(text: I18n.t('shared.settings.was_not_setup'))
       end
 
       def show_successfully_setup

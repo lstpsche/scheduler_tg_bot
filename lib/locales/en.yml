@@ -62,8 +62,9 @@ en:
             change_setting:
               button_text: Change setting
               name: setup
+        schedule_setting_text: '_%{setting_name}_: %{setting_value}'
         schedule_settings:
-          header: Choose schedule option
+          header: Settings
           options:
             back:
               button_text: <-- Back
@@ -107,14 +108,16 @@ en:
     'yes': 'Yes'
   layouts:
     schedule:
-      title: "*%{schedule_name}* `#%{schedule_id}`\n%{schedule_additional_info}"
       events:
         weekday: "*%{weekday}*:\n"
         event: "*%{time}*: %{info} _(%{additional_info})_\n"
+      settings_title: "*%{schedule_name}* `#%{schedule_id}`"
+      title: "*%{schedule_name}* `#%{schedule_id}`"
   shared:
     settings:
-      not_setup: Setting was not setup.
+      not_set: Not set
       setup_successful: Setting was set up successfully!
+      was_not_setup: Setting was not setup.
   weekdays:
     monday: monday
     tuesday: tuesday

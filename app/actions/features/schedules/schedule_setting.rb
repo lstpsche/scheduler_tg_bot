@@ -32,7 +32,10 @@ module Actions
 
         def message_text
           resource = params.resource
-          "Schedule `##{schedule.id}`\n#{resource[:button_text]}: #{schedule.try(resource[:name]) || 'not set'}"
+          I18n.t('actions.features.schedules.schedule_setting_text') % {
+            setting_name: resource[:button_text],
+            setting_value: schedule.try(resource[:name]) || I18n.t('shared.settings.not_set')
+          }
         end
 
         def create_button_for_kb(option)
@@ -52,10 +55,3 @@ module Actions
     end
   end
 end
-
-# tap on Private
-
-# Schedule #15
-# Private: true
-# [ change setting ]
-# [ back ]
