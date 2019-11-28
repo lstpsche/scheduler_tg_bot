@@ -46,7 +46,7 @@ module Constants
 
     def schedule_settings_list
       %i[
-        example_option
+        private
       ]
     end
 
