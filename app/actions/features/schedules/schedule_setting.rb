@@ -28,26 +28,21 @@ module Actions
 
         def given_setting_params
           Constant.schedule_settings_options.select { |sett| sett[:name] == params.before[:setting] }
-                                            .first.with_indifferent_access
+                  .first.with_indifferent_access
         end
 
         def message_text
           resource = params.resource
           I18n.t('actions.features.schedules.schedule_setting_text') % {
             setting_name: resource[:button_text],
-            setting_value: setting_value(resource) || I18n.t('shared.settings.not_set')
+            setting_value: setting_value(resource, @schedule.try(resource[:name])) || I18n.t('shared.settings.not_set')
           }
         end
 
-        def setting_value(resource)
-          setting = resource[:name]
-          value = @schedule.try(setting)
+        def setting_value(resource, value)
+          return value unless value.in?([true, false])
 
-          if !!value == value
-            resource[:value][value.to_s]
-          else
-            value
-          end
+          resource[:value][value.to_s]
         end
 
         def create_button_for_kb(option)

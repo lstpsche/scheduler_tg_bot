@@ -39,8 +39,8 @@ class DecoratedSchedule < Schedule
 
   def title
     I18n.t('layouts.schedule.title',
-            schedule_name: name,
-            schedule_id: id
+           schedule_name: name,
+           schedule_id: id
           )
   end
 
