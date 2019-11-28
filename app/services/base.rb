@@ -11,7 +11,8 @@ module Services
     SETTING_SETUP = {
       TrueClass: :toggle_bool_value,
       FalseClass: :toggle_bool_value,
-      String: :setup_string_setting
+      String: :setup_string_setting,
+      NilClass: :setup_string_setting
     }.with_indifferent_access
 
     def initialize(bot:, user:)
