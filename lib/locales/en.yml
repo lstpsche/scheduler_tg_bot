@@ -54,7 +54,6 @@ en:
               name: expand
               button_text: Show schedule
         schedule_setting:
-          header:
           options:
             back:
               button_text: <-- Back
@@ -109,6 +108,10 @@ en:
     'no': 'No'
     'yes': 'Yes'
   layouts:
+    menus:
+      schedule:
+        additional_info: '%{info}'
+        title: "*%{schedule_name}* `#%{schedule_id}`"
     schedule:
       events:
         weekday: "*%{weekday}*:\n"
