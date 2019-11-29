@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 module Decorators
-  class MainMenu
-    def initialize(context, text)
-      @text = text
-      @context = context
-    end
+  class MainMenu < Base
+    # 'initialize' is in base
 
     def decoration_parts
       [@text]

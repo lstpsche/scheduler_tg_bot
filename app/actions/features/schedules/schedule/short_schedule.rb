@@ -19,7 +19,7 @@ module Actions
 
         def message_text
           Decorators::MenuDecorator.decorate(
-            { menu: 'short_schedule', resource: @schedule }
+            menu: 'short_schedule', resource: @schedule
           )
         end
       end

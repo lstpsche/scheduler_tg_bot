@@ -2,12 +2,8 @@
 
 module Decorators
   module Schedules
-    class ScheduleSetting
-      def initialize(context, text)
-        @text = text
-        @context = context
-        @schedule = context[:resource]
-      end
+    class ScheduleSetting < Base
+      # 'initialize' is in base
 
       def decoration_parts
         [header, '', @text]
@@ -16,10 +12,7 @@ module Decorators
       private
 
       def header
-        I18n.t('layouts.menus.schedule_setting.header') % {
-          schedule_name: @schedule.name,
-          schedule_id: @schedule.id
-        }
+        super(I18n.t('layouts.menus.schedule_setting.header'))
       end
     end
   end

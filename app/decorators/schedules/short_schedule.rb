@@ -2,31 +2,10 @@
 
 module Decorators
   module Schedules
-    class ShortSchedule
-      def initialize(context, text)
-        @text = text
-        @context = context
-        @schedule = context[:resource]
-      end
-
-      def decoration_parts
-        [header, additional_info, @text]
-      end
-
-      private
-
-      def header
-        I18n.t('layouts.menus.schedule.header') % {
-          schedule_name: @schedule.name,
-          schedule_id: @schedule.id
-        }
-      end
-
-      def additional_info
-        I18n.t('layouts.menus.schedule.additional_info') % {
-          info: @schedule.additional_info
-        }
-      end
+    class ShortSchedule < Base
+      # 'initialize' is in base
+      # 'decoration_parts' is in base
+      # 'header' is in base
     end
   end
 end

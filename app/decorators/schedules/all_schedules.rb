@@ -2,11 +2,8 @@
 
 module Decorators
   module Schedules
-    class AllSchedules
-      def initialize(context, text)
-        @text = text
-        @context = context
-      end
+    class AllSchedules < Base
+      # 'initialize' is in base
 
       def decoration_parts
         [@text]
