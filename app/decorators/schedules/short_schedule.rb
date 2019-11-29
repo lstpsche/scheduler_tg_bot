@@ -10,7 +10,7 @@ module Decorators
       end
 
       def decoration_parts
-        [path, title, additional_info, @text]
+        [path, header, additional_info, @text]
       end
 
       private
@@ -19,8 +19,8 @@ module Decorators
         # TODO: to be done somewhen
       end
 
-      def title
-        I18n.t('layouts.menus.schedule.title') % {
+      def header
+        I18n.t('layouts.menus.schedule.header') % {
           schedule_name: @schedule.name,
           schedule_id: @schedule.id
         }

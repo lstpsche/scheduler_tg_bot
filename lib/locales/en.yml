@@ -109,9 +109,10 @@ en:
     'yes': 'Yes'
   layouts:
     menus:
+      all_schedules:
       schedule:
         additional_info: '%{info}'
-        title: "*%{schedule_name}* `#%{schedule_id}`"
+        header: "*%{schedule_name}* `#%{schedule_id}`"
     schedule:
       events:
         weekday: "*%{weekday}*:\n"
