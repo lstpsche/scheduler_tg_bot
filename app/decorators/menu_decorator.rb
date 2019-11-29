@@ -6,7 +6,8 @@ module Decorators
       'short_schedule': Schedules::ShortSchedule,
       'expanded_schedule': Schedules::ExpandedSchedule,
       'all_schedules': Schedules::AllSchedules,
-      'schedule_setting': Schedules::ScheduleSetting
+      'schedule_setting': Schedules::ScheduleSetting,
+      'schedule_settings': Schedules::ScheduleSettings
     }.with_indifferent_access
 
     def initialize(text, context)

@@ -115,6 +115,8 @@ en:
         header: '*%{schedule_name}* `#%{schedule_id}`'
       schedule_setting:
         header: '*%{schedule_name}* `#%{schedule_id}`'
+      schedule_settings:
+        header: '*%{schedule_name}* `#%{schedule_id}`'
     schedule:
       events:
         weekday: "*%{weekday}*:\n"
