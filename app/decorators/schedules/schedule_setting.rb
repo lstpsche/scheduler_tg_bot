@@ -2,7 +2,7 @@
 
 module Decorators
   module Schedules
-    class ShortSchedule
+    class ScheduleSetting
       def initialize(context, text)
         @text = text
         @context = context
@@ -10,21 +10,15 @@ module Decorators
       end
 
       def decoration_parts
-        [header, additional_info, @text]
+        [header, '', @text]
       end
 
       private
 
       def header
-        I18n.t('layouts.menus.schedule.header') % {
+        I18n.t('layouts.menus.schedule_setting.header') % {
           schedule_name: @schedule.name,
           schedule_id: @schedule.id
-        }
-      end
-
-      def additional_info
-        I18n.t('layouts.menus.schedule.additional_info') % {
-          info: @schedule.additional_info
         }
       end
     end

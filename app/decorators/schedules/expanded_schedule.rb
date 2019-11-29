@@ -8,17 +8,12 @@ module Decorators
         @context = context
         @schedule = context[:resource]
       end
-      #################### TODO: MAYBE CREATE BASE CLASS AND MOVE DUPLICATING METHODS THERE
+
       def decoration_parts
-        [path, header, additional_info, '', @text]
+        [header, additional_info, '', @text]
       end
 
       private
-
-      def path
-        # TODO: to be done
-        # context[:path] = ['menu', 'schedules', 'schedule #15', 'schedule settings', ....]
-      end
 
       def header
         I18n.t('layouts.menus.all_schedules.header') % {

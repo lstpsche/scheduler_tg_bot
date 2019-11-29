@@ -112,13 +112,14 @@ en:
       all_schedules:
       schedule:
         additional_info: '%{info}'
-        header: "*%{schedule_name}* `#%{schedule_id}`"
+        header: '*%{schedule_name}* `#%{schedule_id}`'
+      schedule_setting:
+        header: '*%{schedule_name}* `#%{schedule_id}`'
     schedule:
       events:
         weekday: "*%{weekday}*:\n"
         event: "*%{time}*: %{info} _(%{additional_info})_\n"
-      settings_title: "*%{schedule_name}* `#%{schedule_id}`"
-      title: "*%{schedule_name}* `#%{schedule_id}`"
+      title: '*%{schedule_name}* `#%{schedule_id}`'
   shared:
     settings:
       not_set: Not set

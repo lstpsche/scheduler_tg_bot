@@ -5,7 +5,8 @@ module Decorators
     CONTEXT_TITLE = {
       'short_schedule': Schedules::ShortSchedule,
       'expanded_schedule': Schedules::ExpandedSchedule,
-      'all_schedules': Schedules::AllSchedules
+      'all_schedules': Schedules::AllSchedules,
+      'schedule_setting': Schedules::ScheduleSetting
     }.with_indifferent_access
 
     def initialize(text, context)
