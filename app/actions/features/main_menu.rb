@@ -2,7 +2,7 @@
 
 module Actions
   module Features
-    class Menu < Actions::Features::Base
+    class MainMenu < Actions::Features::Base
       # attrs from base -- :bot, :chat_id, :user, :params
 
       # 'initialize' is in base
@@ -22,7 +22,10 @@ module Actions
       end
 
       def message_text
-        I18n.t('actions.features.menu.header')
+        Decorators::MenuDecorator.decorate(
+          { menu: 'main_menu' },
+          I18n.t('actions.features.menu.header')
+        )
       end
     end
   end
