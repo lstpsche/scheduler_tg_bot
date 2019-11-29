@@ -46,7 +46,10 @@ module Actions
         end
 
         def message_text
-          I18n.t('actions.features.schedules.all_schedules.header')
+          Decorators::MenuDecorator.decorate(
+            { menu: 'all_schedules' },
+            I18n.t('actions.features.schedules.all_schedules.header')
+          )
         end
 
         def create_button_for_kb(schedule)

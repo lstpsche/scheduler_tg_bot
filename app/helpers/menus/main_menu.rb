@@ -6,7 +6,7 @@ module Helpers
       private
 
       def show_main_menu
-        ::Actions::Features::Menu.new(bot: bot, user: user).show
+        ::Actions::Features::MainMenu.new(bot: bot, user: user).show
       end
 
       def show_all_schedules

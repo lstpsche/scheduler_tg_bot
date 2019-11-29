@@ -32,7 +32,15 @@ module Actions
         end
 
         def message_text
+          Decorators::MenuDecorator.decorate(
+            { menu: 'schedule_setting', resource: @schedule },
+            text_to_decorate
+          )
+        end
+
+        def text_to_decorate
           resource = params.resource
+
           I18n.t('actions.features.schedules.schedule_setting_text') % {
             setting_name: resource[:button_text],
             setting_value: setting_value(resource, @schedule.try(resource[:name])) || I18n.t('shared.settings.not_set')

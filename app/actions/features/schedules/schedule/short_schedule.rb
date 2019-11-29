@@ -18,7 +18,9 @@ module Actions
         end
 
         def message_text
-          @schedule.decorated.title_with_add_info
+          Decorators::MenuDecorator.decorate(
+            menu: 'short_schedule', resource: @schedule
+          )
         end
       end
     end

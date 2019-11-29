@@ -38,6 +38,11 @@ namespace :app do
     require_all 'app/handlers/callbacks/base.rb'
     require_all 'app/handlers/callbacks'
     require_all 'app/handlers/text_commands'
+    ## decorators
+    require_all 'app/decorators/base.rb'
+    require_all 'app/decorators/schedules/base.rb'
+    require_all 'app/decorators/schedules'
+    require_all 'app/decorators'
     ## actions
     require_all 'app/actions/base.rb'
     require_all 'app/actions/users/base.rb'

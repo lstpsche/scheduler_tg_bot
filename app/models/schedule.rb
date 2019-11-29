@@ -30,6 +30,12 @@ class DecoratedSchedule < Schedule
     super.presence
   end
 
+  def decorated_events
+    events_hashed_by_weekday.inject('') do |text, (weekday, events)|
+      text + decorated_weekday(weekday, events)
+    end
+  end
+
   def settings
     Constant.schedule_settings_list.map do |result, setting|
       str_setting = setting.to_s
@@ -56,12 +62,6 @@ class DecoratedSchedule < Schedule
 
   def decorated_additional_info
     additional_info + "\n"
-  end
-
-  def decorated_events
-    events_hashed_by_weekday.inject('') do |text, (weekday, events)|
-      text + decorated_weekday(weekday, events)
-    end
   end
 
   def decorated_weekday(weekday, events)

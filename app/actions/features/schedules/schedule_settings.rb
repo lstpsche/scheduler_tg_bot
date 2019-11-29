@@ -21,7 +21,10 @@ module Actions
         private
 
         def message_text
-          I18n.t('actions.features.schedules.schedule_settings.header')
+          Decorators::MenuDecorator.decorate(
+            { menu: 'schedule_settings', resource: @schedule },
+            I18n.t('actions.features.schedules.schedule_settings.header')
+          )
         end
 
         def schedule_settings_callback(args)

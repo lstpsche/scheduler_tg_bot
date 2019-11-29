@@ -18,7 +18,10 @@ module Actions
         end
 
         def message_text
-          @schedule.decorated.view
+          Decorators::MenuDecorator.decorate(
+            { menu: 'expanded_schedule', resource: @schedule },
+            @schedule.decorated.decorated_events
+          )
         end
       end
     end
