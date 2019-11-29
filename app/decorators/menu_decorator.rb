@@ -3,7 +3,8 @@
 module Decorators
   class MenuDecorator
     CONTEXT_TITLE = {
-      'short_schedule': Schedules::ShortSchedule
+      'short_schedule': Schedules::ShortSchedule,
+      'expanded_schedule': Schedules::ExpandedSchedule
     }.with_indifferent_access
 
     def initialize(text, context)
