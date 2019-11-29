@@ -6,7 +6,7 @@ module Decorators
       # 'initialize' is in base
 
       def decoration_parts
-        [header, '', @text]
+        schedule_settings_default_parts
       end
 
       private
