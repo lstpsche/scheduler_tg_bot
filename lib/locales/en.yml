@@ -29,7 +29,6 @@ en:
             name: back
             button_text: <-- Back
         create_schedule:
-          header: "By pressing this button you will be redirected to a new schedule creation at web-version of Scheduler\n\n*This link is one-time-use only!*"
           go_to_web:
             button_text: Go to web version
           back:
@@ -111,6 +110,8 @@ en:
       add_schedule:
         header: '*Add schedule*'
       all_schedules:
+      create_schedule:
+        header: "By pressing this button you will be redirected to a new schedule creation at web-version of Scheduler\n\n*This link is one-time-use only!*"
       option:
         header: '*Account Preferences*'
         option_name: '*%{option_name}*'
