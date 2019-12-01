@@ -43,7 +43,7 @@ module Actions
 
         def message_text
           Decorators::MenuDecorator.decorate(
-            { menu: 'add_schedule' }
+            menu: 'add_schedule'
           )
         end
       end
