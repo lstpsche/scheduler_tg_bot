@@ -12,7 +12,7 @@ module Decorators
         [header, additional_info, '', @text]
       end
 
-      def schedule_settings_default_parts
+      def default_decoration_parts_without_additional_info
         [header, '', @text]
       end
 

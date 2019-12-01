@@ -25,7 +25,9 @@ module Actions
         end
 
         def message_text
-          I18n.t('actions.features.schedules.create_schedule.header')
+          Decorators::MenuDecorator.decorate(
+            menu: 'create_schedule'
+          )
         end
 
         def callback
