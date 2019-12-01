@@ -28,7 +28,6 @@ module Routers
         end
 
         def setup(option_name)
-          reset_user_tapped_message
           setup_schedule_setting(@schedule, option_name)
           show_schedule_setting(@schedule, option_name)
         end

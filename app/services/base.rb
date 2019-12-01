@@ -32,19 +32,20 @@ module Services
     def toggle_bool_value
       new_value = !resource.try(@setting_name)
 
-      setup_and_save(@setting_name, new_value)
+      setup_and_save(@setting_name, new_value, show_success: false)
     end
 
     def setup_string_setting
+      reset_user_tapped_message
       send_setting_message
       response = receive_response_of_type('message')
 
       setup_and_save(@setting_name, response)
     end
 
-    def setup_and_save(setting, value)
+    def setup_and_save(setting, value, show_success: true)
       resource.send("#{setting}=", value)
-      save_with_action { show_successfully_setup }
+      save_with_action { show_successfully_setup if show_success }
     end
 
     def save_with_action
