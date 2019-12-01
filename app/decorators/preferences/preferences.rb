@@ -4,10 +4,7 @@ module Decorators
   module Preferences
     class Preferences < Base
       # 'initialize' is in base
-
-      def decoration_parts
-        [header, '', @text]
-      end
+      # 'decoration_parts' is in base
 
       private
 

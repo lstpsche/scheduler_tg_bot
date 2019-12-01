@@ -32,11 +32,16 @@ module Actions
       end
 
       def message_text
-        resource = params.resource
+        Decorators::MenuDecorator.decorate(
+          { menu: 'option', resource: params.resource },
+          text_to_decorate
+        )
+      end
+
+      def text_to_decorate
         I18n.t('actions.users.option.message_text',
-               option_name: resource[:button_text],
-               user_option_text: user_option_text(resource[:name])
-              )
+          user_option_text: user_option_text(params.resource[:name])
+         )
       end
 
       def create_button_for_kb(option)

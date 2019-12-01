@@ -79,7 +79,7 @@ en:
         user_option_text:
           not_present: This setting was not set for you yet
           present: "_Current:_ %{option_value}"
-        message_text: "*%{option_name}*\n%{user_option_text}"
+        message_text: '%{user_option_text}'
         change_option:
           name: setup
           button_text: Change option
@@ -110,6 +110,9 @@ en:
   layouts:
     menus:
       all_schedules:
+      option:
+        header: '*Account Preferences*'
+        option_name: '*%{option_name}*'
       preferences:
         header: '*Account Preferences*'
       schedule:
