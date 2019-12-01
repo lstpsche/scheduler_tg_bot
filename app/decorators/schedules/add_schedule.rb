@@ -2,7 +2,7 @@
 
 module Decorators
   module Schedules
-    class ScheduleSetting < Base
+    class AddSchedule < Base
       # 'initialize' is in base
 
       def decoration_parts
@@ -12,7 +12,7 @@ module Decorators
       private
 
       def header
-        super(I18n.t('layouts.menus.schedule_setting.header'))
+        I18n.t('layouts.menus.add_schedule.header')
       end
     end
   end

@@ -42,7 +42,9 @@ module Actions
         end
 
         def message_text
-          I18n.t('actions.features.schedules.add_schedule.header')
+          Decorators::MenuDecorator.decorate(
+            { menu: 'add_schedule' }
+          )
         end
       end
     end

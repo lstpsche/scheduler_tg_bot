@@ -3,6 +3,7 @@
 module Decorators
   class MenuDecorator < Base
     CONTEXT_TITLE = {
+      'add_schedule': Schedules::AddSchedule,
       'all_schedules': Schedules::AllSchedules,
       'expanded_schedule': Schedules::ExpandedSchedule,
       'main_menu': MainMenu,

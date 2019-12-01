@@ -11,7 +11,6 @@ en:
           button_text: Preferences
       schedules:
         add_schedule:
-          header: Add schedules
           create_new_schedule:
             name: create_schedule
             button_text: + Create new schedule
@@ -109,6 +108,8 @@ en:
     'yes': 'Yes'
   layouts:
     menus:
+      add_schedule:
+        header: '*Add schedule*'
       all_schedules:
       option:
         header: '*Account Preferences*'
