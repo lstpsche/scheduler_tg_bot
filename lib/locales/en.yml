@@ -110,6 +110,8 @@ en:
   layouts:
     menus:
       all_schedules:
+      preferences:
+        header: '*Account Preferences*'
       schedule:
         additional_info: '%{info}'
         header: '*%{schedule_name}* `#%{schedule_id}`'

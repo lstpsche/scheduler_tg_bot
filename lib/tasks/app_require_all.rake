@@ -40,6 +40,8 @@ namespace :app do
     require_all 'app/handlers/text_commands'
     ## decorators
     require_all 'app/decorators/base.rb'
+    require_all 'app/decorators/preferences/base.rb'
+    require_all 'app/decorators/preferences'
     require_all 'app/decorators/schedules/base.rb'
     require_all 'app/decorators/schedules'
     require_all 'app/decorators'

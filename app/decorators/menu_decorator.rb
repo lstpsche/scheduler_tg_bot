@@ -6,6 +6,7 @@ module Decorators
       'all_schedules': Schedules::AllSchedules,
       'expanded_schedule': Schedules::ExpandedSchedule,
       'main_menu': MainMenu,
+      'preferences': Preferences::Preferences,
       'schedule_setting': Schedules::ScheduleSetting,
       'schedule_settings': Schedules::ScheduleSettings,
       'short_schedule': Schedules::ShortSchedule
