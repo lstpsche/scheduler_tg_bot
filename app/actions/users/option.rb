@@ -40,8 +40,8 @@ module Actions
 
       def text_to_decorate
         I18n.t('actions.users.option.message_text',
-          user_option_text: user_option_text(params.resource[:name])
-         )
+               user_option_text: user_option_text(params.resource[:name])
+              )
       end
 
       def create_button_for_kb(option)

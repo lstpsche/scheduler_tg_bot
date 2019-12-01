@@ -20,8 +20,8 @@ module Decorators
 
       def option_name
         I18n.t('layouts.menus.option.option_name',
-          option_name: @option[:button_text]
-        )
+               option_name: @option[:button_text]
+              )
       end
     end
   end
