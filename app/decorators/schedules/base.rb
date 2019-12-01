@@ -12,11 +12,11 @@ module Decorators
         [header, additional_info, '', @text]
       end
 
-      private
-
       def schedule_settings_default_parts
         [header, '', @text]
       end
+
+      private
 
       def header(locale = I18n.t('layouts.menus.schedule.header'))
         locale % {

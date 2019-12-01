@@ -26,7 +26,10 @@ module Actions
       end
 
       def message_text
-        I18n.t('actions.users.preferences.show_options')
+        Decorators::MenuDecorator.decorate(
+          { menu: 'preferences' },
+          I18n.t('actions.users.preferences.show_options')
+        )
       end
 
       # 'option_name' is in base
