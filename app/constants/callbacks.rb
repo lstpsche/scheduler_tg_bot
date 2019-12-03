@@ -10,6 +10,10 @@ module Constants
       'schedules-%{command}'
     end
 
+    def coming_soon_callback
+      'coming_soon-%{command}__%{context}'
+    end
+
     def create_schedule_callback
       'create_schedule-%{command}'
     end
