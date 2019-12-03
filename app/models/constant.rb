@@ -23,6 +23,10 @@ class Constant
       end
     end
 
+    def back_button
+      Array.wrap(I18n.t('common.buttons.back'))
+    end
+
     private
 
     def options_translations_for(options, scope)

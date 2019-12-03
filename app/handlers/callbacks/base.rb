@@ -49,8 +49,12 @@ module Handlers
         handle_actions.include?(command)
       end
 
+      def handler(command)
+        method(handle_methods[command])
+      end
+
       def call_handler(command)
-        method(handle_methods[command]).call
+        handler(command).call
       end
 
       def check_schedule_validity(schedule_id)

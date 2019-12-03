@@ -41,8 +41,7 @@ module Actions
         end
 
         def back_button
-          back_btn = I18n.t('actions.features.schedules.all_schedules.back')
-          create_button(back_btn).inline
+          create_button(Constant.back_button.first).inline
         end
 
         def message_text

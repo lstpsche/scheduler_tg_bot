@@ -37,8 +37,7 @@ module Actions
         def back_button
           return nil if @no_back
 
-          back = I18n.t('actions.features.schedules.add_schedule.back')
-          Button.new(button_args(back)).inline
+          Button.new(button_args(Constant.back_button.first)).inline
         end
 
         def message_text

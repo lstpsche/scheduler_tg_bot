@@ -40,8 +40,7 @@ module Actions
         end
 
         def back_button
-          back = I18n.t('actions.features.schedules.create_schedule.back')
-          Button.new(button_args(back)).inline
+          Button.new(button_args(Constant.back_button.first)).inline
         end
 
         def generate_url_to_schedule_creation

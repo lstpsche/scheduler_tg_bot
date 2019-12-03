@@ -14,7 +14,11 @@ module Helpers
       end
 
       def show_preferences
-        ::Actions::Users::Preferences.new(bot: bot, user: user).show
+        if ENV['RAILS_ENV'] == 'production'
+          show_coming_soon
+        else
+          ::Actions::Users::Preferences.new(bot: bot, user: user).show
+        end
       end
     end
   end
