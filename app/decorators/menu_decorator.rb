@@ -5,6 +5,7 @@ module Decorators
     CONTEXT_TITLE = {
       'add_schedule': Schedules::AddSchedule,
       'all_schedules': Schedules::AllSchedules,
+      'coming_soon': ComingSoon,
       'create_schedule': Schedules::CreateSchedule,
       'expanded_schedule': Schedules::ExpandedSchedule,
       'main_menu': MainMenu,

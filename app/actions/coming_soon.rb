@@ -19,7 +19,10 @@ module Actions
     private
 
     def message_text
-      I18n.t('common.texts.coming_soon')
+      Decorators::MenuDecorator.decorate(
+        { menu: 'coming_soon' },
+        I18n.t('common.texts.coming_soon')
+      )
     end
 
     def create_button_for_kb(option)
