@@ -7,16 +7,16 @@ module Routers
       attr_reader :params, :tapped_message
 
       HANDLERS = {
-        'add_schedule' => Handlers::Callbacks::AddSchedule,
+        'add_schedule' => Handlers::Callbacks::Schedules::AddSchedule,
         'coming_soon' => Handlers::Callbacks::ComingSoon,
-        'create_schedule' => Handlers::Callbacks::CreateSchedule,
+        'create_schedule' => Handlers::Callbacks::Schedules::CreateSchedule,
         'menu' => Handlers::Callbacks::Menu,
-        'options' => Handlers::Callbacks::Option,
-        'preferences' => Handlers::Callbacks::Preferences,
-        'schedule' => Handlers::Callbacks::Schedule,
-        'schedule_setting' => Handlers::Callbacks::ScheduleSetting,
-        'schedule_settings' => Handlers::Callbacks::ScheduleSettings,
-        'schedules' => Handlers::Callbacks::AllSchedules
+        'options' => Handlers::Callbacks::Preferences::Option,
+        'preferences' => Handlers::Callbacks::Preferences::Preferences,
+        'schedule' => Handlers::Callbacks::Schedules::Schedule,
+        'schedule_setting' => Handlers::Callbacks::Schedules::ScheduleSetting,
+        'schedule_settings' => Handlers::Callbacks::Schedules::ScheduleSettings,
+        'schedules' => Handlers::Callbacks::Schedules::AllSchedules
       }.freeze
 
       def initialize(bot:)

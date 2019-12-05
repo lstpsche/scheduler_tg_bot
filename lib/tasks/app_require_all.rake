@@ -47,13 +47,13 @@ namespace :app do
     require_all 'app/decorators'
     ## actions
     require_all 'app/actions/base.rb'
-    require_all 'app/actions/*.rb'
     require_all 'app/actions/users/base.rb'
     require_all 'app/actions/users'
     require_all 'app/actions/features/base.rb'
     require_all 'app/actions/features/schedules/base.rb'
     require_all 'app/actions/features/schedules/schedule/schedule.rb'
     require_all 'app/actions/features'
+    require_all 'app/actions'
     ## dialogs
     require_all 'app/dialogs'
     ## routers

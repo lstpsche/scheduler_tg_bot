@@ -83,7 +83,7 @@ en:
         button_text: <-- Back
     texts:
       coming_soon: Coming soon...
-    help: "/menu - show main menu\n/help - show this message"
+      help: "/menu - show main menu\n/help - show this message"
     'no': 'No'
     'yes': 'Yes'
   layouts:

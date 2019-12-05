@@ -29,7 +29,6 @@ module Constants
       options_translations_for(schedule_options_list, scope) + back_button
     end
 
-    # TODO: remove in #SR-92
     def schedule_setting_options
       scope = 'actions.features.schedules.schedule_setting.options'
 
