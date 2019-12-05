@@ -50,14 +50,6 @@ class DecoratedSchedule < Schedule
           )
   end
 
-  def title_with_add_info
-    title + "\n" + additional_info
-  end
-
-  def view
-    title_with_add_info + "\n" + decorated_events
-  end
-
   private
 
   def decorated_additional_info
