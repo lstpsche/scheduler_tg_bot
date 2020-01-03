@@ -44,9 +44,16 @@ module Actions
         end
 
         def generate_url_to_schedule_creation
-          link = ENV['WEB_VERSION_URL'] + I18n.t('web_version_links.new_schedule') + '?'
+          link = web_version_link + I18n.t('web_version_links.new_schedule') + '?'
 
           add_user_params_to_link(link)
+        end
+
+        def web_version_url
+          url = ENV['WEB_VERSION_URL']
+          return url unless url[-1] == '/'
+
+          url.slice(0...-1)
         end
 
         def add_user_params_to_link(raw_link)
