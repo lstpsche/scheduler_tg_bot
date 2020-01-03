@@ -38,6 +38,11 @@ namespace :db do
       name = ENV['DB_NAME']
       user = ENV['DB_USER']
       pass = ENV['DB_PASS']
+    elsif ENV['RAILS_ENV'] == 'staging'
+      host = ENV['STG_DB_HOST']
+      name = ENV['STG_DB_NAME']
+      user = ENV['STG_DB_USER']
+      pass = ENV['STG_DB_PASS']
     else
       host = ENV['DEV_DB_HOST']
       name = ENV['DEV_DB_NAME'] + '_' + ENV['RAILS_ENV']
