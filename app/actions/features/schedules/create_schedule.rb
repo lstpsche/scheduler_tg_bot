@@ -44,7 +44,7 @@ module Actions
         end
 
         def generate_url_to_schedule_creation
-          link = web_version_link + I18n.t('web_version_links.new_schedule') + '?'
+          link = web_version_url + I18n.t('web_version_links.new_schedule') + '?'
 
           add_user_params_to_link(link)
         end
