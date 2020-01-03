@@ -4,7 +4,7 @@ class RequestToWeb
   attr_reader :body, :request, :header, :uri
 
   def initialize(path)
-    @uri = URI.parse(ENV['WEB_VERSION_URL'] + path)
+    @uri = URI.parse(web_version_url + path)
     @header = { 'Content-Type': 'application/json',
                 'Accept': 'applications/json' }
     @body = {}
@@ -30,6 +30,13 @@ class RequestToWeb
   end
 
   private
+
+  def web_version_url
+    url = ENV['WEB_VERSION_URL']
+    return url unless url[-1] == '/'
+
+    url.slice(0...-1)
+  end
 
   def http
     Net::HTTP.new(uri.host)
